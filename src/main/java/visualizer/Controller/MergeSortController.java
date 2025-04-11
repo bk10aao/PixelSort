@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import visualizer.Controller.Algorithms.MergeSort;
-import visualizer.Controller.Algorithms.QuickSort;
+import visualizer.Controller.Algorithms.MergeSortTwo;
 import visualizer.Model.SortInput;
 import visualizer.Model.SortResponse;
 
@@ -21,6 +21,15 @@ public class MergeSortController {
         int[] values = sortInput.getValues();
         List<List<Integer>> results = new ArrayList<>();
         MergeSort.sort(values, results);
+        results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
+        return new SortResponse(results);
+    }
+
+    @PostMapping("/merge-sort-two")
+    public SortResponse mergeSortTwo(@RequestBody SortInput sortInput) {
+        int[] values = sortInput.getValues();
+        List<List<Integer>> results = new ArrayList<>();
+        MergeSortTwo.sort(values, results);
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
         return new SortResponse(results);
     }

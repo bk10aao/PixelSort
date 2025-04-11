@@ -32,7 +32,7 @@ public class Commons {
         }
     }
 
-    private static void isSorted(int[] values1, int low, int middle, int high) {
+    public static void isSorted(int[] values1, int low, int middle, int high) {
         assert Commons.isSorted(values1, low, middle);
         assert Commons.isSorted(values1, middle + 1, high);
     }
