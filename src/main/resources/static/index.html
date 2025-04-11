@@ -7,11 +7,11 @@
     <script>
         // This function will call the /quick-sort API when the page is loaded
         function callApi() {
-            const apiUrl = 'http://localhost:8080/bubble-sort';  // Replace with your REST API URL
+            const apiUrl = 'http://localhost:8080/merge-sort';  // Replace with your REST API URL
 
             // Data you want to send in the POST request (for example, an array to be sorted)
             const data = {
-                values: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]  // Sample array to sort (you can change it)
+                values: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]  // Sample array to sort (you can change it)
             };
 
             // Fetch data from the REST API using POST
