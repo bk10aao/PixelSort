@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call REST API Example</title>
+    <script>
+        // This function will call the /quick-sort API when the page is loaded
+        function callApi() {
+            const apiUrl = 'http://localhost:8080/bubble-sort';  // Replace with your REST API URL
+
+            // Data you want to send in the POST request (for example, an array to be sorted)
+            const data = {
+                values: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]  // Sample array to sort (you can change it)
+            };
+
+            // Fetch data from the REST API using POST
+            fetch(apiUrl, {
+                method: 'POST',  // Specify the POST method
+                headers: {
+                    'Content-Type': 'application/json'  // Set the content type to JSON
+                },
+                body: JSON.stringify(data)  // Convert the JavaScript object to a JSON string
+            })
+            .then(response => response.json())  // Parse the JSON response
+            .then(data => {
+                document.getElementById('apiResponse').innerHTML = JSON.stringify(data.results);
+            })
+            .catch(error => {
+                console.error('Error calling API:', error);
+                document.getElementById('apiResponse').innerHTML = 'Error calling API';
+            });
+        }
+
+        // Call the API when the page is fully loaded
+        window.onload = callApi;
+    </script>
+</head>
+<body>
+<h1>Sorting Visualizer</h1>
+<div id="apiResponse">
+    <!-- The API response will be shown here -->
+</div>
+</body>
+</html>
