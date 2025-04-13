@@ -16,6 +16,10 @@ public class SelectionSortController {
     public SortResponse selectionSort(@RequestBody SortInput sortInput) {
         int[] values = sortInput.getValues();
         List<List<Integer>> results = SelectionSort.sort(values);
+        System.out.println("selection sort");
+        for(List<Integer> val: results) {
+            System.out.println(val);
+        }
         return new SortResponse(results);
     }
 }

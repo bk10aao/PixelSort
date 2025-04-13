@@ -6,4 +6,8 @@ public class SortInput {
     public int[] getValues() {
         return this.values;
     }
+
+    public void setValues(int[] values) {
+        this.values = values;
+    }
 }
