@@ -1,7 +1,5 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,10 +13,10 @@ public class MergeSortTwo {
         int[] aux = new int[n];
         for (int size = 1; size < n; size = 2 * size)
             for (int low = 0; low < n - size; low += 2 * size)
-                mergeTwo(values, aux, low, low + size - 1, Math.min(low + size + size - 1, n - 1), results);
+                merge(values, aux, low, low + size - 1, Math.min(low + size + size - 1, n - 1), results);
     }
 
-    public static void mergeTwo(int[] values1, int[] values2, int low, int middle, int high, List<List<Integer>> results) {
+    public static void merge(int[] values1, int[] values2, int low, int middle, int high, List<List<Integer>> results) {
         isSorted(values1, low, middle, high);
         int[] merged = new int[values1.length + values2.length];
         System.arraycopy(values1, 0, merged, 0, values1.length);
