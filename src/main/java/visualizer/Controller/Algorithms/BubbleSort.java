@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BubbleSort {
 
-    public static List<List<Integer>> sort (int[] numbers) {
+    public static List<List<Integer>> sort(int[] numbers) {
         List<List<Integer>> results = new ArrayList<>();
         boolean swapped = true;
         while (swapped) {

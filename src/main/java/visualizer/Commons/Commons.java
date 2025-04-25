@@ -1,6 +1,7 @@
 package visualizer.Commons;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -63,5 +64,9 @@ public class Commons {
         for (int i = from; i <= to; i++)
             list.add(arr[i]);
         return list;
+    }
+
+    public static List<Integer> toList(Integer[] arr) {
+        return new ArrayList<>(Arrays.asList(arr));
     }
 }
