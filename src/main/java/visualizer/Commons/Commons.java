@@ -1,8 +1,11 @@
 package visualizer.Commons;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Commons {
+
     public static void exchange(int[] values, int i, int j) {
         int swap = values[i];
         values[i] = values[j];
@@ -41,5 +44,24 @@ public class Commons {
         for (int i = low + 1; i <= high; i++)
             if (less(values[i], values[i - 1])) return false;
         return true;
+    }
+
+    public static void sink(int[] binaryHeap, int index, int n) {
+        while (2 * index <= n) {
+            int j = 2 * index;
+            if (j < n && Commons.less(binaryHeap[j], binaryHeap[j + 1]))
+                j++;
+            if (!Commons.less(binaryHeap[index], binaryHeap[j]))
+                break;
+            Commons.exchange(binaryHeap, index, j);
+            index = j;
+        }
+    }
+
+    public static List<Integer> toList(int[] arr, int from, int to) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = from; i <= to; i++)
+            list.add(arr[i]);
+        return list;
     }
 }

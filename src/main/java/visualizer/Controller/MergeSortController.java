@@ -25,10 +25,6 @@ public class MergeSortController {
         List<List<Integer>> results = new ArrayList<>();
         MergeSort.sort(values, results);
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-        System.out.println("merge sort");
-        for(List<Integer> val: results) {
-            System.out.println(val);
-        }
         return new SortResponse(results);
     }
 
@@ -39,11 +35,6 @@ public class MergeSortController {
         List<List<Integer>> results = new ArrayList<>();
         MergeSortTwo.sort(values, results);
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-        System.out.println("merge sort two");
-
-        for(List<Integer> val: results) {
-            System.out.println(val);
-        }
         return new SortResponse(results);
     }
 }
