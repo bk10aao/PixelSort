@@ -18,11 +18,6 @@ public class BubbleSortController {
     public SortResponse bubbleSort(@RequestBody SortInput sortInput) {
         int[] values = sortInput.getValues();
         List<List<Integer>> results = BubbleSort.sort(values);
-        System.out.println("bubble sort");
-
-        for(List<Integer> val: results) {
-            System.out.println(val);
-        }
         return new SortResponse(results);
     }
 }
