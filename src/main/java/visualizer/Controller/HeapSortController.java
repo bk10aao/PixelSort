@@ -9,8 +9,6 @@ import visualizer.Controller.Algorithms.HeapSort;
 import visualizer.Model.SortInput;
 import visualizer.Model.SortResponse;
 
-import java.util.List;
-
 @RestController
 public class HeapSortController {
 

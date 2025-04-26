@@ -9,21 +9,12 @@ import visualizer.Controller.Algorithms.ShellSort;
 import visualizer.Model.SortInput;
 import visualizer.Model.SortResponse;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 public class ShellSortController {
 
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/shell-sort")
-    public SortResponse shellSort(@RequestBody SortInput sortInput) {
-        int[] values = sortInput.getValues();
-        List<List<Integer>> results = new ArrayList<>();
-        ShellSort.sort(values, results);
-        results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-        return new SortResponse(results);
+    public SortResponse shellSort(@RequestBody SortInput sortInput) {;
+        return new SortResponse(ShellSort.sort(sortInput.getValues()));
     }
 }

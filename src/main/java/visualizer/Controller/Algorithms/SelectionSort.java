@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SelectionSort {
+
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = new ArrayList<>();
         for (int i = 0; i < values.length; i++) {

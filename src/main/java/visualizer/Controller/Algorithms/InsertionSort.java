@@ -1,11 +1,13 @@
 package visualizer.Controller.Algorithms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class InsertionSort {
 
-    public static List<List<Integer>> sort(int[] values, List<List<Integer>> results) {
+    public static List<List<Integer>> sort(int[] values) {
+        List<List<Integer>> results = new ArrayList<>();
         results.add(Arrays.stream(values).boxed().toList());
         for(int i = 1; i < values.length; i++) {
             int current = values[i];

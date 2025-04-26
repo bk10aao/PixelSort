@@ -1,12 +1,14 @@
 package visualizer.Controller.Algorithms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static visualizer.Commons.Commons.toList;
 
 public class PancakeSort {
 
-    public static void sort(int[] values, List<List<Integer>> results) {
+    public static List<List<Integer>> sort(int[] values) {
+        List<List<Integer>> results = new ArrayList<>();
         results.add(toList(values, 0, values.length - 1));
         for(int i = values.length; i > 1; i--) {
             int maxIndex = findMax(values, i);
@@ -16,6 +18,7 @@ public class PancakeSort {
             }
             results.add(toList(values, 0, values.length - 1));
         }
+        return results;
     }
 
     private static void flip(int[] values, int i) {

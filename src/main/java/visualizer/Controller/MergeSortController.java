@@ -10,31 +10,18 @@ import visualizer.Controller.Algorithms.MergeSortTwo;
 import visualizer.Model.SortInput;
 import visualizer.Model.SortResponse;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 public class MergeSortController {
 
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/merge-sort")
     public SortResponse mergeSort(@RequestBody SortInput sortInput) {
-        int[] values = sortInput.getValues();
-        List<List<Integer>> results = new ArrayList<>();
-        MergeSort.sort(values, results);
-        results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-        return new SortResponse(results);
+        return new SortResponse(MergeSort.sort(sortInput.getValues()));
     }
 
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/merge-sort-two")
-    public SortResponse mergeSortTwo(@RequestBody SortInput sortInput) {
-        int[] values = sortInput.getValues();
-        List<List<Integer>> results = new ArrayList<>();
-        MergeSortTwo.sort(values, results);
-        results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-        return new SortResponse(results);
+    public SortResponse mergeSortTwo(@RequestBody SortInput sortInput) {;
+        return new SortResponse(MergeSortTwo.sort(sortInput.getValues()));
     }
 }

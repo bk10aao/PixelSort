@@ -21,19 +21,16 @@ public class GenerateNumbersController {
     public GeneratorNumbersResponse generateNumbers(@Valid @RequestBody GenerateNumbersRequest generateNumberRequest) {
         Integer value = generateNumberRequest.getValue();
 
-        if(value == null || value > 100 || value < 0) {
+        if(value == null || value > 100 || value < 0)
             value = 100;
-        }
 
         Integer maxRange = generateNumberRequest.getMaxRange();
-        if(maxRange == null || maxRange < 1 || maxRange > 100) {
+        if(maxRange == null || maxRange < 1 || maxRange > 100)
             maxRange = 100;
-        }
         List<Integer> randomNumbers = new ArrayList<>();
         Random random = new Random();
-        for(int i = 0; i < value; i++) {
-            randomNumbers.add(random.nextInt(maxRange+ 1));
-        }
+        for(int i = 0; i < value; i++)
+            randomNumbers.add(random.nextInt(maxRange + 1));
 
         return new GeneratorNumbersResponse(randomNumbers);
     }

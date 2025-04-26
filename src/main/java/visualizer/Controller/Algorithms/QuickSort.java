@@ -2,14 +2,18 @@ package visualizer.Controller.Algorithms;
 
 import visualizer.Commons.Commons;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class QuickSort {
 
-    public static void sort(int[] values, List<List<Integer>> results) {
+    public static List<List<Integer>> sort(int[] values) {
+        List<List<Integer>> results = new ArrayList<>();
         Commons.shuffle(values);
         sort(values, 0, values.length - 1, results);
+        results.add(Commons.toList(values, 0, values.length - 1));
+        return results;
     }
 
     private static void sort(int[] values, int low, int high, List<List<Integer>> results) {
