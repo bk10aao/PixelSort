@@ -75,7 +75,6 @@ public class IntroSort {
     }
 
     private static void sortDataUtil(int begin, int end, int depthLimit) {
-        results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
         if (end - begin > 16) {
             if (depthLimit == 0) {
                 heapSort(begin, end);
@@ -91,6 +90,7 @@ public class IntroSort {
             insertionSort(begin, end);
         }
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
+
     }
 
     public static List<List<Integer>> sort(int[] arr) {

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Commons {
 
@@ -60,13 +62,14 @@ public class Commons {
     }
 
     public static List<Integer> toList(int[] arr, int from, int to) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = from; i <= to; i++)
-            list.add(arr[i]);
-        return list;
+        return IntStream.rangeClosed(from, to).mapToObj(i -> arr[i]).collect(Collectors.toList());
     }
 
     public static List<Integer> toList(Integer[] arr) {
         return new ArrayList<>(Arrays.asList(arr));
+    }
+
+    public static List<Integer> toList(int[] arr) {
+        return Arrays.stream(arr).boxed().collect(Collectors.toList());
     }
 }
