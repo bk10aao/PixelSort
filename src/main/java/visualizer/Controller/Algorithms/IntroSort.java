@@ -86,11 +86,9 @@ public class IntroSort {
             int p = partition(begin, end);
             sortDataUtil(begin, p - 1, depthLimit);
             sortDataUtil(p + 1, end, depthLimit);
-        } else {
+        } else
             insertionSort(begin, end);
-        }
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-
     }
 
     public static List<List<Integer>> sort(int[] arr) {
@@ -99,20 +97,5 @@ public class IntroSort {
         int depthLimit = (int)(2 * Math.floor(Math.log(size) / Math.log(2)));
         sortDataUtil(0, size - 1, depthLimit);
         return results;
-    }
-
-    // Driver code
-    public static void main(String[] args) {
-        int[] inp = { 2, 10, 24, 2, 10, 11, 27,
-                4, 2, 4, 28, 16, 9, 8,
-                28, 10, 13, 24, 22, 28,
-                0, 13, 27, 13, 3, 23,
-                18, 22, 8, 8 };
-
-
-        List<List<Integer>> results = IntroSort.sort(inp);
-        for (List<Integer> l : results) {
-            System.out.println(l);
-        }
     }
 }
