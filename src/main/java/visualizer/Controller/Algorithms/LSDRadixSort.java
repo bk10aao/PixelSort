@@ -1,5 +1,7 @@
 package visualizer.Controller.Algorithms;
 
+import visualizer.Commons.Commons;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +9,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import visualizer.Commons.Commons;
+import static visualizer.Commons.Commons.getMaxDigits;
+import static visualizer.Commons.Commons.recombine;
+import static visualizer.Commons.Commons.saveState;
 
 public class LSDRadixSort {
 
@@ -17,9 +21,9 @@ public class LSDRadixSort {
             return sortingStates;
 
         saveState(arr, sortingStates);
-        Map<Boolean, List<Integer>> split = Arrays.stream(arr).collect(Collectors.partitioningBy(i -> i < 0));
-        Integer[] negative = split.get(true).stream().map(Math::abs).toArray(Integer[]::new);
-        Integer[] positive = split.get(false).toArray(Integer[]::new);
+        Integer[][] split = Commons.splitPositiveNegative(arr);
+        Integer[] negative = split[0];
+        Integer[] positive = split[1];
 
         int maxDigits = getMaxDigits(negative, positive);
 
@@ -49,27 +53,5 @@ public class LSDRadixSort {
         }
 
         System.arraycopy(output, 0, arr, 0, arr.length);
-    }
-
-
-    private static void saveState(Integer[] arr, List<List<Integer>> sortingStates) {
-        sortingStates.add(Commons.toList(arr));
-    }
-
-    private static int getMaxDigits(Integer[] positive, Integer[] negative) {
-        int maxNeg = 0, maxPos = 0;
-        for (Integer value : positive)
-            if (Commons.less(maxNeg, value))
-                maxNeg = value;
-        for (int value : negative)
-            if (Commons.less(maxPos, value))
-                maxPos = value;
-        return maxNeg == 0 && maxPos == 0 ? 0 : String.valueOf(Math.max(maxNeg, maxPos)).length();
-    }
-
-    private static void recombine(Integer[] arr, Integer[] negative, Integer[] positive) {
-        for (int i = negative.length - 1, j = 0; i >= 0; i--)
-            arr[j++] = -negative[i];
-        System.arraycopy(positive, 0, arr, negative.length, positive.length);
     }
 }

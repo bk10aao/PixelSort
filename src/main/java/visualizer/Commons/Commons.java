@@ -3,6 +3,7 @@ package visualizer.Commons;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -71,5 +72,36 @@ public class Commons {
 
     public static List<Integer> toList(int[] arr) {
         return Arrays.stream(arr).boxed().collect(Collectors.toList());
+    }
+
+    public static void saveState(Integer[] arr, List<List<Integer>> sortingStates) {
+        sortingStates.add(Commons.toList(arr));
+    }
+
+    public static void recombine(Integer[] arr, Integer[] negative, Integer[] positive) {
+        for(int i = negative.length - 1, j = 0; i >= 0; i--)
+            arr[j++] = -negative[i];
+        System.arraycopy(positive, 0, arr, negative.length, positive.length);
+    }
+
+    public static int getMaxDigits(Integer[] negative, Integer[] positive) {
+        int maxNegative = 0;
+        int maxPositive = 0;
+        for(Integer i : positive)
+            if (Commons.less(maxNegative, i))
+                maxNegative = i;
+        for(Integer i : negative)
+            if (Commons.less(maxPositive, i))
+                maxPositive = i;
+
+        return maxNegative == 0 && maxPositive == 0 ? 0 : String.valueOf(Math.max(maxNegative, maxPositive)).length();
+    }
+
+    public static Integer[][] splitPositiveNegative(Integer[] array) {
+        Map<Boolean, List<Integer>> split = Arrays.stream(array)
+                .collect(Collectors.partitioningBy(i -> i < 0));
+        Integer[] negatives = split.get(true).stream().map(Math::abs).toArray(Integer[]::new);
+        Integer[] positives = split.get(false).toArray(Integer[]::new);
+        return new Integer[][]{negatives, positives};
     }
 }

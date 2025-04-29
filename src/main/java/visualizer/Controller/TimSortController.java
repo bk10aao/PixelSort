@@ -14,7 +14,7 @@ public class TimSortController {
 
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/tim-sort")
-    public SortResponse shellSort(@RequestBody SortInput sortInput) {;
+    public SortResponse timSort(@RequestBody SortInput sortInput) {;
         return new SortResponse(ShellSort.sort(sortInput.getValues()));
     }
 }

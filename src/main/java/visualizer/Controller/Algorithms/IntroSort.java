@@ -13,6 +13,14 @@ public class IntroSort {
 
     private static int[] values;
 
+    public static List<List<Integer>> sort(int[] arr) {
+        values = arr;
+        int size = values.length;
+        int depthLimit = (int)(2 * Math.floor(Math.log(size) / Math.log(2)));
+        sortDataUtil(0, size - 1, depthLimit);
+        return results;
+    }
+
     private static void maxHeap(int i, int heap, int x) {
         int temp = values[x + i - 1];
         int child;
@@ -91,28 +99,5 @@ public class IntroSort {
         }
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
 
-    }
-
-    public static List<List<Integer>> sort(int[] arr) {
-        values = arr;
-        int size = values.length;
-        int depthLimit = (int)(2 * Math.floor(Math.log(size) / Math.log(2)));
-        sortDataUtil(0, size - 1, depthLimit);
-        return results;
-    }
-
-    // Driver code
-    public static void main(String[] args) {
-        int[] inp = { 2, 10, 24, 2, 10, 11, 27,
-                4, 2, 4, 28, 16, 9, 8,
-                28, 10, 13, 24, 22, 28,
-                0, 13, 27, 13, 3, 23,
-                18, 22, 8, 8 };
-
-
-        List<List<Integer>> results = IntroSort.sort(inp);
-        for (List<Integer> l : results) {
-            System.out.println(l);
-        }
     }
 }
