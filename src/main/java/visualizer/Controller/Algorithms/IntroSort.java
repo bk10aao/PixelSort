@@ -94,10 +94,19 @@ public class IntroSort {
             int p = partition(begin, end);
             sortDataUtil(begin, p - 1, depthLimit);
             sortDataUtil(p + 1, end, depthLimit);
-        } else {
+        } else
             insertionSort(begin, end);
-        }
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-
     }
+<<<<<<< HEAD
+=======
+
+    public static List<List<Integer>> sort(int[] arr) {
+        values = arr;
+        int size = values.length;
+        int depthLimit = (int)(2 * Math.floor(Math.log(size) / Math.log(2)));
+        sortDataUtil(0, size - 1, depthLimit);
+        return results;
+    }
+>>>>>>> 4c1ec0ec4f1db9c17849be4e45cb6f6f63ef0af5
 }
