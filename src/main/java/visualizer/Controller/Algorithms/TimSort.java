@@ -56,8 +56,7 @@ public class TimSort {
         int len2 = right - mid;
         int[] leftArray = new int[len1];
         int[] rightArray = new int[len2];
-        for (int i = 0; i < len1; i++)
-            leftArray[i] = array[left + i];
+        System.arraycopy(array, left, leftArray, 0, len1);
         for (int j = 0; j < len2; j++)
             rightArray[j] = array[mid + 1 + j];
 
