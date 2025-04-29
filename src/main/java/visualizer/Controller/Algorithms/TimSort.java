@@ -1,70 +1,85 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+
+import static visualizer.Commons.Commons.toList;
 
 public class TimSort {
 
     private static final int MIN_MERGE = 32;
-    static List<List<Integer>> results = new ArrayList<>();
 
-    public static List<List<Integer>> sort(int[] arr) {
+    public static List<List<Integer>> sort(int[] array) {
+        List<List<Integer>> sortingStates = new ArrayList<>();
+        if (array == null || array.length == 0)
+            return sortingStates;
 
-        results.add(Commons.toList(arr));
-        int minRun = minRunLength(MIN_MERGE);
-        for (int i = 0; i < arr.length; i += minRun)
-            insertionSort(arr, i, Math.min((i + MIN_MERGE - 1), (arr.length - 1)));
-        for (int size = minRun; size < arr.length; size = 2 * size) {
-            for (int left = 0; left < arr.length; left += 2 * size) {
+        sortingStates.add(toList(array));
+        int minRun = minRunLength(array.length);
+        for (int i = 0; i < array.length; i += minRun)
+            insertionSort(array, i, Math.min(i + minRun - 1, array.length - 1), sortingStates);
+
+        for (int size = minRun; size < array.length; size *= 2) {
+            for (int left = 0; left < array.length; left += 2 * size) {
                 int mid = left + size - 1;
-                int right = Math.min((left + 2 * size - 1), (arr.length - 1));
-                if (mid < right)
-                    merge(arr, left, mid, right);
+                int right = Math.min(left + 2 * size - 1, array.length - 1);
+                if (mid < right && mid < array.length)
+                    merge(array, left, mid, right, sortingStates);
             }
         }
-        results.add(Commons.toList(arr));
-        return results;
+        sortingStates.add(toList(array));
+        return sortingStates;
     }
 
-    public static int minRunLength(int n) {
-        assert n >= 0;
+    private static int minRunLength(int length) {
         int r = 0;
-        while (n >= MIN_MERGE) {
-            r |= (n & 1);
-            n >>= 1;
+        while (length >= MIN_MERGE) {
+            r |= (length & 1);
+            length >>= 1;
         }
-        return n + r;
+        return length + r;
     }
 
-    public static void insertionSort(int[] arr, int left, int right) {
+    private static void insertionSort(int[] array, int left, int right, List<List<Integer>> sortingStates) {
         for (int i = left + 1; i <= right; i++) {
-            int temp = arr[i];
+            int temp = array[i];
             int j = i - 1;
-            while (j >= left && arr[j] > temp)
-                arr[j + 1] = arr[j--];
-            arr[j + 1] = temp;
-            results.add(Commons.toList(arr));
+            while (j >= left && array[j] > temp)
+                array[j + 1] = array[j--];
+            array[j + 1] = temp;
+            sortingStates.add(toList(array));
         }
     }
 
-    public static void merge(int[] arr, int l, int m, int r) {
-        int len1 = m - l + 1;
-        int len2 = r - m;
-        int[] right = IntStream.range(0, len2).map(x -> arr[m + 1 + x]).toArray();
+    private static void merge(int[] array, int left, int mid, int right, List<List<Integer>> sortingStates) {
+        int len1 = mid - left + 1;
+        int len2 = right - mid;
+        int[] leftArray = new int[len1];
+        int[] rightArray = new int[len2];
+        for (int i = 0; i < len1; i++)
+            leftArray[i] = array[left + i];
+        for (int j = 0; j < len2; j++)
+            rightArray[j] = array[mid + 1 + j];
+
         int i = 0;
         int j = 0;
-        int k = l;
-        while (i < len1 && j < len2)
-            if (arr[i] <= right[j])
-                arr[k] = arr[i++];
+        int k = left;
+        while (i < len1 && j < len2) {
+            if (leftArray[i] <= rightArray[j])
+                array[k++] = leftArray[i++];
             else
-                arr[k++] = right[j++];
-        while (i < len1)
-            arr[k++] = arr[i++];
-        while (j < len2)
-            arr[k++] = right[j++];
+                array[k++] = rightArray[j++];
+            sortingStates.add(toList(array));
+        }
+
+        while (i < len1) {
+            array[k++] = leftArray[i++];
+            sortingStates.add(toList(array));
+        }
+
+        while (j < len2) {
+            array[k++] = rightArray[j++];
+            sortingStates.add(toList(array));
+        }
     }
 }

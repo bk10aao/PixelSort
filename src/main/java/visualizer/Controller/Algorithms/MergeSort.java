@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static visualizer.Commons.Commons.merge;
+
 public class MergeSort {
 
     public static int[] aux;
@@ -30,6 +32,6 @@ public class MergeSort {
         int mid = low + (high - low) / 2;
         sort(values1, values2, low, mid, results);
         sort(values1,values2, mid + 1, high, results);
-        Commons.merge(values1, values2, low, mid, high);
+        merge(values1, values2, low, mid, high);
     }
 }

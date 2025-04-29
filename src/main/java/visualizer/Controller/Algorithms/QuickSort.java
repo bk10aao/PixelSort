@@ -1,18 +1,21 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static visualizer.Commons.Commons.exchange;
+import static visualizer.Commons.Commons.less;
+import static visualizer.Commons.Commons.shuffle;
+import static visualizer.Commons.Commons.toList;
 
 public class QuickSort {
 
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = new ArrayList<>();
-        Commons.shuffle(values);
+        shuffle(values);
         sort(values, 0, values.length - 1, results);
-        results.add(Commons.toList(values, 0, values.length - 1));
+        results.add(toList(values, 0, values.length - 1));
         return results;
     }
 
@@ -29,17 +32,17 @@ public class QuickSort {
         int leftPointer = low;
         int rightPointer = high + 1;
         while (true) {
-            while(Commons.less(values[++leftPointer], values[low]))
+            while(less(values[++leftPointer], values[low]))
                 if (leftPointer == high)
                     break;
-            while(Commons.less(values[low], values[--rightPointer]))
+            while(less(values[low], values[--rightPointer]))
                 if (rightPointer == low)
                     break;
             if(leftPointer >= rightPointer)
                 break;
-            Commons.exchange(values, leftPointer, rightPointer);
+            exchange(values, leftPointer, rightPointer);
         }
-        Commons.exchange(values, low, rightPointer);
+        exchange(values, low, rightPointer);
         return rightPointer;
     }
 }

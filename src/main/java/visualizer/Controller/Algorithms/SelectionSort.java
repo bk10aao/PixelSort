@@ -1,10 +1,11 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static visualizer.Commons.Commons.exchange;
 
 public class SelectionSort {
 
@@ -15,7 +16,7 @@ public class SelectionSort {
             for (int j = i + 1; j < values.length; j++)
                 if (values[j] < values[min])
                     min = j;
-            Commons.exchange(values, i, min);
+            exchange(values, i, min);
             results.add(Arrays.stream(values).boxed().toList());
         }
         return results;

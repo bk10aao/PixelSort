@@ -1,8 +1,14 @@
 package visualizer.Controller.Algorithms;
 
 import visualizer.Commons.Commons;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static visualizer.Commons.Commons.exchange;
+import static visualizer.Commons.Commons.sink;
+import static visualizer.Commons.Commons.toList;
+
 
 public class HeapSort {
 
@@ -17,22 +23,23 @@ public class HeapSort {
         int[] heap = new int[array.length + 1];
         System.arraycopy(array, 0, heap, 1, array.length);
         buildHeap(heap, array.length);
-        result.add(Commons.toList(heap, 1, array.length));
+        result.add(toList(heap, 1, array.length));
         sortDown(heap, array.length, result);
         System.arraycopy(heap, 1, array, 0, array.length);
         return result;
     }
 
     private static void buildHeap(int[] heap, int size) {
-        for (int i = size / 2; i >= 1; i--)
-            Commons.sink(heap, i, size);
+        for (int i = size / 2; i >= 1; i--) {
+            sink(heap, i, size);
+        }
     }
 
     private static void sortDown(int[] heap, int size, List<List<Integer>> result) {
         while (size > 1) {
-            Commons.exchange(heap, 1, size--); // Swap max with last element
-            Commons.sink(heap, 1, size);      // Restore heap property
-            result.add(Commons.toList(heap, 1, heap.length - 1));
+            exchange(heap, 1, size--); // Swap max with last element
+            sink(heap, 1, size);      // Restore heap property
+            result.add(toList(heap, 1, heap.length - 1));
         }
     }
 }

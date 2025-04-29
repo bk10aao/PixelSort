@@ -5,8 +5,6 @@ import visualizer.Commons.Commons;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static visualizer.Commons.Commons.getMaxDigits;
@@ -35,23 +33,16 @@ public class LSDRadixSort {
             recombine(arr, negative, positive);
             saveState(arr, sortingStates);
         }
-
         return sortingStates;
     }
 
     private static void countSort(Integer[] arr, int exp) {
         Integer[] output = new Integer[arr.length];
         int[] digitCounts = new int[10];
-
         Arrays.stream(arr).forEach(value -> digitCounts[(value / exp) % 10]++);
         IntStream.range(1, 10).forEach(i -> digitCounts[i] += digitCounts[i - 1]);
-
-        for (int i = arr.length - 1; i >= 0; i--) {
-            Integer current = arr[i];
-            int digit = (current / exp) % 10;
-            output[--digitCounts[digit]] = current;
-        }
-
+        for (int i = arr.length - 1; i >= 0; i--)
+            output[--digitCounts[(arr[i] / exp) % 10]] = arr[i];
         System.arraycopy(output, 0, arr, 0, arr.length);
     }
 }

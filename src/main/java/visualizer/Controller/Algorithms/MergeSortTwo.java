@@ -21,7 +21,7 @@ public class MergeSortTwo {
         return results;
     }
 
-    public static void merge(int[] values1, int[] values2, int low, int middle, int high, List<List<Integer>> results) {
+    private static void merge(int[] values1, int[] values2, int low, int middle, int high, List<List<Integer>> results) {
         isSorted(values1, low, middle, high);
         int[] merged = new int[values1.length + values2.length];
         System.arraycopy(values1, 0, merged, 0, values1.length);

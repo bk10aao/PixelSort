@@ -38,10 +38,9 @@ public class MSDRadixSort {
         saveState(arr, sortingStates);
         int bucketStart = start;
         for (int[] bucket : buckets) {
-            int bucketSize = bucket.length;
-            if (bucketSize > 1)
-                msdRadixSort(arr, bucketStart, bucketStart + bucketSize, digit - 1, sortingStates);
-            bucketStart += bucketSize;
+            if (bucket.length > 1)
+                msdRadixSort(arr, bucketStart, bucketStart + bucket.length, digit - 1, sortingStates);
+            bucketStart += bucket.length;
         }
     }
 
@@ -56,7 +55,6 @@ public class MSDRadixSort {
         int[] bucketIndices = new int[10];
         for (int i = start; i < end; i++)
             buckets[(array[i] / exp) % 10][bucketIndices[(array[i] / exp) % 10]++] = array[i];
-
         return buckets;
     }
 
