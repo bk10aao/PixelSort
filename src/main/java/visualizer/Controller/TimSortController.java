@@ -11,6 +11,7 @@ import visualizer.Model.SortResponse;
 
 @RestController
 public class TimSortController {
+
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/tim-sort")
     public SortResponse timSort(@RequestBody SortInput sortInput) {;

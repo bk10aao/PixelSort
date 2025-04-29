@@ -34,5 +34,4 @@ public class GenerateNumbersController {
 
         return new GeneratorNumbersResponse(randomNumbers);
     }
-
 }

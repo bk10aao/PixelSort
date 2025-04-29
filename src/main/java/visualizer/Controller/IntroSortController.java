@@ -15,6 +15,6 @@ public class IntroSortController {
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/intro-sort")
     public SortResponse introSort(@RequestBody SortInput sortInput) {
-        return new SortResponse(IntroSort.sort( sortInput.getValues()));
+        return new SortResponse(IntroSort.sort(sortInput.getValues()));
     }
 }

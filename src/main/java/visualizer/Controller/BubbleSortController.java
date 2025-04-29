@@ -11,6 +11,7 @@ import visualizer.Model.SortResponse;
 
 @RestController
 public class BubbleSortController {
+
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/bubble-sort")
     public SortResponse bubbleSort(@RequestBody SortInput sortInput) {
