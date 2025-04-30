@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import visualizer.Controller.Algorithms.MergeSort;
-import visualizer.Controller.Algorithms.MergeSortTwo;
+import visualizer.Controller.Algorithms.MergeSortTopDown;
+import visualizer.Controller.Algorithms.MergeSortBottomUp;
 import visualizer.Model.SortInput;
 import visualizer.Model.SortResponse;
 
@@ -14,14 +14,14 @@ import visualizer.Model.SortResponse;
 public class MergeSortController {
 
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
-    @PostMapping("/merge-sort")
+    @PostMapping("/merge-sort-top-down")
     public SortResponse mergeSort(@RequestBody SortInput sortInput) {
-        return new SortResponse(MergeSort.sort(sortInput.getValues()));
+        return new SortResponse(MergeSortTopDown.sort(sortInput.getValues()));
     }
 
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
-    @PostMapping("/merge-sort-two")
+    @PostMapping("/merge-sort-bottom-up")
     public SortResponse mergeSortTwo(@RequestBody SortInput sortInput) {;
-        return new SortResponse(MergeSortTwo.sort(sortInput.getValues()));
+        return new SortResponse(MergeSortBottomUp.sort(sortInput.getValues()));
     }
 }

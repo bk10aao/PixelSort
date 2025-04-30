@@ -8,7 +8,7 @@ import java.util.List;
 
 import static visualizer.Commons.Commons.merge;
 
-public class MergeSort {
+public class MergeSortTopDown {
 
     public static int[] aux;
 

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import static visualizer.Commons.Commons.isSorted;
 import static visualizer.Commons.Commons.less;
 
-public class MergeSortTwo {
+public class MergeSortBottomUp {
 
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = new ArrayList<>();
