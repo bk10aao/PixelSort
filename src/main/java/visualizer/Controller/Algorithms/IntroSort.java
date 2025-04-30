@@ -12,9 +12,9 @@ public class IntroSort {
 
     private static int[] values;
 
-    public static List<List<Integer>> sort(int[] arr) {
-        values = arr;
-        int size = values.length;
+    public static List<List<Integer>> sort(int[] values) {
+        IntroSort.values = values;
+        int size = IntroSort.values.length;
         int depthLimit = (int)(2 * Math.floor(Math.log(size) / Math.log(2)));
         sortDataUtil(0, size - 1, depthLimit);
         return results;

@@ -8,15 +8,15 @@ import static visualizer.Commons.Commons.exchange;
 
 public class BubbleSort {
 
-    public static List<List<Integer>> sort(int[] numbers) {
+    public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = new ArrayList<>();
         boolean swapped = true;
         while (swapped) {
             swapped = false;
-            for (int i = 0; i < numbers.length - 1; i++) {
-                results.add(Arrays.stream(numbers).boxed().toList());
-                if(numbers[i] > numbers[i + 1]) {
-                    exchange(numbers, i, i + 1);
+            for (int i = 0; i < values.length - 1; i++) {
+                results.add(Arrays.stream(values).boxed().toList());
+                if(values[i] > values[i + 1]) {
+                    exchange(values, i, i + 1);
                     swapped = true;
                 }
             }

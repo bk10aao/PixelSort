@@ -1,7 +1,5 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,14 +13,14 @@ public class ParallelMergeSort {
 
     private static final int THRESHOLD = 1000;
 
-    public static List<List<Integer>> sort(int[] array) {
+    public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> states = new ArrayList<>();
-        if(array.length == 0)
+        if(values.length == 0)
             return states;
-        states.add(toList(array));
+        states.add(toList(values));
         ForkJoinPool forkJoinPool = commonPool();
-        forkJoinPool.invoke(new MergeSortTask(array, 0, array.length - 1, states));
-        states.add(toList(array));
+        forkJoinPool.invoke(new MergeSortTask(values, 0, values.length - 1, states));
+        states.add(toList(values));
         return states;
     }
 
@@ -54,41 +52,41 @@ public class ParallelMergeSort {
         }
     }
 
-    private static void sequentialMergeSort(int[] array, int left, int right, List<List<Integer>> states) {
+    private static void sequentialMergeSort(int[] values, int left, int right, List<List<Integer>> states) {
         if(left < right) {
             int mid = left + (right - left) / 2;
-            sequentialMergeSort(array, left, mid, states);
-            sequentialMergeSort(array, mid + 1, right, states);
-            merge(array, left, mid, right, states);
+            sequentialMergeSort(values, left, mid, states);
+            sequentialMergeSort(values, mid + 1, right, states);
+            merge(values, left, mid, right, states);
         }
     }
 
-    private static void merge(int[] array, int left, int mid, int right, List<List<Integer>> states) {
+    private static void merge(int[] values, int left, int mid, int right, List<List<Integer>> states) {
         int len1 = mid - left + 1;
         int len2 = right - mid;
         int[] leftArray = new int[len1];
         int[] rightArray = new int[len2];
 
-        Arrays.setAll(leftArray, i -> array[left + i]);
-        Arrays.setAll(rightArray, i -> array[mid + 1 + i]);
+        Arrays.setAll(leftArray, i -> values[left + i]);
+        Arrays.setAll(rightArray, i -> values[mid + 1 + i]);
 
         int i = 0;
         int j = 0;
         int k = left;
         while(i < len1 && j < len2) {
             if (leftArray[i] <= rightArray[j])
-                array[k++] = leftArray[i++];
+                values[k++] = leftArray[i++];
             else
-                array[k++] = rightArray[j++];
-            states.add(toList(array));
+                values[k++] = rightArray[j++];
+            states.add(toList(values));
         }
         while (i < len1) {
-            array[k++] = leftArray[i++];
-            states.add(toList(array));
+            values[k++] = leftArray[i++];
+            states.add(toList(values));
         }
         while (j < len2) {
-            array[k++] = rightArray[j++];
-            states.add(toList(array));
+            values[k++] = rightArray[j++];
+            states.add(toList(values));
         }
     }
 

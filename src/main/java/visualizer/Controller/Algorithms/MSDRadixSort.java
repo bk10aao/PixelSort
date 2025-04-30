@@ -10,12 +10,12 @@ import static visualizer.Commons.Commons.splitPositiveNegative;
 
 public class MSDRadixSort {
 
-    public static List<List<Integer>> sort(Integer[] arr) {
+    public static List<List<Integer>> sort(Integer[] values) {
         List<List<Integer>> sortingStates = new ArrayList<>();
-        if(arr == null || arr.length == 0)
+        if(values == null || values.length == 0)
             return sortingStates;
-        saveState(arr, sortingStates);
-        Integer[][] split = splitPositiveNegative(arr);
+        saveState(values, sortingStates);
+        Integer[][] split = splitPositiveNegative(values);
         Integer[] negative = split[0];
         Integer[] positive = split[1];
         int maxDigits = getMaxDigits(negative, positive);
@@ -25,43 +25,43 @@ public class MSDRadixSort {
             msdRadixSort(negative, 0, negative.length, maxDigits - 1, sortingStates);
         if(positive.length > 0)
             msdRadixSort(positive, 0, positive.length, maxDigits - 1, sortingStates);
-        recombine(arr, negative, positive);
-        saveState(arr, sortingStates);
+        recombine(values, negative, positive);
+        saveState(values, sortingStates);
         return sortingStates;
     }
 
-    private static void msdRadixSort(Integer[] arr, int start, int end, int digit, List<List<Integer>> sortingStates) {
+    private static void msdRadixSort(Integer[] values, int start, int end, int digit, List<List<Integer>> sortingStates) {
         if (digit < 0 || start >= end - 1)
             return;
-        int[][] buckets = partitionByDigit(arr, start, end, digit);
-        copyBucketsToArray(arr, start, buckets);
-        saveState(arr, sortingStates);
+        int[][] buckets = partitionByDigit(values, start, end, digit);
+        copyBucketsToArray(values, start, buckets);
+        saveState(values, sortingStates);
         int bucketStart = start;
         for (int[] bucket : buckets) {
             if (bucket.length > 1)
-                msdRadixSort(arr, bucketStart, bucketStart + bucket.length, digit - 1, sortingStates);
+                msdRadixSort(values, bucketStart, bucketStart + bucket.length, digit - 1, sortingStates);
             bucketStart += bucket.length;
         }
     }
 
-    private static int[][] partitionByDigit(Integer[] array, int start, int end, int digitPosition) {
+    private static int[][] partitionByDigit(Integer[] values, int start, int end, int digitPosition) {
         int exp = (int) Math.pow(10, digitPosition);
         int[] count = new int[10];
         for (int i = start; i < end; i++)
-            count[(array[i] / exp) % 10]++;
+            count[(values[i] / exp) % 10]++;
         int[][] buckets = new int[10][];
         for (int i = 0; i < 10; i++)
             buckets[i] = new int[count[i]];
         int[] bucketIndices = new int[10];
         for (int i = start; i < end; i++)
-            buckets[(array[i] / exp) % 10][bucketIndices[(array[i] / exp) % 10]++] = array[i];
+            buckets[(values[i] / exp) % 10][bucketIndices[(values[i] / exp) % 10]++] = values[i];
         return buckets;
     }
 
-    private static void copyBucketsToArray(Integer[] array, int start, int[][] buckets) {
+    private static void copyBucketsToArray(Integer[] values, int start, int[][] buckets) {
         int index = start;
         for (int[] bucket : buckets)
             for (int value : bucket)
-                array[index++] = value;
+                values[index++] = value;
     }
 }

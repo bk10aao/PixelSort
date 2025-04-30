@@ -13,13 +13,13 @@ import static visualizer.Commons.Commons.saveState;
 
 public class LSDRadixSort {
 
-    public static List<List<Integer>> sort(Integer[] arr) {
+    public static List<List<Integer>> sort(Integer[] values) {
         List<List<Integer>> sortingStates = new ArrayList<>();
-        if (arr == null || arr.length == 0)
+        if (values == null || values.length == 0)
             return sortingStates;
 
-        saveState(arr, sortingStates);
-        Integer[][] split = Commons.splitPositiveNegative(arr);
+        saveState(values, sortingStates);
+        Integer[][] split = Commons.splitPositiveNegative(values);
         Integer[] negative = split[0];
         Integer[] positive = split[1];
 
@@ -30,8 +30,8 @@ public class LSDRadixSort {
                 countSort(negative, exp);
             if (positive.length > 0)
                 countSort(positive, exp);
-            recombine(arr, negative, positive);
-            saveState(arr, sortingStates);
+            recombine(values, negative, positive);
+            saveState(values, sortingStates);
         }
         return sortingStates;
     }

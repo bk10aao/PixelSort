@@ -12,13 +12,13 @@ public class MergeSortTopDown {
 
     public static int[] aux;
 
-    public static List<List<Integer>> sort(int[] a) {
+    public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = new ArrayList<>();
-        aux = new int[a.length];
+        aux = new int[values.length];
         int low = 0;
-        int high = a.length - 1;
-        sort(aux, a, low, high, results);
-        results.add(Commons.toList(a, 0, a.length - 1));
+        int high = values.length - 1;
+        sort(aux, values, low, high, results);
+        results.add(Commons.toList(values, 0, values.length - 1));
         return results;
     }
 

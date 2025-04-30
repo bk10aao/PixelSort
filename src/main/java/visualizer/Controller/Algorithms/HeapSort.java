@@ -12,20 +12,20 @@ import static visualizer.Commons.Commons.toList;
 
 public class HeapSort {
 
-    public static List<List<Integer>> sort(int[] array) {
-        if (array == null || array.length <= 1) {
+    public static List<List<Integer>> sort(int[] values) {
+        if (values == null || values.length <= 1) {
             List<List<Integer>> result = new ArrayList<>();
-            if (array != null && array.length == 1)
-                result.add(List.of(array[0]));
+            if (values != null && values.length == 1)
+                result.add(List.of(values[0]));
             return result;
         }
         List<List<Integer>> result = new ArrayList<>();
-        int[] heap = new int[array.length + 1];
-        System.arraycopy(array, 0, heap, 1, array.length);
-        buildHeap(heap, array.length);
-        result.add(toList(heap, 1, array.length));
-        sortDown(heap, array.length, result);
-        System.arraycopy(heap, 1, array, 0, array.length);
+        int[] heap = new int[values.length + 1];
+        System.arraycopy(values, 0, heap, 1, values.length);
+        buildHeap(heap, values.length);
+        result.add(toList(heap, 1, values.length));
+        sortDown(heap, values.length, result);
+        System.arraycopy(heap, 1, values, 0, values.length);
         return result;
     }
 
