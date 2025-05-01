@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 import static visualizer.Commons.Commons.getMaxDigits;
 import static visualizer.Commons.Commons.recombine;
 import static visualizer.Commons.Commons.saveState;
+import static visualizer.Commons.Commons.toList;
 
 public class LSDRadixSort {
 
@@ -17,7 +18,7 @@ public class LSDRadixSort {
         List<List<Integer>> sortingStates = new ArrayList<>();
         if (values == null || values.length == 0)
             return sortingStates;
-
+        sortingStates.add(toList(values));
         saveState(values, sortingStates);
         Integer[][] split = Commons.splitPositiveNegative(values);
         Integer[] negative = split[0];
@@ -27,22 +28,23 @@ public class LSDRadixSort {
 
         for (int exp = 1; maxDigits > 0; exp *= 10, maxDigits--) {
             if (negative.length > 0)
-                countSort(negative, exp);
+                countSort(negative, exp, sortingStates);
             if (positive.length > 0)
-                countSort(positive, exp);
+                countSort(positive, exp, sortingStates);
             recombine(values, negative, positive);
             saveState(values, sortingStates);
         }
         return sortingStates;
     }
 
-    private static void countSort(Integer[] arr, int exp) {
-        Integer[] output = new Integer[arr.length];
+    private static void countSort(Integer[] values, int exp, List<List<Integer>> sortingStates) {
+        Integer[] output = new Integer[values.length];
         int[] digitCounts = new int[10];
-        Arrays.stream(arr).forEach(value -> digitCounts[(value / exp) % 10]++);
+        Arrays.stream(values).forEach(value -> digitCounts[(value / exp) % 10]++);
         IntStream.range(1, 10).forEach(i -> digitCounts[i] += digitCounts[i - 1]);
-        for (int i = arr.length - 1; i >= 0; i--)
-            output[--digitCounts[(arr[i] / exp) % 10]] = arr[i];
-        System.arraycopy(output, 0, arr, 0, arr.length);
+        for (int i = values.length - 1; i >= 0; i--)
+            output[--digitCounts[(values[i] / exp) % 10]] = values[i];
+        System.arraycopy(output, 0, values, 0, values.length);
+        saveState(values, sortingStates);
     }
 }
