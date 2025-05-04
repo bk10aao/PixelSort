@@ -44,9 +44,9 @@ public class IntroSort {
     private static void heapSort(int begin, int end) {
         int heapN = end - begin;
         heapify(begin, heapN);
-        for (int i = heapN; i >= 1; i--) {
-            Commons.exchange(values, begin, begin + i);
-            maxHeap(1, i, begin);
+        for (int i = heapN; i > 1; i--) {
+            Commons.exchange(values, begin, begin + i - 1);
+            maxHeap(1, i - 1, begin);
         }
     }
 

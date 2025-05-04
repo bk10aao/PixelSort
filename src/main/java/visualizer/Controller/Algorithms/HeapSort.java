@@ -25,20 +25,18 @@ public class HeapSort {
         buildHeap(heap, values.length);
         result.add(toList(heap, 1, values.length));
         sortDown(heap, values.length, result);
-        System.arraycopy(heap, 1, values, 0, values.length);
         return result;
     }
 
     private static void buildHeap(int[] heap, int size) {
-        for (int i = size / 2; i >= 1; i--) {
+        for (int i = size / 2; i >= 1; i--)
             sink(heap, i, size);
-        }
     }
 
     private static void sortDown(int[] heap, int size, List<List<Integer>> result) {
         while (size > 1) {
-            exchange(heap, 1, size--); // Swap max with last element
-            sink(heap, 1, size);      // Restore heap property
+            exchange(heap, 1, size--);
+            sink(heap, 1, size);
             result.add(toList(heap, 1, heap.length - 1));
         }
     }

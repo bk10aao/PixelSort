@@ -21,24 +21,21 @@ public class MergeSortBottomUp {
         return results;
     }
 
-    private static void merge(int[] values1, int[] values2, int low, int middle, int high, List<List<Integer>> results) {
-        isSorted(values1, low, middle, high);
-        int[] merged = new int[values1.length + values2.length];
-        System.arraycopy(values1, 0, merged, 0, values1.length);
-        System.arraycopy(values2, 0, merged, values1.length, values2.length);
-        results.add(Arrays.stream(merged).boxed().toList());
-        if (high + 1 - low >= 0)
-            System.arraycopy(values1, low, values2, low, high + 1 - low);
+    private static void merge(int[] values, int[] aux, int low, int middle, int high, List<List<Integer>> results) {
+        isSorted(values, low, middle, high);
+        for (int i = low; i <= high; i++)
+            aux[i] = values[i];
         int i = low;
         int j = middle + 1;
-        for (int x = low; x <= high; x++)
+        for (int k = low; k <= high; k++)
             if (i > middle)
-                values1[x] = values2[j++];
+                values[k] = aux[j++];
             else if (j > high)
-                values1[x] = values2[i++];
-            else if (less(values2[j], values2[i]))
-                values1[x] = values2[j++];
+                values[k] = aux[i++];
+            else if (less(aux[j], aux[i]))
+                values[k] = aux[j++];
             else
-                values1[x] = values2[i++];
+                values[k] = aux[i++];
+        results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
     }
 }

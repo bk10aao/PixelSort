@@ -22,12 +22,10 @@ public class PancakeSort {
     }
 
     private static void flip(int[] values, int i) {
-        int temp;
-        int start = 0;
-        while (start < i) {
-            temp = values[start];
-            values[start++] = values[i];
-            values[i--] = temp;
+        for (int start = 0, end = i; start < end; start++, end--) {
+            int temp = values[start];
+            values[start] = values[end];
+            values[end] = temp;
         }
     }
 

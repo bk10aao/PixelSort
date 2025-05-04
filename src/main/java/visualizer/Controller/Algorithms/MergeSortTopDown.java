@@ -3,35 +3,27 @@ package visualizer.Controller.Algorithms;
 import visualizer.Commons.Commons;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static visualizer.Commons.Commons.merge;
 
 public class MergeSortTopDown {
 
-    public static int[] aux;
-
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = new ArrayList<>();
-        aux = new int[values.length];
-        int low = 0;
-        int high = values.length - 1;
-        sort(aux, values, low, high, results);
+        int[] aux = new int[values.length];
+        sort(values, aux, 0, values.length - 1, results);
         results.add(Commons.toList(values, 0, values.length - 1));
         return results;
     }
 
-    private static void sort(int[] values1, int[] values2, int low, int high, List<List<Integer>> results) {
+    private static void sort(int[] values, int[] aux, int low, int high, List<List<Integer>> results) {
         if (high <= low)
             return;
-        int[] merged = new int[values1.length + values2.length];
-        System.arraycopy(values1, 0, merged, 0, values1.length);
-        System.arraycopy(values2, 0, merged, values1.length, values2.length);
-        results.add(Arrays.stream(merged).boxed().toList());
         int mid = low + (high - low) / 2;
-        sort(values1, values2, low, mid, results);
-        sort(values1,values2, mid + 1, high, results);
-        merge(values1, values2, low, mid, high);
+        sort(values, aux, low, mid, results);
+        sort(values, aux, mid + 1, high, results);
+        merge(aux, values, low, mid, high);
+        results.add(Commons.toList(values, 0, values.length - 1));
     }
 }

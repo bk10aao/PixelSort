@@ -15,25 +15,31 @@ public class InPlaceMergeSort {
         return result;
     }
 
-    private static int nextGap(int gap) {
-        return gap <= 1 ? 0 : (int)Math.ceil(gap / 2.0);
-    }
-
-    private static void inPlaceMerge(int[] nums, int start, int end, List<List<Integer>> result) {
-        int gap = end - start + 1;
-        for(gap = nextGap(gap); gap > 0; gap = nextGap(gap))
-            for (int i = start; i + gap <= end; i++)
-                if (nums[i] > nums[i + gap])
-                    Commons.exchange(nums, i, i + gap);
-        result.add(Commons.toList(nums));
+    private static void inPlaceMerge(int[] nums, int start, int mid, int end, List<List<Integer>> result) {
+        int right = mid + 1;
+        while (start <= mid && right <= end) {
+            if (nums[start] <= nums[right])
+                start++;
+            else {
+                int value = nums[right];
+                int index = right++;
+                while (index != start) {
+                    nums[index] = nums[index - 1];
+                    index--;
+                }
+                nums[start++] = value;
+                mid++;
+            }
+            result.add(Commons.toList(nums));
+        }
     }
 
     private static void mergeSort(int[] nums, int s, int e, List<List<Integer>> result) {
         if(s == e)
             return;
-        int mid = (s + e) / 2;
+        int mid = s + (e - s) / 2;
         mergeSort(nums, s, mid, result);
         mergeSort(nums, mid + 1, e, result);
-        inPlaceMerge(nums, s, e, result);
+        inPlaceMerge(nums, s, mid, e, result);
     }
 }
