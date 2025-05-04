@@ -16,9 +16,12 @@ public class SelectionSort {
             for (int j = i + 1; j < values.length; j++)
                 if (values[j] < values[min])
                     min = j;
-            exchange(values, i, min);
-            results.add(Arrays.stream(values).boxed().toList());
+            if (i != min) {
+                exchange(values, i, min);
+                results.add(Arrays.stream(values).boxed().toList());
+            }
         }
+        results.add(Arrays.stream(values).boxed().toList());
         return results;
     }
 }

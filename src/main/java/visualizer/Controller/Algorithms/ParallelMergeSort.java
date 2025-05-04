@@ -15,13 +15,17 @@ public class ParallelMergeSort {
 
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> states = new ArrayList<>();
-        if(values.length == 0)
+        if (values.length == 0)
             return states;
-        states.add(toList(values));
+        addState(states, values);
         ForkJoinPool forkJoinPool = commonPool();
         forkJoinPool.invoke(new MergeSortTask(values, 0, values.length - 1, states));
-        states.add(toList(values));
+        addState(states, values);
         return states;
+    }
+
+    private static synchronized void addState(List<List<Integer>> states, int[] values) {
+        states.add(toList(values));
     }
 
     static class MergeSortTask extends RecursiveAction {
@@ -39,7 +43,7 @@ public class ParallelMergeSort {
 
         @Override
         protected void compute() {
-            if(right - left <= THRESHOLD)
+            if (right - left <= THRESHOLD)
                 sequentialMergeSort(array, left, right, states);
             else {
                 int mid = left + (right - left) / 2;
@@ -53,7 +57,7 @@ public class ParallelMergeSort {
     }
 
     private static void sequentialMergeSort(int[] values, int left, int right, List<List<Integer>> states) {
-        if(left < right) {
+        if (left < right) {
             int mid = left + (right - left) / 2;
             sequentialMergeSort(values, left, mid, states);
             sequentialMergeSort(values, mid + 1, right, states);
@@ -73,7 +77,7 @@ public class ParallelMergeSort {
         int i = 0;
         int j = 0;
         int k = left;
-        while(i < len1 && j < len2) {
+        while (i < len1 && j < len2) {
             if (leftArray[i] <= rightArray[j])
                 values[k++] = leftArray[i++];
             else
