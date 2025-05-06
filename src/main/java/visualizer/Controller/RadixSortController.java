@@ -18,12 +18,12 @@ public class RadixSortController {
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/radix-sort-lsd")
     public SortResponse heapSort(@RequestBody SortInput sortInput) {
-        return new SortResponse(LSDRadixSort.sort(Arrays.stream( sortInput.getValues() ).boxed().toArray( Integer[]::new )));
+        return new SortResponse(LSDRadixSort.sort(Arrays.stream(sortInput.getValues() ).boxed().toArray( Integer[]::new )));
     }
 
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/radix-sort-msd")
     public SortResponse heapSortMSD(@RequestBody SortInput sortInput) {
-        return new SortResponse(MSDRadixSort.sort(Arrays.stream( sortInput.getValues() ).boxed().toArray( Integer[]::new )));
+        return new SortResponse(MSDRadixSort.sort(Arrays.stream(sortInput.getValues() ).boxed().toArray( Integer[]::new )));
     }
 }
