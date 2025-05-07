@@ -15,29 +15,94 @@ public class TimSort {
             return sortingStates;
 
         sortingStates.add(toList(values));
-        int minRun = minRunLength(values.length);
-        for (int i = 0; i < values.length; i += minRun)
-            insertionSort(values, i, Math.min(i + minRun - 1, values.length - 1), sortingStates);
 
-        for (int size = minRun; size < values.length; size *= 2) {
-            for (int left = 0; left < values.length; left += 2 * size) {
-                int mid = left + size - 1;
-                int right = Math.min(left + 2 * size - 1, values.length - 1);
-                if (mid < right && mid < values.length)
-                    merge(values, left, mid, right, sortingStates);
+        if(values.length < MIN_MERGE) {
+            insertionSort(values, 0, values.length - 1, sortingStates);
+            sortingStates.add(toList(values));
+            return sortingStates;
+        }
+
+        int minRun = minRunLength(values.length);
+
+        List<Run> runStack = new ArrayList<>();
+        int i = 0;
+        while(i < values.length) {
+            int runStart = i;
+            int runLength = countRunAndMakeAscending(values, i);
+            if(runLength < minRun) {
+                int runEnd = Math.min(i + minRun - 1, values.length - 1);
+                runLength = runEnd - i + 1;
+                insertionSort(values, i, runEnd, sortingStates);
+            }
+            runStack.add(new Run(runStart, runLength));
+            i += runLength;
+
+            while(runStack.size() > 1) {
+                int n = runStack.size();
+                if(n >= 3 && runStack.get(n - 3).len > runStack.get(n - 2).len + runStack.get(n - 1).len) {
+                    break;
+                }
+                if(n >= 2 && runStack.get(n - 2).len <= runStack.get(n - 1).len) {
+                    Run runY = runStack.get(n - 2);
+                    Run runZ = runStack.get(n - 1);
+                    int mid = runY.start + runY.len - 1;
+                    int right = runZ.start + runZ.len - 1;
+                    merge(values, runY.start, mid, right, sortingStates);
+                    runY.len += runZ.len;
+                    runStack.remove(n - 1);
+                } else {
+                    break;
+                }
             }
         }
+        while(runStack.size() > 1) {
+            int n = runStack.size();
+            Run runY = runStack.get(n - 2);
+            Run runZ = runStack.get(n - 1);
+            int mid = runY.start + runY.len - 1;
+            int right = runZ.start + runZ.len - 1;
+            merge(values, runY.start, mid, right, sortingStates);
+            runY.len += runZ.len;
+            runStack.remove(n - 1);
+        }
+
         sortingStates.add(toList(values));
         return sortingStates;
     }
 
-    private static int minRunLength(int length) {
-        int r = 0;
-        while (length >= MIN_MERGE) {
-            r |= (length & 1);
-            length >>= 1;
+    private static int countRunAndMakeAscending(int[] values, int start) {
+        if(start >= values.length - 1) {
+            return 1;
         }
-        return length + r;
+
+        int runLength = 2;
+        if(values[start] <= values[start + 1]) {
+            while(runLength < values.length - start && values[start + runLength - 1] <= values[start + runLength]) {
+                runLength++;
+            }
+        } else {
+            while (runLength < values.length - start && values[start + runLength - 1] > values[start + runLength]) {
+                runLength++;
+            }
+
+            for(int i = 0; i < runLength / 2; i++) {
+                int temp = values[start + i];
+                values[start + i] = values[start + (runLength - 1 - i)];
+                values[start + (runLength - 1 - i)] = temp;
+            }
+        }
+        return runLength;
+    }
+
+    private static int minRunLength(int x) {
+        if (x < MIN_MERGE)
+            return x;
+        int r = 0;
+        while (x >= MIN_MERGE) {
+            r |= (x & 1);
+            x >>= 1;
+        }
+        return Math.max(MIN_MERGE, x + r);
     }
 
     private static void insertionSort(int[] values, int left, int right, List<List<Integer>> sortingStates) {
@@ -79,6 +144,15 @@ public class TimSort {
         while (j < len2) {
             values[k++] = rightArray[j++];
             sortingStates.add(toList(values));
+        }
+    }
+
+    private static class Run {
+        int start, len;
+
+        Run(int start, int len) {
+            this.start = start;
+            this.len = len;
         }
     }
 }
