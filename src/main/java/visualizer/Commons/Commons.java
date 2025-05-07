@@ -107,4 +107,15 @@ public class Commons {
         Integer[] positives = split.get(false).toArray(Integer[]::new);
         return new Integer[][]{negatives, positives};
     }
+
+    public static void insertionSort(int[] values, int left, int right, List<List<Integer>> sortingStates) {
+        for (int i = left + 1; i <= right; i++) {
+            int temp = values[i];
+            int j = i - 1;
+            while (j >= left && values[j] > temp)
+                values[j + 1] = values[j--];
+            values[j + 1] = temp;
+            sortingStates.add(toList(values));
+        }
+    }
 }

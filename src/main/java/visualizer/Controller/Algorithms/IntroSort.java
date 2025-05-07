@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static visualizer.Commons.Commons.insertionSort;
+
 public class IntroSort {
 
     private static final List<List<Integer>> results = new ArrayList<>();
@@ -50,16 +52,6 @@ public class IntroSort {
         }
     }
 
-    public static void insertionSort(int left, int right, int[] values) {
-        for (int i = left; i <= right; i++) {
-            int key = values[i];
-            int j = i;
-            while (j > left && values[j - 1] > key)
-                values[j] = values[--j];
-            values[j] = key;
-        }
-    }
-
     private static int findPivot(int x, int y, int z) {
         int max = Math.max(Math.max(values[x], values[y]), values[z]);
         int min = Math.min(Math.min(values[x], values[y]), values[z]);
@@ -94,7 +86,7 @@ public class IntroSort {
             sortDataUtil(begin, p - 1, depthLimit);
             sortDataUtil(p + 1, end, depthLimit);
         } else
-            insertionSort(begin, end, values);
+            insertionSort(values, begin, end, results);
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
     }
 }

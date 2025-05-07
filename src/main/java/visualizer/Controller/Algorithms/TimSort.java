@@ -3,6 +3,7 @@ package visualizer.Controller.Algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
+import static visualizer.Commons.Commons.insertionSort;
 import static visualizer.Commons.Commons.toList;
 
 public class TimSort {
@@ -91,17 +92,6 @@ public class TimSort {
             x >>= 1;
         }
         return Math.max(MIN_MERGE, x + r);
-    }
-
-    private static void insertionSort(int[] values, int left, int right, List<List<Integer>> sortingStates) {
-        for (int i = left + 1; i <= right; i++) {
-            int temp = values[i];
-            int j = i - 1;
-            while (j >= left && values[j] > temp)
-                values[j + 1] = values[j--];
-            values[j + 1] = temp;
-            sortingStates.add(toList(values));
-        }
     }
 
     private static void merge(int[] values, int left, int mid, int right, List<List<Integer>> sortingStates) {
