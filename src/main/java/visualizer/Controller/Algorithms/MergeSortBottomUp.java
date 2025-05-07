@@ -23,8 +23,8 @@ public class MergeSortBottomUp {
 
     private static void merge(int[] values, int[] aux, int low, int middle, int high, List<List<Integer>> results) {
         isSorted(values, low, middle, high);
-        for (int i = low; i <= high; i++)
-            aux[i] = values[i];
+        if (high + 1 - low >= 0)
+            System.arraycopy(values, low, aux, low, high + 1 - low);
         int i = low;
         int j = middle + 1;
         for (int k = low; k <= high; k++)

@@ -50,7 +50,7 @@ public class IntroSort {
         }
     }
 
-    private static void insertionSort(int left, int right) {
+    public static void insertionSort(int left, int right, int[] values) {
         for (int i = left; i <= right; i++) {
             int key = values[i];
             int j = i;
@@ -94,7 +94,7 @@ public class IntroSort {
             sortDataUtil(begin, p - 1, depthLimit);
             sortDataUtil(p + 1, end, depthLimit);
         } else
-            insertionSort(begin, end);
+            insertionSort(begin, end, values);
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
     }
 }
