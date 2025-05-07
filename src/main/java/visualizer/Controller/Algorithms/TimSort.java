@@ -42,7 +42,7 @@ public class TimSort {
                 if(n >= 3 && runStack.get(n - 3).len > runStack.get(n - 2).len + runStack.get(n - 1).len) {
                     break;
                 }
-                if(n >= 2 && runStack.get(n - 2).len <= runStack.get(n - 1).len) {
+                if(runStack.get(n - 2).len <= runStack.get(n - 1).len) {
                     Run runY = runStack.get(n - 2);
                     Run runZ = runStack.get(n - 1);
                     int mid = runY.start + runY.len - 1;
