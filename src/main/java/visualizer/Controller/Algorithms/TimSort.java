@@ -38,52 +38,40 @@ public class TimSort {
             i += runLength;
 
             while(runStack.size() > 1) {
-                int n = runStack.size();
-                if(n >= 3 && runStack.get(n - 3).len > runStack.get(n - 2).len + runStack.get(n - 1).len) {
+                if(runStack.size() >= 3 && runStack.get(runStack.size() - 3).len > runStack.get(runStack.size() - 2).len + runStack.getLast().len)
                     break;
-                }
-                if(runStack.get(n - 2).len <= runStack.get(n - 1).len) {
-                    Run runY = runStack.get(n - 2);
-                    Run runZ = runStack.get(n - 1);
-                    int mid = runY.start + runY.len - 1;
-                    int right = runZ.start + runZ.len - 1;
-                    merge(values, runY.start, mid, right, sortingStates);
+                if(runStack.get(runStack.size() - 2).len <= runStack.getLast().len) {
+                    Run runY = runStack.get(runStack.size() - 2);
+                    Run runZ = runStack.getLast();
+                    merge(values, runY.start, runY.start + runY.len - 1, runZ.start + runZ.len - 1, sortingStates);
                     runY.len += runZ.len;
-                    runStack.remove(n - 1);
-                } else {
+                    runStack.removeLast();
+                } else
                     break;
-                }
             }
         }
         while(runStack.size() > 1) {
-            int n = runStack.size();
-            Run runY = runStack.get(n - 2);
-            Run runZ = runStack.get(n - 1);
-            int mid = runY.start + runY.len - 1;
-            int right = runZ.start + runZ.len - 1;
-            merge(values, runY.start, mid, right, sortingStates);
+            Run runY = runStack.get(runStack.size() - 2);
+            Run runZ = runStack.getLast();
+            merge(values, runY.start, runY.start + runY.len - 1, runZ.start + runZ.len - 1, sortingStates);
             runY.len += runZ.len;
-            runStack.remove(n - 1);
+            runStack.removeLast();
         }
-
         sortingStates.add(toList(values));
         return sortingStates;
     }
 
     private static int countRunAndMakeAscending(int[] values, int start) {
-        if(start >= values.length - 1) {
+        if(start >= values.length - 1)
             return 1;
-        }
 
         int runLength = 2;
         if(values[start] <= values[start + 1]) {
-            while(runLength < values.length - start && values[start + runLength - 1] <= values[start + runLength]) {
+            while(runLength < values.length - start && values[start + runLength - 1] <= values[start + runLength])
                 runLength++;
-            }
         } else {
-            while (runLength < values.length - start && values[start + runLength - 1] > values[start + runLength]) {
+            while (runLength < values.length - start && values[start + runLength - 1] > values[start + runLength])
                 runLength++;
-            }
 
             for(int i = 0; i < runLength / 2; i++) {
                 int temp = values[start + i];
