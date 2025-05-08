@@ -77,7 +77,6 @@ public class IntroSort {
         if (end - begin > 16) {
             if (depthLimit == 0) {
                 heapSort(begin, end);
-                results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
                 return;
             }
             depthLimit--;
