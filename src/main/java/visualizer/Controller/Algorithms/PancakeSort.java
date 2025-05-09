@@ -12,9 +12,11 @@ public class PancakeSort {
         results.add(toList(values, 0, values.length - 1));
         for(int i = values.length; i > 1; i--) {
             int maxIndex = findMax(values, i);
-            if(maxIndex != i - 1) {
+            if (maxIndex != i - 1) {
                 flip(values, maxIndex);
+                results.add(toList(values, 0, values.length - 1));
                 flip(values, i - 1);
+                results.add(toList(values, 0, values.length - 1));
             }
             results.add(toList(values, 0, values.length - 1));
         }
