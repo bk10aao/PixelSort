@@ -34,8 +34,7 @@ public class MSDRadixSort {
         if (digit < 0 || start >= end - 1)
             return;
         int[][] buckets = partitionByDigit(values, start, end, digit);
-        copyBucketsToArray(values, start, buckets);
-        saveState(values, sortingStates);
+        copyBucketsToArray(values, start, buckets, sortingStates);
         int bucketStart = start;
         for (int[] bucket : buckets) {
             if (bucket.length > 1)
@@ -58,10 +57,13 @@ public class MSDRadixSort {
         return buckets;
     }
 
-    private static void copyBucketsToArray(Integer[] values, int start, int[][] buckets) {
+    private static void copyBucketsToArray(Integer[] values, int start, int[][] buckets, List<List<Integer>> sortingStates) {
         int index = start;
-        for (int[] bucket : buckets)
-            for (int value : bucket)
+        for (int[] bucket : buckets) {
+            for (int value : bucket) {
                 values[index++] = value;
+                saveState(values, sortingStates);
+            }
+        }
     }
 }

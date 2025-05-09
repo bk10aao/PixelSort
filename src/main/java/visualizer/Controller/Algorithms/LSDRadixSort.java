@@ -1,15 +1,13 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static visualizer.Commons.Commons.getMaxDigits;
 import static visualizer.Commons.Commons.recombine;
 import static visualizer.Commons.Commons.saveState;
+import static visualizer.Commons.Commons.splitPositiveNegative;
 import static visualizer.Commons.Commons.toList;
 
 public class LSDRadixSort {
@@ -20,7 +18,7 @@ public class LSDRadixSort {
             return sortingStates;
         sortingStates.add(toList(values));
         saveState(values, sortingStates);
-        Integer[][] split = Commons.splitPositiveNegative(values);
+        Integer[][] split = splitPositiveNegative(values);
         Integer[] negative = split[0];
         Integer[] positive = split[1];
 
@@ -40,10 +38,22 @@ public class LSDRadixSort {
     private static void countSort(Integer[] values, int exp, List<List<Integer>> sortingStates) {
         Integer[] output = new Integer[values.length];
         int[] digitCounts = new int[10];
-        Arrays.stream(values).forEach(value -> digitCounts[(value / exp) % 10]++);
-        IntStream.range(1, 10).forEach(i -> digitCounts[i] += digitCounts[i - 1]);
-        for (int i = values.length - 1; i >= 0; i--)
-            output[--digitCounts[(values[i] / exp) % 10]] = values[i];
+
+        for (int value : values)
+            digitCounts[(value / exp) % 10]++;
+
+        for (int i = 1; i < 10; i++)
+            digitCounts[i] += digitCounts[i - 1];
+
+        for (int i = values.length - 1; i >= 0; i--) {
+            int index = --digitCounts[(values[i] / exp) % 10];
+            output[index] = values[i];
+            Integer[] visual = Arrays.copyOf(values, values.length);
+            for (int j = 0; j < output.length; j++)
+                if (output[j] != null)
+                    visual[j] = output[j];
+            saveState(visual, sortingStates);
+        }
         System.arraycopy(output, 0, values, 0, values.length);
         saveState(values, sortingStates);
     }
