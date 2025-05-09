@@ -5,8 +5,8 @@ import java.util.List;
 
 import static visualizer.Commons.Commons.getMaxDigits;
 import static visualizer.Commons.Commons.recombine;
-import static visualizer.Commons.Commons.saveState;
 import static visualizer.Commons.Commons.splitPositiveNegative;
+import static visualizer.Commons.Commons.toList;
 
 public class MSDRadixSort {
 
@@ -14,7 +14,7 @@ public class MSDRadixSort {
         List<List<Integer>> sortingStates = new ArrayList<>();
         if(values == null || values.length == 0)
             return sortingStates;
-        saveState(values, sortingStates);
+        sortingStates.add(toList(values));
         Integer[][] split = splitPositiveNegative(values);
         Integer[] negative = split[0];
         Integer[] positive = split[1];
@@ -26,7 +26,7 @@ public class MSDRadixSort {
         if(positive.length > 0)
             msdRadixSort(positive, 0, positive.length, maxDigits - 1, sortingStates);
         recombine(values, negative, positive);
-        saveState(values, sortingStates);
+        sortingStates.add(toList(values));
         return sortingStates;
     }
 
@@ -62,7 +62,7 @@ public class MSDRadixSort {
         for (int[] bucket : buckets) {
             for (int value : bucket) {
                 values[index++] = value;
-                saveState(values, sortingStates);
+                sortingStates.add(toList(values));
             }
         }
     }

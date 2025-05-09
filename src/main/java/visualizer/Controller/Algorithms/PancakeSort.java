@@ -16,7 +16,7 @@ public class PancakeSort {
                 flip(values, maxIndex, results);
                 flip(values, i - 1, results);
             }
-            results.add(toList(values, 0, values.length - 1));
+            results.add(toList(values));
         }
         return results;
     }

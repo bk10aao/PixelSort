@@ -6,7 +6,6 @@ import java.util.List;
 
 import static visualizer.Commons.Commons.getMaxDigits;
 import static visualizer.Commons.Commons.recombine;
-import static visualizer.Commons.Commons.saveState;
 import static visualizer.Commons.Commons.splitPositiveNegative;
 import static visualizer.Commons.Commons.toList;
 
@@ -17,7 +16,6 @@ public class LSDRadixSort {
         if (values == null || values.length == 0)
             return sortingStates;
         sortingStates.add(toList(values));
-        saveState(values, sortingStates);
         Integer[][] split = splitPositiveNegative(values);
         Integer[] negative = split[0];
         Integer[] positive = split[1];
@@ -30,7 +28,7 @@ public class LSDRadixSort {
             if (positive.length > 0)
                 countSort(positive, exp, sortingStates);
             recombine(values, negative, positive);
-            saveState(values, sortingStates);
+            sortingStates.add(toList(values));
         }
         return sortingStates;
     }
@@ -52,9 +50,9 @@ public class LSDRadixSort {
             for (int j = 0; j < output.length; j++)
                 if (output[j] != null)
                     visual[j] = output[j];
-            saveState(visual, sortingStates);
+            sortingStates.add(toList(values));
         }
         System.arraycopy(output, 0, values, 0, values.length);
-        saveState(values, sortingStates);
+        sortingStates.add(toList(values));
     }
 }

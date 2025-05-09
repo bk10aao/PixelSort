@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Commons {
 
@@ -29,27 +28,6 @@ public class Commons {
             Commons.exchange(values, i, rand.nextInt(i + 1), results);
     }
 
-    public static void merge(int[] values1, int[] values2, int low, int middle, int high) {
-        isSorted(values1, low, middle, high);
-        if (high + 1 - low >= 0) System.arraycopy(values2, low, values1, low, high + 1 - low);
-        int i = low;
-        int j = middle + 1;
-        for (int x = low; x <= high; x++)
-            if (i > middle)
-                values2[x] = values1[j++];
-            else if (j > high)
-                values2[x] = values1[i++];
-            else if (less(values1[j], values1[i]))
-                values2[x] = values1[j++];
-            else
-                values2[x] = values1[i++];
-    }
-
-    public static void isSorted(int[] values1, int low, int middle, int high) {
-        assert Commons.isSorted(values1, low, middle);
-        assert Commons.isSorted(values1, middle + 1, high);
-    }
-
     public static boolean isSorted(int[] values, int low, int high) {
         for (int i = low + 1; i <= high; i++)
             if (less(values[i], values[i - 1]))
@@ -69,20 +47,12 @@ public class Commons {
         }
     }
 
-    public static List<Integer> toList(int[] arr, int from, int to) {
-        return IntStream.rangeClosed(from, to).mapToObj(i -> arr[i]).collect(Collectors.toList());
-    }
-
     public static List<Integer> toList(Integer[] arr) {
         return new ArrayList<>(Arrays.asList(arr));
     }
 
     public static List<Integer> toList(int[] arr) {
         return Arrays.stream(arr).boxed().collect(Collectors.toList());
-    }
-
-    public static void saveState(Integer[] arr, List<List<Integer>> sortingStates) {
-        sortingStates.add(Commons.toList(arr));
     }
 
     public static void recombine(Integer[] arr, Integer[] negative, Integer[] positive) {

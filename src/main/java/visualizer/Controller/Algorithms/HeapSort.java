@@ -3,6 +3,7 @@ package visualizer.Controller.Algorithms;
 import visualizer.Commons.Commons;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static visualizer.Commons.Commons.exchange;
@@ -23,7 +24,7 @@ public class HeapSort {
         int[] heap = new int[values.length + 1];
         System.arraycopy(values, 0, heap, 1, values.length);
         buildHeap(heap, values.length, results);
-        results.add(toList(heap, 1, values.length));
+        results.add(toList(Arrays.copyOfRange(heap, 1, values.length)));
         sortDown(heap, values.length, results);
         return results;
     }
@@ -37,7 +38,7 @@ public class HeapSort {
         while (size > 1) {
             exchange(heap, 1, size--, results);
             sink(heap, 1, size, results);
-            results.add(toList(heap, 1, heap.length - 1));
+            results.add(toList(Arrays.copyOfRange(heap, 1, heap.length)));
         }
     }
 }
