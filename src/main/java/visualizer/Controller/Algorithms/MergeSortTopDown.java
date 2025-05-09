@@ -13,7 +13,7 @@ public class MergeSortTopDown {
         List<List<Integer>> results = new ArrayList<>();
         int[] aux = new int[values.length];
         sort(values, aux, 0, values.length - 1, results);
-        results.add(Commons.toList(values, 0, values.length - 1));
+        results.add(Commons.toList(values));
         return results;
     }
 
@@ -24,6 +24,6 @@ public class MergeSortTopDown {
         sort(values, aux, low, mid, results);
         sort(values, aux, mid + 1, high, results);
         merge(aux, values, low, mid, high);
-        results.add(Commons.toList(values, 0, values.length - 1));
+        results.add(Commons.toList(values));
     }
 }
