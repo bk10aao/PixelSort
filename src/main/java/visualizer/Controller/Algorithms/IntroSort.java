@@ -5,23 +5,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static visualizer.Commons.Commons.exchange;
 import static visualizer.Commons.Commons.insertionSort;
 
 public class IntroSort {
 
-    private static final List<List<Integer>> results = new ArrayList<>();
 
-    private static int[] values;
+    private static List<List<Integer>> results;
 
     public static List<List<Integer>> sort(int[] values) {
-        IntroSort.values = values;
-        int size = IntroSort.values.length;
+        results = new ArrayList<>();
+        int size = values.length;
         int depthLimit = (int)(2 * Math.floor(Math.log(size) / Math.log(2)));
-        sortDataUtil(0, size - 1, depthLimit);
+        sortDataUtil(values,0, size - 1, depthLimit);
         return results;
     }
 
-    private static void maxHeap(int i, int heap, int x) {
+    private static void maxHeap(int[] values, int i, int heap, int x) {
         int temp = values[x + i - 1];
         int child;
 
@@ -32,26 +32,28 @@ public class IntroSort {
             if (temp >= values[x + child - 1])
                 break;
             values[x + i - 1] = values[x + child - 1];
+            results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
             i = child;
         }
         values[x + i - 1] = temp;
+        results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
     }
 
-    private static void heapify(int begin, int heapN) {
+    private static void heapify(int[] values, int begin, int heapN) {
         for (int i = (heapN) / 2; i >= 1; i--)
-            maxHeap(i, heapN, begin);
+            maxHeap(values, i, heapN, begin);
     }
 
-    private static void heapSort(int begin, int end) {
+    private static void heapSort(int[] values, int begin, int end) {
         int heapN = end - begin;
-        heapify(begin, heapN);
+        heapify(values, begin, heapN);
         for (int i = heapN; i > 1; i--) {
             exchange(values, begin, begin + i - 1, results);
-            maxHeap(1, i - 1, begin);
+            maxHeap(values,1, i - 1, begin);
         }
     }
 
-    private static int findPivot(int x, int y, int z) {
+    private static int findPivot(int[] values, int x, int y, int z) {
         int max = Math.max(Math.max(values[x], values[y]), values[z]);
         int min = Math.min(Math.min(values[x], values[y]), values[z]);
         int median = max ^ min ^ values[x] ^ values[y] ^ values[z];
@@ -62,7 +64,7 @@ public class IntroSort {
         return z;
     }
 
-    private static int partition(int low, int high) {
+    private static int partition(int[] values, int low, int high) {
         int pivot = values[high];
         int i = low - 1;
         for (int j = low; j <= high - 1; j++)
@@ -72,27 +74,18 @@ public class IntroSort {
         return (i + 1);
     }
 
-    private static void sortDataUtil(int begin, int end, int depthLimit) {
+    private static void sortDataUtil(int[] values, int begin, int end, int depthLimit) {
         if (end - begin > 16) {
             if (depthLimit == 0) {
-                heapSort(begin, end);
+                heapSort(values, begin, end);
                 return;
             }
             depthLimit--;
-            exchange(values, findPivot(begin, begin + ((end - begin) / 2) + 1, end), end, results);
-            int p = partition(begin, end);
-            sortDataUtil(begin, p - 1, depthLimit);
-            sortDataUtil(p + 1, end, depthLimit);
+            exchange(values, findPivot(values, begin, begin + ((end - begin) / 2) + 1, end), end, results);
+            int p = partition(values, begin, end);
+            sortDataUtil(values, begin, p - 1, depthLimit);
+            sortDataUtil(values, p + 1, end, depthLimit);
         } else
             insertionSort(values, begin, end, results);
-    }
-
-    public static void exchange(int[] values, int i, int j, List<List<Integer>> results) {
-        int temp = values[i];
-        values[i] = values[j];
-        values[j] = temp;
-        if (results != null) {
-            results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-        }
     }
 }

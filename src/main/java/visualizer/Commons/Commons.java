@@ -28,13 +28,6 @@ public class Commons {
             Commons.exchange(values, i, rand.nextInt(i + 1), results);
     }
 
-    public static boolean isSorted(int[] values, int low, int high) {
-        for (int i = low + 1; i <= high; i++)
-            if (less(values[i], values[i - 1]))
-                return false;
-        return true;
-    }
-
     public static void sink(int[] binaryHeap, int index, int n, List<List<Integer>> results) {
         while (2 * index <= n) {
             int j = 2 * index;
