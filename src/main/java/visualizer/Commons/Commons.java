@@ -22,12 +22,6 @@ public class Commons {
         return c1.compareTo(c2) < 0;
     }
 
-    public static void shuffle(int[] values, List<List<Integer>> results) {
-        Random rand = new Random();
-        for (int i = values.length - 1; i > 0; i--)
-            Commons.exchange(values, i, rand.nextInt(i + 1), results);
-    }
-
     public static void sink(int[] binaryHeap, int index, int n, List<List<Integer>> results) {
         while (2 * index <= n) {
             int j = 2 * index;

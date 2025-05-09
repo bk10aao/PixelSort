@@ -1,12 +1,14 @@
 package visualizer.Controller.Algorithms;
 
+import visualizer.Commons.Commons;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static visualizer.Commons.Commons.exchange;
 import static visualizer.Commons.Commons.less;
-import static visualizer.Commons.Commons.shuffle;
 import static visualizer.Commons.Commons.toList;
 
 public class QuickSort {
@@ -44,5 +46,11 @@ public class QuickSort {
         }
         exchange(values, low, rightPointer, results);
         return rightPointer;
+    }
+
+    public static void shuffle(int[] values, List<List<Integer>> results) {
+        Random rand = new Random();
+        for (int i = values.length - 1; i > 0; i--)
+            Commons.exchange(values, i, rand.nextInt(i + 1), results);
     }
 }
