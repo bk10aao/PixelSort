@@ -63,10 +63,8 @@ public class BucketSort {
         for (int i = bucketStartIndex + 1; i <= right; i++) {
             int temp = values[i];
             int j = i - 1;
-            while (j >= bucketStartIndex && values[j] > temp) {
-                values[j + 1] = values[j];
-                j--;
-            }
+            while (j >= bucketStartIndex && values[j] > temp)
+                values[j + 1] = values[j--];
             values[j + 1] = temp;
             sortingStates.add(toList(values));
         }

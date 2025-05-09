@@ -19,25 +19,25 @@ public class HeapSort {
                 result.add(List.of(values[0]));
             return result;
         }
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> results = new ArrayList<>();
         int[] heap = new int[values.length + 1];
         System.arraycopy(values, 0, heap, 1, values.length);
-        buildHeap(heap, values.length);
-        result.add(toList(heap, 1, values.length));
-        sortDown(heap, values.length, result);
-        return result;
+        buildHeap(heap, values.length, results);
+        results.add(toList(heap, 1, values.length));
+        sortDown(heap, values.length, results);
+        return results;
     }
 
-    private static void buildHeap(int[] heap, int size) {
+    private static void buildHeap(int[] heap, int size, List<List<Integer>> results) {
         for (int i = size / 2; i >= 1; i--)
-            sink(heap, i, size);
+            sink(heap, i, size, results);
     }
 
-    private static void sortDown(int[] heap, int size, List<List<Integer>> result) {
+    private static void sortDown(int[] heap, int size, List<List<Integer>> results) {
         while (size > 1) {
-            exchange(heap, 1, size--);
-            sink(heap, 1, size);
-            result.add(toList(heap, 1, heap.length - 1));
+            exchange(heap, 1, size--, results);
+            sink(heap, 1, size, results);
+            results.add(toList(heap, 1, heap.length - 1));
         }
     }
 }

@@ -1,5 +1,4 @@
 package visualizer.Controller.Algorithms;
-import visualizer.Commons.Commons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +46,7 @@ public class IntroSort {
         int heapN = end - begin;
         heapify(begin, heapN);
         for (int i = heapN; i > 1; i--) {
-            Commons.exchange(values, begin, begin + i - 1);
+            exchange(values, begin, begin + i - 1, results);
             maxHeap(1, i - 1, begin);
         }
     }
@@ -68,8 +67,8 @@ public class IntroSort {
         int i = low - 1;
         for (int j = low; j <= high - 1; j++)
             if (values[j] <= pivot)
-                Commons.exchange(values, ++i, j);
-        Commons.exchange(values,i + 1, high);
+                exchange(values, ++i, j, results);
+        exchange(values,i + 1, high, results);
         return (i + 1);
     }
 
@@ -80,12 +79,20 @@ public class IntroSort {
                 return;
             }
             depthLimit--;
-            Commons.exchange(values, findPivot(begin, begin + ((end - begin) / 2) + 1, end), end);
+            exchange(values, findPivot(begin, begin + ((end - begin) / 2) + 1, end), end, results);
             int p = partition(begin, end);
             sortDataUtil(begin, p - 1, depthLimit);
             sortDataUtil(p + 1, end, depthLimit);
         } else
             insertionSort(values, begin, end, results);
-        results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
+    }
+
+    public static void exchange(int[] values, int i, int j, List<List<Integer>> results) {
+        int temp = values[i];
+        values[i] = values[j];
+        values[j] = temp;
+        if (results != null) {
+            results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
+        }
     }
 }

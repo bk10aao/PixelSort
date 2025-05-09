@@ -10,20 +10,23 @@ import java.util.stream.IntStream;
 
 public class Commons {
 
-    public static void exchange(int[] values, int i, int j) {
-        int swap = values[i];
+    public static void exchange(int[] values, int i, int j, List<List<Integer>> results) {
+        int temp = values[i];
         values[i] = values[j];
-        values[j] = swap;
+        values[j] = temp;
+        if (results != null) {
+            results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
+        }
     }
 
     public static boolean less(Comparable c1, Comparable c2) {
         return c1.compareTo(c2) < 0;
     }
 
-    public static void shuffle(int[] values) {
+    public static void shuffle(int[] values, List<List<Integer>> results) {
         Random rand = new Random();
         for (int i = values.length - 1; i > 0; i--)
-            Commons.exchange(values, i, rand.nextInt(i + 1));
+            Commons.exchange(values, i, rand.nextInt(i + 1), results);
     }
 
     public static void merge(int[] values1, int[] values2, int low, int middle, int high) {
@@ -54,14 +57,14 @@ public class Commons {
         return true;
     }
 
-    public static void sink(int[] binaryHeap, int index, int n) {
+    public static void sink(int[] binaryHeap, int index, int n, List<List<Integer>> results) {
         while (2 * index <= n) {
             int j = 2 * index;
             if (j < n && Commons.less(binaryHeap[j], binaryHeap[j + 1]))
                 j++;
             if (!Commons.less(binaryHeap[index], binaryHeap[j]))
                 break;
-            Commons.exchange(binaryHeap, index, j);
+            Commons.exchange(binaryHeap, index, j, results);
             index = j;
         }
     }

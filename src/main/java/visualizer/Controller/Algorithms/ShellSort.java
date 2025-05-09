@@ -21,7 +21,7 @@ public class ShellSort {
     private static void hSort(int[] values, int h, List<List<Integer>> results) {
         for(int x = h; x < values.length; x++)
             for(int y = x; y >= h && less(values[y], values[y - h]); y -= h) {
-                exchange(values, y, y - h);
+                exchange(values, y, y - h, results);
                 results.add(Arrays.stream(values).boxed().toList());
             }
     }

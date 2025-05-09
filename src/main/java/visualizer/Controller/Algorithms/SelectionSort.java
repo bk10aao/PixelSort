@@ -17,7 +17,7 @@ public class SelectionSort {
                 if (values[j] < values[min])
                     min = j;
             if (i != min) {
-                exchange(values, i, min);
+                exchange(values, i, min, results);
                 results.add(Arrays.stream(values).boxed().toList());
             }
         }

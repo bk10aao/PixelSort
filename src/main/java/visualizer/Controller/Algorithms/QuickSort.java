@@ -13,7 +13,7 @@ public class QuickSort {
 
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = new ArrayList<>();
-        shuffle(values);
+        shuffle(values, results);
         sort(values, 0, values.length - 1, results);
         results.add(toList(values, 0, values.length - 1));
         return results;
@@ -23,12 +23,12 @@ public class QuickSort {
         if(high <= low)
             return;
         results.add(Arrays.stream(values).boxed().toList());
-        int j = partition(values, low, high);
+        int j = partition(values, low, high, results);
         sort(values, low, j - 1, results);
         sort(values, j + 1, high, results);
     }
 
-    private static int partition(int[] values, int low, int high) {
+    private static int partition(int[] values, int low, int high, List<List<Integer>> results) {
         int leftPointer = low;
         int rightPointer = high + 1;
         while (true) {
@@ -40,9 +40,9 @@ public class QuickSort {
                     break;
             if(leftPointer >= rightPointer)
                 break;
-            exchange(values, leftPointer, rightPointer);
+            exchange(values, leftPointer, rightPointer, results);
         }
-        exchange(values, low, rightPointer);
+        exchange(values, low, rightPointer, results);
         return rightPointer;
     }
 }
