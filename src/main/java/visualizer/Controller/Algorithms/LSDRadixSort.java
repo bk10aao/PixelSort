@@ -34,7 +34,6 @@ public class LSDRadixSort {
     }
 
     private static void countSort(Integer[] values, int exp, List<List<Integer>> sortingStates) {
-        Integer[] output = new Integer[values.length];
         int[] digitCounts = new int[10];
 
         for (int value : values)
@@ -43,15 +42,17 @@ public class LSDRadixSort {
         for (int i = 1; i < 10; i++)
             digitCounts[i] += digitCounts[i - 1];
 
+        Integer[] output = new Integer[values.length];
+        Integer[] currentState = Arrays.copyOf(values, values.length);
+
         for (int i = values.length - 1; i >= 0; i--) {
-            int index = --digitCounts[(values[i] / exp) % 10];
+            int digit = (values[i] / exp) % 10;
+            int index = --digitCounts[digit];
             output[index] = values[i];
-            Integer[] visual = Arrays.copyOf(values, values.length);
-            for (int j = 0; j < output.length; j++)
-                if (output[j] != null)
-                    visual[j] = output[j];
-            sortingStates.add(toList(values));
+            currentState[index] = values[i];
+            sortingStates.add(toList(Arrays.copyOf(currentState, currentState.length)));
         }
+
         System.arraycopy(output, 0, values, 0, values.length);
         sortingStates.add(toList(values));
     }

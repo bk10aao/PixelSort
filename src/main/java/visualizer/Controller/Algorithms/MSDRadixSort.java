@@ -26,7 +26,7 @@ public class MSDRadixSort {
         if(positive.length > 0)
             msdRadixSort(positive, 0, positive.length, maxDigits - 1, sortingStates);
         recombine(values, negative, positive);
-        sortingStates.add(toList(values));
+        sortingStates.add(toList(java.util.Arrays.copyOf(values, values.length)));
         return sortingStates;
     }
 
@@ -62,7 +62,7 @@ public class MSDRadixSort {
         for (int[] bucket : buckets) {
             for (int value : bucket) {
                 values[index++] = value;
-                sortingStates.add(toList(values));
+                sortingStates.add(toList(java.util.Arrays.copyOf(values, values.length)));
             }
         }
     }
