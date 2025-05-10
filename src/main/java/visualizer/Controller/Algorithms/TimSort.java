@@ -29,7 +29,7 @@ public class TimSort {
         int i = 0;
         while(i < values.length) {
             int runStart = i;
-            int runLength = countRunAndMakeAscending(values, i);
+            int runLength = countRunAndMakeAscending(values, i, sortingStates);
             if(runLength < minRun) {
                 int runEnd = Math.min(i + minRun - 1, values.length - 1);
                 runLength = runEnd - i + 1;
@@ -62,7 +62,7 @@ public class TimSort {
         return sortingStates;
     }
 
-    private static int countRunAndMakeAscending(int[] values, int start) {
+    private static int countRunAndMakeAscending(int[] values, int start, List<List<Integer>> sortingStates) {
         if(start >= values.length - 1)
             return 1;
 
@@ -79,6 +79,8 @@ public class TimSort {
                 values[start + i] = values[start + (runLength - 1 - i)];
                 values[start + (runLength - 1 - i)] = temp;
             }
+            sortingStates.add(toList(values));
+
         }
         return runLength;
     }
