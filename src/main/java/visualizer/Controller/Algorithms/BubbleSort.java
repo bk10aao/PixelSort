@@ -9,6 +9,10 @@ import static visualizer.Commons.Commons.exchange;
 public class BubbleSort {
 
     public static List<List<Integer>> sort(int[] values) {
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
         boolean swapped = true;
         while (swapped) {

@@ -10,10 +10,11 @@ import static visualizer.Commons.Commons.toList;
 public class BucketSort {
 
     public static List<List<Integer>> sort(int[] values) {
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
-        if (values == null || values.length == 0)
-            return results;
-
         results.add(toList(values));
         int min = values[0];
         int max = values[0];
