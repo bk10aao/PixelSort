@@ -5,16 +5,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static visualizer.Commons.Commons.*;
 import static visualizer.Commons.Commons.less;
 
 public class MergeSortBottomUp {
 
     public static List<List<Integer>> sort(int[] values) {
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
+        results.add(toList(values));
         int n = values.length;
         int[] aux = new int[n];
-
-        results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
         for (int size = 1; size < n; size = 2 * size) {
             for (int low = 0; low < n - size; low += 2 * size) {
                 int mid = Math.min(low + size - 1, n - 1);
@@ -42,7 +46,6 @@ public class MergeSortBottomUp {
                 values[k] = aux[i++];
             }
             results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-
         }
 
         results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));

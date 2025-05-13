@@ -11,12 +11,12 @@ public class TimSort {
     private static final int MIN_MERGE = 32;
 
     public static List<List<Integer>> sort(int[] values) {
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> sortingStates = new ArrayList<>();
-        if (values == null || values.length == 0)
-            return sortingStates;
-
         sortingStates.add(toList(values));
-
         if(values.length < MIN_MERGE) {
             insertionSort(values, 0, values.length - 1, sortingStates);
             sortingStates.add(toList(values));

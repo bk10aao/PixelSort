@@ -9,8 +9,12 @@ import static visualizer.Commons.Commons.toList;
 public class InsertionSort {
 
     public static List<List<Integer>> sort(int[] values) {
+        if (values == null)
+            throw new NullPointerException();
+        if (values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
-        results.add(Arrays.stream(values).boxed().toList());
+        results.add(toList(values));
         for(int i = 1; i < values.length; i++) {
             int current = values[i];
             int j = i - 1;

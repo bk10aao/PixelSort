@@ -6,12 +6,17 @@ import java.util.List;
 
 import static visualizer.Commons.Commons.exchange;
 import static visualizer.Commons.Commons.less;
+import static visualizer.Commons.Commons.toList;
 
 public class ShellSort {
 
     public static List<List<Integer>> sort(int[] values) {
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
-        results.add(Arrays.stream(values).boxed().toList());
+        results.add(toList(values));
         List<Integer> increments = generateIncrements(values.length);
         for(int x = increments.size() - 1; x >= 0; x--)
             hSort(values, increments.get(x), results);

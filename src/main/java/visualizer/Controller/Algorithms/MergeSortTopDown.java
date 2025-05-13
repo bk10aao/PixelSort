@@ -1,20 +1,23 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static visualizer.Commons.Commons.less;
+import static visualizer.Commons.Commons.toList;
 
 public class MergeSortTopDown {
 
     public static List<List<Integer>> sort(int[] values) {
+        if (values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
+        results.add(toList(values));
         int[] aux = new int[values.length];
-        results.add(Commons.toList(values));
         sort(values, aux, 0, values.length - 1, results);
-        results.add(Commons.toList(values));
+        results.add(toList(values));
         return results;
     }
 
@@ -25,7 +28,7 @@ public class MergeSortTopDown {
         sort(values, aux, low, mid, results);
         sort(values, aux, mid + 1, high, results);
         merge(values, aux, low, mid, high, results);
-        results.add(Commons.toList(values));
+        results.add(toList(values));
     }
 
     private static void merge(int[] values, int[] aux, int low, int middle, int high, List<List<Integer>> results) {
@@ -41,7 +44,7 @@ public class MergeSortTopDown {
                 values[k] = aux[j++];
             else
                 values[k] = aux[i++];
-            results.add(Commons.toList(values));
+            results.add(toList(values));
         }
     }
 }

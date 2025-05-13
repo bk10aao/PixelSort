@@ -17,7 +17,7 @@ public class BubbleSortTest {
 
     @Test
     public void givenAnEmptyArray_onSort_returnsEmptyList() {
-        assertThrows(IllegalArgumentException.class, () -> BubbleSort.sort(new int[]{}).size());
+        assertThrows(IllegalArgumentException.class, () -> BubbleSort.sort(new int[]{}));
     }
 
     @Test

@@ -14,18 +14,16 @@ public class ParallelMergeSort {
     private static final int THRESHOLD = 1000;
 
     public static List<List<Integer>> sort(int[] values) {
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> states = new ArrayList<>();
-        if (values.length == 0)
-            return states;
-        addState(states, values);
+        states.add(toList(values));
         ForkJoinPool forkJoinPool = commonPool();
         forkJoinPool.invoke(new MergeSortTask(values, 0, values.length - 1, states));
-        addState(states, values);
-        return states;
-    }
-
-    private static synchronized void addState(List<List<Integer>> states, int[] values) {
         states.add(toList(values));
+        return states;
     }
 
     static class MergeSortTask extends RecursiveAction {
@@ -52,7 +50,6 @@ public class ParallelMergeSort {
                 invokeAll(leftTask, rightTask);
                 merge(array, left, mid, right, states);
             }
-
         }
     }
 

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static visualizer.Commons.Commons.exchange;
+import static visualizer.Commons.Commons.toList;
 
 public class BubbleSort {
 
@@ -14,6 +15,7 @@ public class BubbleSort {
         if(values.length == 0)
             throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
+        results.add(toList(values));
         boolean swapped = true;
         while (swapped) {
             swapped = false;

@@ -1,7 +1,5 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +12,10 @@ import static visualizer.Commons.Commons.toList;
 public class QuickSort {
 
     public static List<List<Integer>> sort(int[] values) {
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
         shuffle(values, results);
         sort(values, 0, values.length - 1, results);
@@ -51,6 +53,6 @@ public class QuickSort {
     public static void shuffle(int[] values, List<List<Integer>> results) {
         Random rand = new Random();
         for (int i = values.length - 1; i > 0; i--)
-            Commons.exchange(values, i, rand.nextInt(i + 1), results);
+            exchange(values, i, rand.nextInt(i + 1), results);
     }
 }

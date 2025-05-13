@@ -12,9 +12,11 @@ import static visualizer.Commons.Commons.toList;
 public class LSDRadixSort {
 
     public static List<List<Integer>> sort(Integer[] values) {
+        if (values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> sortingStates = new ArrayList<>();
-        if (values == null || values.length == 0)
-            return sortingStates;
         sortingStates.add(toList(values));
         Integer[][] split = splitPositiveNegative(values);
         Integer[] negative = split[0];

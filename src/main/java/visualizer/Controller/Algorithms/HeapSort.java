@@ -1,7 +1,5 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,13 +12,12 @@ import static visualizer.Commons.Commons.toList;
 public class HeapSort {
 
     public static List<List<Integer>> sort(int[] values) {
-        if (values == null || values.length <= 1) {
-            List<List<Integer>> result = new ArrayList<>();
-            if (values != null && values.length == 1)
-                result.add(List.of(values[0]));
-            return result;
-        }
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
+        results.add(toList(values));
         int[] heap = new int[values.length + 1];
         System.arraycopy(values, 0, heap, 1, values.length);
         buildHeap(heap, values.length, results);

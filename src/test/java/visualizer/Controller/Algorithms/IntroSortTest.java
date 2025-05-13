@@ -13,35 +13,35 @@ import static visualizer.Controller.Algorithms.Commons.testArrayOne;
 import static visualizer.Controller.Algorithms.Commons.testArrayThree;
 import static visualizer.Controller.Algorithms.Commons.testArrayTwo;
 
-public class BucketSortTest {
+public class IntroSortTest {
 
     @Test
     public void givenAnEmptyArray_onSort_returnsEmptyList() {
-        assertThrows(IllegalArgumentException.class, () -> BucketSort.sort(new int[]{}));
+        assertThrows(IllegalArgumentException.class, () -> IntroSort.sort(new int[]{}));
     }
 
     @Test
     public void givenNullArray_onSort_returnsEmptyList() {
-        assertThrows(NullPointerException.class, ()-> BucketSort.sort(null));
+        assertThrows(NullPointerException.class, ()-> IntroSort.sort(null));
     }
 
     @Test
     public void givenTestArrayOne_onSort_returnsSortedListOne() {
-        assertEquals(expectedResultOne, BucketSort.sort(testArrayOne).getLast());
+        assertEquals(expectedResultOne, IntroSort.sort(testArrayOne).getLast());
     }
 
     @Test
     public void givenTestArrayTwo_onSort_returnsSortedListTwo() {
-        assertEquals(expectedResultTwo, BucketSort.sort(testArrayTwo).getLast());
+        assertEquals(expectedResultTwo, IntroSort.sort(testArrayTwo).getLast());
     }
 
     @Test
     public void givenTestArrayThree_onSort_returnsSortedListThree() {
-        assertEquals(expectedResultThree, BucketSort.sort(testArrayThree).getLast());
+        assertEquals(expectedResultThree, IntroSort.sort(testArrayThree).getLast());
     }
 
     @Test
     public void givenTestArrayFour_onSort_returnsSortedListFour() {
-        assertEquals(expectedResultFour, BucketSort.sort(testArrayFour).getLast());
+        assertEquals(expectedResultFour, IntroSort.sort(testArrayFour).getLast());
     }
 }

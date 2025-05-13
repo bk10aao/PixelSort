@@ -8,6 +8,10 @@ import static visualizer.Commons.Commons.toList;
 public class PancakeSort {
 
     public static List<List<Integer>> sort(int[] values) {
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
         results.add(toList(values));
         for(int i = values.length; i > 1; i--) {
