@@ -30,6 +30,7 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
     finalizedBy(tasks.jacocoTestReport)
+    maxHeapSize = "4096m"
 }
 
 tasks.jacocoTestReport {
@@ -40,7 +41,6 @@ tasks.jacocoTestReport {
         html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco"))
     }
     sourceSets(sourceSets.main.get())
-    // Configure class directories directly
     classDirectories.setFrom(
         files(sourceSets.main.get().output.asFileTree.matching {
             include("visualizer/Controller/Algorithms/**")
@@ -50,7 +50,6 @@ tasks.jacocoTestReport {
 }
 
 tasks.jacocoTestCoverageVerification {
-    // Optional: Enforce 80% line coverage
     violationRules {
         rule {
             limit {

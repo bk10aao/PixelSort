@@ -21,7 +21,7 @@ public class BubbleSort {
             swapped = false;
             for (int i = 0; i < values.length - 1; i++) {
                 if(values[i] > values[i + 1]) {
-                    exchange(values, i, i + 1, results);
+                    exchange(values, i, i + 1);
                     swapped = true;
                     results.add(Arrays.stream(values).boxed().toList());
                 }

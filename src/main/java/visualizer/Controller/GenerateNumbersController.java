@@ -1,6 +1,5 @@
 package visualizer.Controller;
 
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +17,7 @@ public class GenerateNumbersController {
 
     @PostMapping("/generate-numbers")
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
-    public GeneratorNumbersResponse generateNumbers(@Valid @RequestBody GenerateNumbersRequest generateNumberRequest) {
+    public GeneratorNumbersResponse generateNumbers(@RequestBody GenerateNumbersRequest generateNumberRequest) {
         Integer value = generateNumberRequest.getValue();
 
         if(value == null || value > 100 || value < 0)

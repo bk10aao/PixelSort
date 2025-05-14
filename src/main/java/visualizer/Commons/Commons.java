@@ -18,6 +18,12 @@ public class Commons {
         }
     }
 
+    public static void exchange(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
     public static boolean less(Comparable c1, Comparable c2) {
         return c1.compareTo(c2) < 0;
     }
