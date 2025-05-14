@@ -65,4 +65,19 @@ class TimSortTest {
     public void givenTestArrayOf1000Items_onSort_returnsSortedListFour() {
         assertEquals(expectedResultSeven, TimSort.sort(testArraySeven).getLast());
     }
+
+    @Test
+    public void givenTestArrayFive_onSort_returnsSortedListFive() {
+        assertEquals(expectedResultFive, TimSort.sort(testArrayFive).getLast());
+    }
+
+    @Test
+    public void givenTestArraySix_onSort_returnsSortedListSix() {
+        assertEquals(expectedResultSix, TimSort.sort(testArraySix).getLast());
+    }
+
+    @Test
+    public void givenTestArraySeven_onSort_returnsSortedListSeven() {
+        assertEquals(expectedResultSeven, TimSort.sort(testArraySeven).getLast());
+    }
 }
