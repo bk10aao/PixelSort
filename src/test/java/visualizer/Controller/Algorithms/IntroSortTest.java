@@ -8,19 +8,19 @@ public class IntroSortTest {
 
     @Test
     public void findPivot_returnsZ_whenMedianIsAtZ() {
-        assertEquals(2, callFindPivot(new int[] { 99, 1, 50 }, 0, 1, 2));
+        assertEquals(2, callFindPivot(new int[] { 99, 1, 50 }));
     }
 
     @Test
     public void findPivot_returnsX_whenMedianIsAtX() {
-        assertEquals(0, callFindPivot(new int[] { 50, 1, 99 } , 0, 1, 2));
+        assertEquals(0, callFindPivot(new int[] { 50, 1, 99 }));
     }
 
-    private int callFindPivot(int[] values, int x, int y, int z) {
+    private int callFindPivot(int[] values) {
         try {
             java.lang.reflect.Method method = IntroSort.class.getDeclaredMethod("findPivot", int[].class, int.class, int.class, int.class);
             method.setAccessible(true);
-            return (int) method.invoke(null, values, x, y, z);
+            return (int) method.invoke(null, values, 0, 1, 2);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
