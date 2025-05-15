@@ -53,8 +53,14 @@ public class SortAlgorithmTests {
 
     @ParameterizedTest
     @MethodSource("testCases")
-    void testInsetionSort(TestCase tc) {
+    void testInsertionSort(TestCase tc) {
         assertEquals(tc.expected, InsertionSort.sort(tc.input).getLast());
+    }
+
+    @ParameterizedTest
+    @MethodSource("testCases")
+    void testIntroSort(TestCase tc) {
+        assertEquals(tc.expected, IntroSort.sort(tc.input).getLast());
     }
 
     // Add common tests for exceptions once, if needed
@@ -65,7 +71,7 @@ public class SortAlgorithmTests {
         assertThrows(IllegalArgumentException.class, () -> BucketSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> InPlaceMergeSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> InsertionSort.sort(new int[] {}));
-
+        assertThrows(IllegalArgumentException.class, () -> IntroSort.sort(new int[] {}));
     }
 
     @Test
@@ -75,6 +81,6 @@ public class SortAlgorithmTests {
         assertThrows(NullPointerException.class, () -> BucketSort.sort(null));
         assertThrows(NullPointerException.class, () -> InPlaceMergeSort.sort(null));
         assertThrows(NullPointerException.class, () -> InsertionSort.sort(null));
-
+        assertThrows(NullPointerException.class, () -> IntroSort.sort(null));
     }
 }
