@@ -63,6 +63,12 @@ public class SortAlgorithmTests {
         assertEquals(tc.expected, IntroSort.sort(tc.input).getLast());
     }
 
+    @ParameterizedTest
+    @MethodSource("testCases")
+    void testMergeSortBottomUp(TestCase tc) {
+        assertEquals(tc.expected, MergeSortBottomUp.sort(tc.input).getLast());
+    }
+
     // Add common tests for exceptions once, if needed
     @Test
     void testEmptyInputThrows() {
@@ -72,6 +78,7 @@ public class SortAlgorithmTests {
         assertThrows(IllegalArgumentException.class, () -> InPlaceMergeSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> InsertionSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> IntroSort.sort(new int[] {}));
+        assertThrows(IllegalArgumentException.class, () -> MergeSortBottomUp.sort(new int[] {}));
     }
 
     @Test
@@ -82,5 +89,6 @@ public class SortAlgorithmTests {
         assertThrows(NullPointerException.class, () -> InPlaceMergeSort.sort(null));
         assertThrows(NullPointerException.class, () -> InsertionSort.sort(null));
         assertThrows(NullPointerException.class, () -> IntroSort.sort(null));
+        assertThrows(NullPointerException.class, () -> MergeSortBottomUp.sort(null));
     }
 }
