@@ -1,9 +1,7 @@
 package visualizer.Controller.Algorithms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static visualizer.Commons.Commons.exchange;
 import static visualizer.Commons.Commons.insertionSort;
@@ -37,19 +35,16 @@ public class IntroSort {
             int p = partition(values, begin, end);
             sortDataUtil(values, begin, p - 1, depthLimit);
             sortDataUtil(values, p + 1, end, depthLimit);
-        } else {
+        } else
             insertionSort(values, begin, end, results);
-        }
     }
 
     private static int partition(int[] values, int low, int high) {
         int pivot = values[high];
         int i = low - 1;
-        for (int j = low; j <= high - 1; j++) {
-            if (values[j] <= pivot) {
+        for (int j = low; j <= high - 1; j++)
+            if (values[j] <= pivot)
                 exchange(values, ++i, j, results);
-            }
-        }
         exchange(values, i + 1, high, results);
         return i + 1;
     }
@@ -58,8 +53,10 @@ public class IntroSort {
         int max = Math.max(Math.max(values[x], values[y]), values[z]);
         int min = Math.min(Math.min(values[x], values[y]), values[z]);
         int median = max ^ min ^ values[x] ^ values[y] ^ values[z];
-        if (median == values[x]) return x;
-        if (median == values[y]) return y;
+        if (median == values[x])
+            return x;
+        if (median == values[y])
+            return y;
         return z;
     }
 }
