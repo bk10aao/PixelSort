@@ -2,6 +2,8 @@ package visualizer.Controller.Algorithms;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static visualizer.Controller.Algorithms.Commons.expectedResultEight;
@@ -71,5 +73,21 @@ class SelectionSortTest {
     @Test
     public void givenTestArrayEight_onSort_returnsSortedListEight() {
         assertEquals(expectedResultEight, SelectionSort.sort(testArrayEight).getLast());
+    }
+
+    @Test
+    public void givenUnsortedArray_onSort_triggersExchangeAndMinChange() {
+        int[] unsorted = new int[]{5, 3, 4, 1, 2}; // Clearly not sorted
+        List<List<Integer>> result = SelectionSort.sort(unsorted);
+        List<Integer> finalResult = result.get(result.size() - 1);
+        assertEquals(List.of(1, 2, 3, 4, 5), finalResult);
+    }
+
+    @Test
+    public void givenTwoElementUnsortedArray_onSort_triggersSwap() {
+        int[] two = new int[]{2, 1};
+        List<List<Integer>> result = SelectionSort.sort(two);
+        List<Integer> finalResult = result.getLast();
+        assertEquals(List.of(1, 2), finalResult);
     }
 }
