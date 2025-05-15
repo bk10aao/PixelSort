@@ -21,7 +21,12 @@ public class SortAlgorithmTests {
                 new TestCase(Commons.testArrayFive, Commons.expectedResultFive),
                 new TestCase(Commons.testArraySix, Commons.expectedResultSix),
                 new TestCase(Commons.testArraySeven, Commons.expectedResultSeven),
-                new TestCase(Commons.testArrayEight, Commons.expectedResultEight)
+                new TestCase(Commons.testArrayEight, Commons.expectedResultEight),
+                new TestCase(Commons.testArrayNine, Commons.expectedResultNine),
+                new TestCase(Commons.testArrayTen, Commons.expectedResultTen),
+                new TestCase(Commons.testArrayEleven, Commons.expectedResultsEleven),
+                new TestCase(Commons.testArrayTwelve, Commons.expectedResultTwelve),
+                new TestCase(Commons.testArrayThirteen, Commons.expectedResultThirteen)
         );
     }
 
@@ -146,5 +151,25 @@ public class SortAlgorithmTests {
         assertThrows(NullPointerException.class, () -> SelectionSort.sort(null));
         assertThrows(NullPointerException.class, () -> ShellSort.sort(null));
         assertThrows(NullPointerException.class, () -> TimSort.sort(null));
+    }
+
+    @Test
+    public void introSort_findPivot_returnsZ_whenMedianIsAtZ() {
+        assertEquals(2, callFindPivot(new int[] { 99, 1, 50 }));
+    }
+
+    @Test
+    public void introSort_findPivot_returnsX_whenMedianIsAtX() {
+        assertEquals(0, callFindPivot(new int[] { 50, 1, 99 }));
+    }
+
+    private int callFindPivot(int[] values) {
+        try {
+            java.lang.reflect.Method method = IntroSort.class.getDeclaredMethod("findPivot", int[].class, int.class, int.class, int.class);
+            method.setAccessible(true);
+            return (int) method.invoke(null, values, 0, 1, 2);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
