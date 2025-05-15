@@ -80,17 +80,17 @@ class MergeSortTopDownTest {
     }
 
     @Test
-    public void givenTwoElementSortedArray_onSort_hitsLastElseBranch() {
+    public void givenTwoElementSortedArray_onSort_returnsSortedArray() {
         assertEquals(List.of(1, 2), MergeSortTopDown.sort(new int[]{1, 2}).getLast());
     }
 
     @Test
-    public void givenLeftSubarrayExhausted_onSort_hitsLine44() {
+    public void givenLeftSubarrayExhausted_onSort_returnsSortedArray() {
         assertEquals(List.of(1, 2, 3, 4), MergeSortTopDown.sort(new int[]{3, 4, 1, 2}).getLast());
     }
 
     @Test
-    public void givenRightSubarrayExhausted_onSort_hitsLine42() {
+    public void givenRightSubarrayExhausted_onSort_returnsSortedArray() {
         assertEquals(List.of(1, 2, 3, 4), MergeSortTopDown.sort(new int[]{1, 2, 4, 3}).getLast());
     }
 }

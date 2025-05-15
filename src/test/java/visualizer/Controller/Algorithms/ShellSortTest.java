@@ -2,6 +2,8 @@ package visualizer.Controller.Algorithms;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static visualizer.Controller.Algorithms.Commons.expectedResultEight;
@@ -71,5 +73,15 @@ class ShellSortTest {
     @Test
     public void givenTestArrayEight_onSort_returnsSortedListEight() {
         assertEquals(expectedResultEight, ShellSort.sort(testArrayEight).getLast());
+    }
+
+    @Test
+    public void triggersInnerLoopInHSort() {
+        assertEquals(List.of(1, 5), ShellSort.sort(new int[] {5, 1}).getLast());
+    }
+
+    @Test
+    public void triggersAddOneInGenerateIncrements() {
+        assertEquals(List.of(42),  ShellSort.sort(new int[] {42}).getLast());
     }
 }
