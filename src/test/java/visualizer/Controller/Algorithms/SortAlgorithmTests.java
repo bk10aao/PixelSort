@@ -35,14 +35,20 @@ public class SortAlgorithmTests {
 
     @ParameterizedTest
     @MethodSource("testCases")
+    void testBucketSort(TestCase tc) {
+        assertEquals(tc.expected, BucketSort.sort(tc.input).getLast());
+    }
+
+    @ParameterizedTest
+    @MethodSource("testCases")
     void testHeapSort(TestCase tc) {
         assertEquals(tc.expected, HeapSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
-    void testBucketSort(TestCase tc) {
-        assertEquals(tc.expected, BucketSort.sort(tc.input).getLast());
+    void testInPlaceMergeSort(TestCase tc) {
+        assertEquals(tc.expected, InPlaceMergeSort.sort(tc.input).getLast());
     }
 
     // Add common tests for exceptions once, if needed
@@ -51,6 +57,7 @@ public class SortAlgorithmTests {
         assertThrows(IllegalArgumentException.class, () -> BubbleSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> HeapSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> BucketSort.sort(new int[] {}));
+        assertThrows(IllegalArgumentException.class, () -> InPlaceMergeSort.sort(new int[] {}));
     }
 
     @Test
@@ -58,5 +65,6 @@ public class SortAlgorithmTests {
         assertThrows(NullPointerException.class, () -> BubbleSort.sort(null));
         assertThrows(NullPointerException.class, () -> HeapSort.sort(null));
         assertThrows(NullPointerException.class, () -> BucketSort.sort(null));
+        assertThrows(NullPointerException.class, () -> InPlaceMergeSort.sort(null));
     }
 }
