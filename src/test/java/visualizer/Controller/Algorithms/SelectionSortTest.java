@@ -77,17 +77,11 @@ class SelectionSortTest {
 
     @Test
     public void givenUnsortedArray_onSort_triggersExchangeAndMinChange() {
-        int[] unsorted = new int[]{5, 3, 4, 1, 2}; // Clearly not sorted
-        List<List<Integer>> result = SelectionSort.sort(unsorted);
-        List<Integer> finalResult = result.get(result.size() - 1);
-        assertEquals(List.of(1, 2, 3, 4, 5), finalResult);
+        assertEquals(List.of(1, 2, 3, 4, 5), SelectionSort.sort(new int[]{5, 3, 4, 1, 2}).getLast());
     }
 
     @Test
     public void givenTwoElementUnsortedArray_onSort_triggersSwap() {
-        int[] two = new int[]{2, 1};
-        List<List<Integer>> result = SelectionSort.sort(two);
-        List<Integer> finalResult = result.getLast();
-        assertEquals(List.of(1, 2), finalResult);
+        assertEquals(List.of(1, 2), SelectionSort.sort(new int[]{2, 1}).getLast());
     }
 }
