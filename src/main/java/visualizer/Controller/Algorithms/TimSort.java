@@ -8,7 +8,7 @@ import static visualizer.Commons.Commons.toList;
 
 public class TimSort {
 
-    private static final int MIN_MERGE = 32;
+    public static final int MIN_MERGE = 16;
 
     public static List<List<Integer>> sort(int[] values) {
         if(values == null)
