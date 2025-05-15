@@ -105,6 +105,12 @@ public class SortAlgorithmTests {
         assertEquals(tc.expected, ShellSort.sort(tc.input).getLast());
     }
 
+    @ParameterizedTest
+    @MethodSource("testCases")
+    void testTimSort(TestCase tc) {
+        assertEquals(tc.expected, TimSort.sort(tc.input).getLast());
+    }
+
     @Test
     void testEmptyInputThrows() {
         assertThrows(IllegalArgumentException.class, () -> BubbleSort.sort(new int[] {}));
@@ -120,6 +126,8 @@ public class SortAlgorithmTests {
         assertThrows(IllegalArgumentException.class, () -> QuickSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> SelectionSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> ShellSort.sort(new int[] {}));
+        assertThrows(IllegalArgumentException.class, () -> TimSort.sort(new int[] {}));
+
     }
 
     @Test
@@ -137,5 +145,6 @@ public class SortAlgorithmTests {
         assertThrows(NullPointerException.class, () -> QuickSort.sort(null));
         assertThrows(NullPointerException.class, () -> SelectionSort.sort(null));
         assertThrows(NullPointerException.class, () -> ShellSort.sort(null));
+        assertThrows(NullPointerException.class, () -> TimSort.sort(null));
     }
 }
