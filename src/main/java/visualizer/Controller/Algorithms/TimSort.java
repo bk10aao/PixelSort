@@ -128,7 +128,8 @@ public class TimSort {
     }
 
     private static class Run {
-        int start, len;
+        int start;
+        int len;
 
         Run(int start, int len) {
             this.start = start;
