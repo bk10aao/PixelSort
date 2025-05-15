@@ -87,7 +87,7 @@ public class BucketSortTest {
 
     @Test
     public void givenArrayWithSmallerMinAfterFirst_onSort_triggersMinAssignment() {
-        ;assertEquals(List.of(1, 3, 5), BucketSort.sort(new int[] {5, 3, 1}).getLast());
+        assertEquals(List.of(1, 3, 5), BucketSort.sort(new int[] {5, 3, 1}).getLast());
     }
 
     @Test
