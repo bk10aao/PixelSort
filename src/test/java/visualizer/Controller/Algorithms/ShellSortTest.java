@@ -76,12 +76,12 @@ class ShellSortTest {
     }
 
     @Test
-    public void triggersInnerLoopInHSort() {
+    public void triggerInnerLoopInHSort() {
         assertEquals(List.of(1, 5), ShellSort.sort(new int[] {5, 1}).getLast());
     }
 
     @Test
-    public void triggersAddOneInGenerateIncrements() {
+    public void triggerAddOneInGenerateIncrements() {
         assertEquals(List.of(42),  ShellSort.sort(new int[] {42}).getLast());
     }
 }
