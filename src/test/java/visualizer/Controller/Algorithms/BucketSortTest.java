@@ -2,6 +2,8 @@ package visualizer.Controller.Algorithms;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static visualizer.Controller.Algorithms.Commons.expectedResultEight;
@@ -81,5 +83,19 @@ public class BucketSortTest {
     @Test
     public void givenTestArrayEight_onSort_returnsSortedListEight() {
         assertEquals(expectedResultEight, BubbleSort.sort(testArrayEight).getLast());
+    }
+
+    @Test
+    public void givenArrayWithSmallerMinAfterFirst_onSort_triggersMinAssignment() {
+        int[] arr = {5, 3, 1}; // 1 is less than first element 5 → triggers `min = value`
+        List<List<Integer>> result = BucketSort.sort(arr);
+        assertEquals(List.of(1, 3, 5), result.getLast());
+    }
+
+    @Test
+    public void givenOver10CloseValues_onSort_triggersInsertionSortShifts() {
+        int[] arr = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        List<List<Integer>> result = BucketSort.sort(arr);
+        assertEquals(List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10), result.getLast());
     }
 }
