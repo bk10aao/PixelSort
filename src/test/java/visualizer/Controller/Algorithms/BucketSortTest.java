@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static visualizer.Controller.Algorithms.Commons.expectedResultEight;
 import static visualizer.Controller.Algorithms.Commons.expectedResultFive;
 import static visualizer.Controller.Algorithms.Commons.expectedResultFour;
 import static visualizer.Controller.Algorithms.Commons.expectedResultOne;
@@ -11,6 +12,7 @@ import static visualizer.Controller.Algorithms.Commons.expectedResultSeven;
 import static visualizer.Controller.Algorithms.Commons.expectedResultSix;
 import static visualizer.Controller.Algorithms.Commons.expectedResultThree;
 import static visualizer.Controller.Algorithms.Commons.expectedResultTwo;
+import static visualizer.Controller.Algorithms.Commons.testArrayEight;
 import static visualizer.Controller.Algorithms.Commons.testArrayFive;
 import static visualizer.Controller.Algorithms.Commons.testArrayFour;
 import static visualizer.Controller.Algorithms.Commons.testArrayOne;
@@ -47,11 +49,6 @@ public class BucketSortTest {
     }
 
     @Test
-    public void givenTestArrayFive_onSort_returnsSortedListFive() {
-        assertEquals(expectedResultFive, BubbleSort.sort(testArrayFive).getLast());
-    }
-
-    @Test
     public void givenTestArrayFour_onSort_returnsSortedListFour() {
         assertEquals(expectedResultFour, BubbleSort.sort(testArrayFour).getLast());
     }
@@ -64,5 +61,25 @@ public class BucketSortTest {
     @Test
     public void givenTestArrayOf1000Items_onSort_returnsSortedListFour() {
         assertEquals(expectedResultSeven, BubbleSort.sort(testArraySeven).getLast());
+    }
+
+    @Test
+    public void givenTestArrayFive_onSort_returnsSortedListFive() {
+        assertEquals(expectedResultFive, BubbleSort.sort(testArrayFive).getLast());
+    }
+
+    @Test
+    public void givenTestArraySix_onSort_returnsSortedListSix() {
+        assertEquals(expectedResultSix, BubbleSort.sort(testArraySix).getLast());
+    }
+
+    @Test
+    public void givenTestArraySeven_onSort_returnsSortedListSeven() {
+        assertEquals(expectedResultSeven, BubbleSort.sort(testArraySeven).getLast());
+    }
+
+    @Test
+    public void givenTestArrayEight_onSort_returnsSortedListEight() {
+        assertEquals(expectedResultEight, BubbleSort.sort(testArrayEight).getLast());
     }
 }

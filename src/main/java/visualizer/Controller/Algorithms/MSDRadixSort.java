@@ -21,8 +21,6 @@ public class MSDRadixSort {
         Integer[] negative = split[0];
         Integer[] positive = split[1];
         int maxDigits = getMaxDigits(negative, positive);
-        if(maxDigits == 0)
-            return sortingStates;
         if(negative.length > 0)
             msdRadixSort(negative, 0, negative.length, maxDigits - 1, sortingStates);
         if(positive.length > 0)

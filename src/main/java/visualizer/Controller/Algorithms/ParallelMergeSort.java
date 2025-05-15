@@ -11,7 +11,7 @@ import static visualizer.Commons.Commons.toList;
 
 public class ParallelMergeSort {
 
-    private static final int THRESHOLD = 1000;
+    private static final int THRESHOLD = 10;
 
     public static List<List<Integer>> sort(int[] values) {
         if(values == null)
@@ -90,5 +90,4 @@ public class ParallelMergeSort {
             states.add(toList(values));
         }
     }
-
 }

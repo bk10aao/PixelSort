@@ -2,8 +2,11 @@ package visualizer.Controller.Algorithms;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static visualizer.Controller.Algorithms.Commons.expectedResultEight;
 import static visualizer.Controller.Algorithms.Commons.expectedResultFive;
 import static visualizer.Controller.Algorithms.Commons.expectedResultFour;
 import static visualizer.Controller.Algorithms.Commons.expectedResultOne;
@@ -11,6 +14,7 @@ import static visualizer.Controller.Algorithms.Commons.expectedResultSeven;
 import static visualizer.Controller.Algorithms.Commons.expectedResultSix;
 import static visualizer.Controller.Algorithms.Commons.expectedResultThree;
 import static visualizer.Controller.Algorithms.Commons.expectedResultTwo;
+import static visualizer.Controller.Algorithms.Commons.testIntegerArrayEight;
 import static visualizer.Controller.Algorithms.Commons.testIntegerArrayFive;
 import static visualizer.Controller.Algorithms.Commons.testIntegerArrayFour;
 import static visualizer.Controller.Algorithms.Commons.testIntegerArrayOne;
@@ -64,5 +68,10 @@ class LSDRadixSortTest {
     @Test
     public void givenTestArraySeven_onSort_returnsSortedListSeven() {
         assertEquals(expectedResultSeven, LSDRadixSort.sort(testIntegerArraySeven).getLast());
+    }
+
+    @Test
+    public void givenTestArrayEight_onSort_returnsSortedListEight() {
+        assertEquals(expectedResultEight, LSDRadixSort.sort(testIntegerArrayEight).getLast());
     }
 }

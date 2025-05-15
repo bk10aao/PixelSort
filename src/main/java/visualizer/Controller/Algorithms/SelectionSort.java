@@ -17,9 +17,11 @@ public class SelectionSort {
         List<List<Integer>> results = new ArrayList<>();
         for (int i = 0; i < values.length; i++) {
             int min = i;
-            for (int j = i + 1; j < values.length; j++)
-                if (values[j] < values[min])
+            for (int j = i + 1; j < values.length; j++) {
+                if (values[j] < values[min]) {
                     min = j;
+                }
+            }
             if (i != min) {
                 exchange(values, i, min, results);
                 results.add(toList(values));

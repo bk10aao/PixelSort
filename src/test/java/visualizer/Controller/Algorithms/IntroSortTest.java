@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static visualizer.Controller.Algorithms.Commons.expectedResultEight;
 import static visualizer.Controller.Algorithms.Commons.expectedResultFive;
 import static visualizer.Controller.Algorithms.Commons.expectedResultFour;
 import static visualizer.Controller.Algorithms.Commons.expectedResultOne;
@@ -11,6 +12,7 @@ import static visualizer.Controller.Algorithms.Commons.expectedResultSeven;
 import static visualizer.Controller.Algorithms.Commons.expectedResultSix;
 import static visualizer.Controller.Algorithms.Commons.expectedResultThree;
 import static visualizer.Controller.Algorithms.Commons.expectedResultTwo;
+import static visualizer.Controller.Algorithms.Commons.testArrayEight;
 import static visualizer.Controller.Algorithms.Commons.testArrayFive;
 import static visualizer.Controller.Algorithms.Commons.testArrayFour;
 import static visualizer.Controller.Algorithms.Commons.testArrayOne;
@@ -70,5 +72,10 @@ public class IntroSortTest {
     @Test
     public void givenTestArraySeven_onSort_returnsSortedListSeven() {
         assertEquals(expectedResultSeven, IntroSort.sort(testArraySeven).getLast());
+    }
+
+    @Test
+    public void givenTestArrayEight_onSort_returnsSortedListEight() {
+        assertEquals(expectedResultEight, IntroSort.sort(testArrayEight).getLast());
     }
 }
