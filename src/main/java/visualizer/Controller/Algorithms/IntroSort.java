@@ -45,8 +45,10 @@ public class IntroSort {
         int pivot = values[high];
         int i = low - 1;
         for (int j = low; j <= high - 1; j++)
-            if (values[j] <= pivot)
-                exchange(values, ++i, j, results);
+            if (values[j] <= pivot) {
+                exchange(values, ++i, j);
+                results.add(toList(values));
+            }
         exchange(values, i + 1, high, results);
         return i + 1;
     }
