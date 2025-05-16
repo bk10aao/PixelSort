@@ -57,6 +57,9 @@ public class Commons {
     public static final int[] testArrayEighteen = new int[] { -22, 47, -35, -44, 19, -17, -7, -24, -25, 30, 1, -10, -18, 3, -14, -2, -27, -33, 7, 4, 8, 50, -42, 45, -46, 14, -21, 35, -15, -6, -4, 28, 0, -26, -48, -3, 31, -29, 46, 34, -32, 10, 38, 2, 16, 9, 11, -13, -45, -8 };
     public static List<Integer> expectedResultEighteen = List.of(-48, -46, -45, -44, -42, -35, -33, -32, -29, -27, -26, -25, -24, -22, -21, -18, -17, -15, -14, -13, -10, -8, -7, -6, -4, -3, -2, 0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 16, 19, 28, 30, 31, 34, 35, 38, 45, 46, 47, 50);
 
+    public static int[] testArrayNineteen = new int[] { 42 };
+    public static List<Integer> expectedResultNineteen = List.of(42);
+
     public static int callFindPivot(int[] values) {
         try {
             java.lang.reflect.Method method = IntroSort.class.getDeclaredMethod("findPivot", int[].class, int.class, int.class, int.class);

@@ -17,6 +17,7 @@ public class QuickSort {
         if(values.length == 0)
             throw new IllegalArgumentException();
         results = new ArrayList<>();
+        results.add(toList(values));
         shuffle(values);
         sort(values, 0, values.length - 1);
         results.add(toList(values));

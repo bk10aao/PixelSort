@@ -20,6 +20,8 @@ public class HeapSort {
             throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
         results.add(toList(values));
+        if(values.length == 1)
+            return results;
         int[] heap = new int[values.length + 1];
         System.arraycopy(values, 0, heap, 1, values.length);
         buildHeap(heap, values.length, results);
