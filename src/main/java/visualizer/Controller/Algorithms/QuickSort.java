@@ -47,13 +47,13 @@ public class QuickSort {
             exchange(values, leftPointer, rightPointer);
             results.add(toList(values));
         }
-        exchange(values, low, rightPointer, results);
+        exchange(values, low, rightPointer);
         return rightPointer;
     }
 
     public static void shuffle(int[] values) {
         Random rand = new Random();
         for (int i = values.length - 1; i > 0; i--)
-            exchange(values, i, rand.nextInt(i + 1), results);
+            exchange(values, i, rand.nextInt(i + 1));
     }
 }
