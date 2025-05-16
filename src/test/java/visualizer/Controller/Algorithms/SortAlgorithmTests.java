@@ -29,9 +29,11 @@ public class SortAlgorithmTests {
                 new TestCase(Commons.testArrayTwelve, Commons.expectedResultTwelve),
                 new TestCase(Commons.testArrayThirteen, Commons.expectedResultThirteen),
                 new TestCase(Commons.testArrayFourteen, Commons.expectedResultFourteen),
-                new TestCase(Commons.testArrayFifteen, Commons.expectedResultFifthteen),
+                new TestCase(Commons.testArrayFifteen, Commons.expectedResultFifteen),
                 new TestCase(Commons.testArraySixteen, Commons.expectedResultSixteen),
-                new TestCase(Commons.testArraySeventeen, Commons.expectedResultSeventeen)
+                new TestCase(Commons.testArraySeventeen, Commons.expectedResultSeventeen),
+                new TestCase(Commons.testArrayEighteen, Commons.expectedResultEighteen)
+
         );
     }
 

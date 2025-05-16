@@ -46,13 +46,16 @@ public class Commons {
     public static List<Integer> expectedResultFourteen = List.of(1, 2, 3, 4);
 
     public static final int[] testArrayFifteen = new int[] { 5, 1 };
-    public static List<Integer> expectedResultFifthteen = List.of(1, 5);
+    public static List<Integer> expectedResultFifteen = List.of(1, 5);
 
     public static final int[] testArraySixteen = new int[] { 1, 2, 3, 4, 5, 10, 9, 8, 7, 6, 11, 12, 13, 14, 15 };
     public static List<Integer> expectedResultSixteen = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
 
     public static final int[] testArraySeventeen = new int[] { 4, 3, 2, 1 };
     public static List<Integer> expectedResultSeventeen = List.of(1, 2, 3, 4);
+
+    public static final int[] testArrayEighteen = new int[] { -22, 47, -35, -44, 19, -17, -7, -24, -25, 30, 1, -10, -18, 3, -14, -2, -27, -33, 7, 4, 8, 50, -42, 45, -46, 14, -21, 35, -15, -6, -4, 28, 0, -26, -48, -3, 31, -29, 46, 34, -32, 10, 38, 2, 16, 9, 11, -13, -45, -8 };
+    public static List<Integer> expectedResultEighteen = List.of(-48, -46, -45, -44, -42, -35, -33, -32, -29, -27, -26, -25, -24, -22, -21, -18, -17, -15, -14, -13, -10, -8, -7, -6, -4, -3, -2, 0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 16, 19, 28, 30, 31, 34, 35, 38, 45, 46, 47, 50);
 
     public static int callFindPivot(int[] values) {
         try {
