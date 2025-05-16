@@ -18,10 +18,6 @@ public class Commons {
         return c1.compareTo(c2) < 0;
     }
 
-    public static List<Integer> toList(Integer[] arr) {
-        return new ArrayList<>(Arrays.asList(arr));
-    }
-
     public static List<Integer> toList(int[] arr) {
         return Arrays.stream(arr).boxed().collect(Collectors.toList());
     }
