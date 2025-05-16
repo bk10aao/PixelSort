@@ -23,7 +23,7 @@ public class SelectionSort {
                 }
             }
             if (i != min) {
-                exchange(values, i, min, results);
+                exchange(values, i, min);
                 results.add(toList(values));
             }
         }
