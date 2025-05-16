@@ -1,7 +1,6 @@
 package visualizer.Controller.Algorithms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static visualizer.Commons.Commons.exchange;
@@ -10,24 +9,25 @@ import static visualizer.Commons.Commons.toList;
 
 public class ShellSort {
 
+    private static List<List<Integer>> results;
     public static List<List<Integer>> sort(int[] values) {
         if(values == null)
             throw new NullPointerException();
         if(values.length == 0)
             throw new IllegalArgumentException();
-        List<List<Integer>> results = new ArrayList<>();
+        results = new ArrayList<>();
         results.add(toList(values));
         List<Integer> increments = generateIncrements(values.length);
         for(int x = increments.size() - 1; x >= 0; x--)
-            hSort(values, increments.get(x), results);
+            hSort(values, increments.get(x));
         return results;
     }
 
-    private static void hSort(int[] values, int h, List<List<Integer>> results) {
+    private static void hSort(int[] values, int h) {
         for(int x = h; x < values.length; x++)
             for(int y = x; y >= h && less(values[y], values[y - h]); y -= h) {
-                exchange(values, y, y - h, results);
-                results.add(Arrays.stream(values).boxed().toList());
+                exchange(values, y, y - h);
+                results.add(toList(values));
             }
     }
 
