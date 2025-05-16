@@ -10,20 +10,18 @@ import visualizer.Controller.Algorithms.MSDRadixSort;
 import visualizer.Model.SortInput;
 import visualizer.Model.SortResponse;
 
-import java.util.Arrays;
-
 @RestController
 public class RadixSortController {
 
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/radix-sort-lsd")
-    public SortResponse heapSort(@RequestBody SortInput sortInput) {
-        return new SortResponse(LSDRadixSort.sort(Arrays.stream(sortInput.getValues() ).boxed().toArray( Integer[]::new )));
+    public SortResponse radixSortLSD(@RequestBody SortInput sortInput) {
+        return new SortResponse(LSDRadixSort.sort(sortInput.getValues()));
     }
 
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
     @PostMapping("/radix-sort-msd")
-    public SortResponse heapSortMSD(@RequestBody SortInput sortInput) {
-        return new SortResponse(MSDRadixSort.sort(Arrays.stream(sortInput.getValues() ).boxed().toArray( Integer[]::new )));
+    public SortResponse radixSortMSD(@RequestBody SortInput sortInput) {
+        return new SortResponse(MSDRadixSort.sort(sortInput.getValues()));
     }
 }

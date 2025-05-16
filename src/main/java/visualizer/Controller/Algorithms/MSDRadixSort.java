@@ -10,16 +10,16 @@ import static visualizer.Commons.Commons.toList;
 
 public class MSDRadixSort {
 
-    public static List<List<Integer>> sort(Integer[] values) {
+    public static List<List<Integer>> sort(int[] values) {
         if(values == null)
             throw new NullPointerException();
         if(values.length == 0)
             throw new IllegalArgumentException();
         List<List<Integer>> sortingStates = new ArrayList<>();
         sortingStates.add(toList(values));
-        Integer[][] split = splitPositiveNegative(values);
-        Integer[] negative = split[0];
-        Integer[] positive = split[1];
+        int[][] split = splitPositiveNegative(values);
+        int[] negative = split[0];
+        int[] positive = split[1];
         int maxDigits = getMaxDigits(negative, positive);
         if(negative.length > 0)
             msdRadixSort(negative, 0, negative.length, maxDigits - 1, sortingStates);
@@ -30,7 +30,7 @@ public class MSDRadixSort {
         return sortingStates;
     }
 
-    private static void msdRadixSort(Integer[] values, int start, int end, int digit, List<List<Integer>> sortingStates) {
+    private static void msdRadixSort(int[] values, int start, int end, int digit, List<List<Integer>> sortingStates) {
         if (digit < 0 || start >= end - 1)
             return;
         int[][] buckets = partitionByDigit(values, start, end, digit);
@@ -43,7 +43,7 @@ public class MSDRadixSort {
         }
     }
 
-    private static int[][] partitionByDigit(Integer[] values, int start, int end, int digitPosition) {
+    private static int[][] partitionByDigit(int[] values, int start, int end, int digitPosition) {
         int exp = (int) Math.pow(10, digitPosition);
         int[] count = new int[10];
         for (int i = start; i < end; i++)
@@ -57,7 +57,7 @@ public class MSDRadixSort {
         return buckets;
     }
 
-    private static void copyBucketsToArray(Integer[] values, int start, int[][] buckets, List<List<Integer>> sortingStates) {
+    private static void copyBucketsToArray(int[] values, int start, int[][] buckets, List<List<Integer>> sortingStates) {
         int index = start;
         for (int[] bucket : buckets) {
             for (int value : bucket) {

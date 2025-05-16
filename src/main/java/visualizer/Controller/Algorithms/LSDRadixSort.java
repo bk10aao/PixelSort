@@ -11,16 +11,16 @@ import static visualizer.Commons.Commons.toList;
 
 public class LSDRadixSort {
 
-    public static List<List<Integer>> sort(Integer[] values) {
+    public static List<List<Integer>> sort(int[] values) {
         if (values == null)
             throw new NullPointerException();
         if(values.length == 0)
             throw new IllegalArgumentException();
         List<List<Integer>> sortingStates = new ArrayList<>();
         sortingStates.add(toList(values));
-        Integer[][] split = splitPositiveNegative(values);
-        Integer[] negative = split[0];
-        Integer[] positive = split[1];
+        int[][] split = splitPositiveNegative(values);
+        int[] negative = split[0];
+        int[] positive = split[1];
 
         int maxDigits = getMaxDigits(negative, positive);
 
@@ -35,7 +35,7 @@ public class LSDRadixSort {
         return sortingStates;
     }
 
-    private static void countSort(Integer[] values, int exp, List<List<Integer>> sortingStates) {
+    private static void countSort(int[] values, int exp, List<List<Integer>> sortingStates) {
         int[] digitCounts = new int[10];
 
         for (int value : values)
@@ -44,8 +44,8 @@ public class LSDRadixSort {
         for (int i = 1; i < 10; i++)
             digitCounts[i] += digitCounts[i - 1];
 
-        Integer[] output = new Integer[values.length];
-        Integer[] currentState = Arrays.copyOf(values, values.length);
+        int[] output = new int[values.length];
+        int[] currentState = Arrays.copyOf(values, values.length);
 
         for (int i = values.length - 1; i >= 0; i--) {
             int digit = (values[i] / exp) % 10;

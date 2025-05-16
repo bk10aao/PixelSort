@@ -103,6 +103,18 @@ public class SortAlgorithmTests {
 
     @ParameterizedTest
     @MethodSource("testCases")
+    void testRadixLSDSort(TestCase tc) {
+        assertEquals(tc.expected, LSDRadixSort.sort(tc.input).getLast());
+    }
+
+    @ParameterizedTest
+    @MethodSource("testCases")
+    void testRadixMSDSort(TestCase tc) {
+        assertEquals(tc.expected, MSDRadixSort.sort(tc.input).getLast());
+    }
+
+    @ParameterizedTest
+    @MethodSource("testCases")
     void testSelectionSort(TestCase tc) {
         assertEquals(tc.expected, SelectionSort.sort(tc.input).getLast());
     }
@@ -135,6 +147,9 @@ public class SortAlgorithmTests {
         assertThrows(IllegalArgumentException.class, () -> SelectionSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> ShellSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> TimSort.sort(new int[] {}));
+        assertThrows(IllegalArgumentException.class, () -> LSDRadixSort.sort(new int[] {}));
+        assertThrows(IllegalArgumentException.class, () -> MSDRadixSort.sort(new int[] {}));
+
     }
 
     @Test
@@ -153,5 +168,7 @@ public class SortAlgorithmTests {
         assertThrows(NullPointerException.class, () -> SelectionSort.sort(null));
         assertThrows(NullPointerException.class, () -> ShellSort.sort(null));
         assertThrows(NullPointerException.class, () -> TimSort.sort(null));
+        assertThrows(NullPointerException.class, () -> LSDRadixSort.sort(null));
+        assertThrows(NullPointerException.class, () -> MSDRadixSort.sort(null));
     }
 }
