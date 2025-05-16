@@ -49,7 +49,8 @@ public class IntroSort {
                 exchange(values, ++i, j);
                 results.add(toList(values));
             }
-        exchange(values, i + 1, high, results);
+        exchange(values, i + 1, high);
+        results.add(toList(values));
         return i + 1;
     }
 
