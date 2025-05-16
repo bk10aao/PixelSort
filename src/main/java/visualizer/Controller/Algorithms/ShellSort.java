@@ -10,6 +10,7 @@ import static visualizer.Commons.Commons.toList;
 public class ShellSort {
 
     private static List<List<Integer>> results;
+
     public static List<List<Integer>> sort(int[] values) {
         if(values == null)
             throw new NullPointerException();
