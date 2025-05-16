@@ -31,12 +31,14 @@ public class IntroSort {
         if (end - begin > 16) {
             depthLimit--;
             int pivotIndex = findPivot(values, begin, begin + ((end - begin) / 2) + 1, end);
-            exchange(values, pivotIndex, end, results);
+            exchange(values, pivotIndex, end);
+            results.add(toList(values));
             int p = partition(values, begin, end);
             sortDataUtil(values, begin, p - 1, depthLimit);
             sortDataUtil(values, p + 1, end, depthLimit);
         } else
             insertionSort(values, begin, end, results);
+        results.add(toList(values));
     }
 
     private static int partition(int[] values, int low, int high) {
