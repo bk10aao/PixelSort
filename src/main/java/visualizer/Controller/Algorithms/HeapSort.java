@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import static visualizer.Commons.Commons.exchange;
 import static visualizer.Commons.Commons.toList;
 
-
 public class HeapSort {
 
     public static List<List<Integer>> sort(int[] values) {
