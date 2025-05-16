@@ -8,15 +8,6 @@ import java.util.stream.Collectors;
 
 public class Commons {
 
-    public static void exchange(int[] values, int i, int j, List<List<Integer>> results) {
-        int temp = values[i];
-        values[i] = values[j];
-        values[j] = temp;
-        if (results != null) {
-            results.add(Arrays.stream(values).boxed().collect(Collectors.toList()));
-        }
-    }
-
     public static void exchange(int[] array, int i, int j) {
         int temp = array[i];
         array[i] = array[j];
