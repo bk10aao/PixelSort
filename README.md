@@ -29,4 +29,10 @@ This is a Java api to perform the following sorting algorithms:
 
 There is a front end application to display the inputs as graphs and provide an animated view of how the algorithms sort the data.
 
-It can be found at: https://github.com/bk10aao/PixelSortChakra
+It can be found at repository: https://github.com/bk10aao/PixelSortChakra
+
+To run the front end:
+
+1. `git clone git@github.com:bk10aao/PixelSortChakra.git`
+2. `npm run build`
+3. `npm run dev`
