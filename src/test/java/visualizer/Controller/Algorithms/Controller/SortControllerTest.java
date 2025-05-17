@@ -2,26 +2,30 @@ package visualizer.Controller.Algorithms.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import visualizer.Controller.Algorithms.Commons;
+import visualizer.Controller.Algorithms.Utilities.Utils;
 import visualizer.Model.SortInput;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static visualizer.Controller.Algorithms.Utilities.Utils.ENDPOINTS;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BubbleSortControllerTest {
+public class SortControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -36,99 +40,92 @@ public class BubbleSortControllerTest {
         sortInput = new SortInput();
     }
 
-    @Test
-    void testBubbleSort_with_testArrayOne_returns_sortedResponse() throws Exception {
+    public static Stream<Arguments> provideSortEndpointsAndTestCases() {
+        List<Utils.TestCase> testCases = Utils.getTestCases();
 
-        sortInput.setValues(Commons.testArrayOne);
+        return ENDPOINTS.stream()
+                .flatMap(endpoint -> testCases.stream()
+                        .map(testCase -> Arguments.of(
+                                endpoint,
+                                testCase.input,
+                                testCase.expected,
+                                testCase.name
+                        )));
+    }
+
+    private static Stream<Arguments> provideSortEndpoints() {
+        return ENDPOINTS.stream().map(Arguments::of);
+    }
+
+    @ParameterizedTest(name = "{3} on {0}")
+    @MethodSource("provideSortEndpointsAndTestCases")
+    void testSort_validInput_returnsSortedResponse(String endpoint, int[] input, List<Integer> expected, String testName) throws Exception {
+        sortInput.setValues(input);
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
-        mockMvc.perform(post("/bubble-sort")
+        mockMvc.perform(post(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.results[-1]", is(Commons.expectedResultOne)));
+                .andExpect(jsonPath("$.results[-1]", is(expected)));
     }
 
-
-    @Test
-    void testBubbleSort_with_testArrayTwo_returns_sortedResponse() throws Exception {
-
-        sortInput.setValues(Commons.testArrayTwo);
-        String requestBody = objectMapper.writeValueAsString(sortInput);
-
-        mockMvc.perform(post("/bubble-sort")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.results[-1]", is(Commons.expectedResultTwo)));
-    }
-
-    @Test
-    void testBubbleSort_with_testArrayThree_returns_sortedResponse() throws Exception {
-
-        sortInput.setValues(Commons.testArrayThree);
-        String requestBody = objectMapper.writeValueAsString(sortInput);
-
-        mockMvc.perform(post("/bubble-sort")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.results[-1]", is(Commons.expectedResultThree)));
-    }
-
-    @Test
-    void testBubbleSortEmptyArray() throws Exception {
+    @ParameterizedTest(name = "empty array on {0}")
+    @MethodSource("provideSortEndpoints")
+    void testSort_emptyArray_returnsBadRequest(String endpoint) throws Exception {
         sortInput.setValues(new int[]{});
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
-        mockMvc.perform(post("/bubble-sort")
+        mockMvc.perform(post(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
-    void testBubbleSortNullInput() throws Exception {
+    @ParameterizedTest(name = "null input on {0}")
+    @MethodSource("provideSortEndpoints")
+    void testSort_nullInput_returnsBadRequest(String endpoint) throws Exception {
         sortInput.setValues(null);
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
-        mockMvc.perform(post("/bubble-sort")
+        mockMvc.perform(post(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
-    void testBubbleSortSingleElement() throws Exception {
+    @ParameterizedTest(name = "single element on {0}")
+    @MethodSource("provideSortEndpoints")
+    void testSort_singleElement_returnsSortedResponse(String endpoint) throws Exception {
         sortInput.setValues(new int[]{1});
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
-        mockMvc.perform(post("/bubble-sort")
+        mockMvc.perform(post(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.results", hasSize(1)))
-                .andExpect(jsonPath("$.results[0]", is(Arrays.asList(1))));
+                .andExpect(jsonPath("$.results[-1]", is(List.of(1))));
     }
 
-    @Test
-    void testBubbleSortAlreadySorted() throws Exception {
+    @ParameterizedTest(name = "already sorted on {0}")
+    @MethodSource("provideSortEndpoints")
+    void testSort_alreadySorted_returnsSortedResponse(String endpoint) throws Exception {
         sortInput.setValues(new int[]{1, 2, 3});
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
-        mockMvc.perform(post("/bubble-sort")
+        mockMvc.perform(post(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.results", hasSize(1)))
-                .andExpect(jsonPath("$.results[0]", is(Arrays.asList(1, 2, 3))));
+                .andExpect(jsonPath("$.results[-1]", is(Arrays.asList(1, 2, 3))));
     }
 
-    @Test
-    void testBubbleSortInvalidJson() throws Exception {
+    @ParameterizedTest(name = "invalid JSON on {0}")
+    @MethodSource("provideSortEndpoints")
+    void testSort_invalidJson_returnsBadRequest(String endpoint) throws Exception {
         String invalidJson = "{ \"values\": \"not_an_array\" }";
 
-        mockMvc.perform(post("/bubble-sort")
+        mockMvc.perform(post(endpoint)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(invalidJson))
                 .andExpect(status().isBadRequest());

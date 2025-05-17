@@ -1,13 +1,32 @@
-package visualizer.Controller.Algorithms;
+package visualizer.Controller.Algorithms.Algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static visualizer.Controller.Algorithms.Commons.callFindPivot;
+import static visualizer.Controller.Algorithms.Utilities.Utils.callFindPivot;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import visualizer.Controller.Algorithms.BubbleSort;
+import visualizer.Controller.Algorithms.BucketSort;
+import visualizer.Controller.Algorithms.HeapSort;
+import visualizer.Controller.Algorithms.InPlaceMergeSort;
+import visualizer.Controller.Algorithms.InsertionSort;
+import visualizer.Controller.Algorithms.IntroSort;
+import visualizer.Controller.Algorithms.LSDRadixSort;
+import visualizer.Controller.Algorithms.MSDRadixSort;
+import visualizer.Controller.Algorithms.MergeSortBottomUp;
+import visualizer.Controller.Algorithms.MergeSortTopDown;
+import visualizer.Controller.Algorithms.PancakeSort;
+import visualizer.Controller.Algorithms.ParallelMergeSort;
+import visualizer.Controller.Algorithms.QuickSort;
+import visualizer.Controller.Algorithms.SelectionSort;
+import visualizer.Controller.Algorithms.ShellSort;
+import visualizer.Controller.Algorithms.TimSort;
+import visualizer.Controller.Algorithms.Utilities.Utils;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -15,25 +34,25 @@ public class SortAlgorithmTests {
 
     static Stream<TestCase> testCases() {
         return Stream.of(
-                new TestCase(Commons.testArrayOne, Commons.expectedResultOne),
-                new TestCase(Commons.testArrayTwo, Commons.expectedResultTwo),
-                new TestCase(Commons.testArrayThree, Commons.expectedResultThree),
-                new TestCase(Commons.testArrayFour, Commons.expectedResultFour),
-                new TestCase(Commons.testArrayFive, Commons.expectedResultFive),
-                new TestCase(Commons.testArraySix, Commons.expectedResultSix),
-                new TestCase(Commons.testArraySeven, Commons.expectedResultSeven),
-                new TestCase(Commons.testArrayEight, Commons.expectedResultEight),
-                new TestCase(Commons.testArrayNine, Commons.expectedResultNine),
-                new TestCase(Commons.testArrayTen, Commons.expectedResultTen),
-                new TestCase(Commons.testArrayEleven, Commons.expectedResultsEleven),
-                new TestCase(Commons.testArrayTwelve, Commons.expectedResultTwelve),
-                new TestCase(Commons.testArrayThirteen, Commons.expectedResultThirteen),
-                new TestCase(Commons.testArrayFourteen, Commons.expectedResultFourteen),
-                new TestCase(Commons.testArrayFifteen, Commons.expectedResultFifteen),
-                new TestCase(Commons.testArraySixteen, Commons.expectedResultSixteen),
-                new TestCase(Commons.testArraySeventeen, Commons.expectedResultSeventeen),
-                new TestCase(Commons.testArrayEighteen, Commons.expectedResultEighteen),
-                new TestCase(Commons.testArrayNineteen, Commons.expectedResultNineteen)
+                new TestCase(Utils.testArrayOne, Utils.expectedResultOne),
+                new TestCase(Utils.testArrayTwo, Utils.expectedResultTwo),
+                new TestCase(Utils.testArrayThree, Utils.expectedResultThree),
+                new TestCase(Utils.testArrayFour, Utils.expectedResultFour),
+                new TestCase(Utils.testArrayFive, Utils.expectedResultFive),
+                new TestCase(Utils.testArraySix, Utils.expectedResultSix),
+                new TestCase(Utils.testArraySeven, Utils.expectedResultSeven),
+                new TestCase(Utils.testArrayEight, Utils.expectedResultEight),
+                new TestCase(Utils.testArrayNine, Utils.expectedResultNine),
+                new TestCase(Utils.testArrayTen, Utils.expectedResultTen),
+                new TestCase(Utils.testArrayEleven, Utils.expectedResultsEleven),
+                new TestCase(Utils.testArrayTwelve, Utils.expectedResultTwelve),
+                new TestCase(Utils.testArrayThirteen, Utils.expectedResultThirteen),
+                new TestCase(Utils.testArrayFourteen, Utils.expectedResultFourteen),
+                new TestCase(Utils.testArrayFifteen, Utils.expectedResultFifteen),
+                new TestCase(Utils.testArraySixteen, Utils.expectedResultSixteen),
+                new TestCase(Utils.testArraySeventeen, Utils.expectedResultSeventeen),
+                new TestCase(Utils.testArrayEighteen, Utils.expectedResultEighteen),
+                new TestCase(Utils.testArrayNineteen, Utils.expectedResultNineteen)
         );
     }
 
@@ -42,97 +61,97 @@ public class SortAlgorithmTests {
     @ParameterizedTest
     @MethodSource("testCases")
     void testBubbleSort(TestCase tc) {
-        assertEquals(tc.expected, BubbleSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, BubbleSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testBucketSort(TestCase tc) {
-        assertEquals(tc.expected, BucketSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, BucketSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testHeapSort(TestCase tc) {
-        assertEquals(tc.expected, HeapSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, HeapSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testInPlaceMergeSort(TestCase tc) {
-        assertEquals(tc.expected, InPlaceMergeSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, InPlaceMergeSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testInsertionSort(TestCase tc) {
-        assertEquals(tc.expected, InsertionSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, InsertionSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testIntroSort(TestCase tc) {
-        assertEquals(tc.expected, IntroSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, IntroSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testMergeSortBottomUp(TestCase tc) {
-        assertEquals(tc.expected, MergeSortBottomUp.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, MergeSortBottomUp.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testMergeSortTopDown(TestCase tc) {
-        assertEquals(tc.expected, MergeSortTopDown.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, MergeSortTopDown.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testPancakeSort(TestCase tc) {
-        assertEquals(tc.expected, PancakeSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, PancakeSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testParallelMergeSort(TestCase tc) {
-        assertEquals(tc.expected, ParallelMergeSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, ParallelMergeSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testQuickSort(TestCase tc) {
-        assertEquals(tc.expected, QuickSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, QuickSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testRadixLSDSort(TestCase tc) {
-        assertEquals(tc.expected, LSDRadixSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, LSDRadixSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testRadixMSDSort(TestCase tc) {
-        assertEquals(tc.expected, MSDRadixSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, MSDRadixSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testSelectionSort(TestCase tc) {
-        assertEquals(tc.expected, SelectionSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, SelectionSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testShellSort(TestCase tc) {
-        assertEquals(tc.expected, ShellSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, ShellSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testTimSort(TestCase tc) {
-        assertEquals(tc.expected, TimSort.sort(tc.input).getLast());
+        Assertions.assertEquals(tc.expected, TimSort.sort(tc.input).getLast());
     }
 
     @Test
@@ -153,7 +172,6 @@ public class SortAlgorithmTests {
         assertThrows(IllegalArgumentException.class, () -> TimSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> LSDRadixSort.sort(new int[] {}));
         assertThrows(IllegalArgumentException.class, () -> MSDRadixSort.sort(new int[] {}));
-
     }
 
     @Test
@@ -184,5 +202,19 @@ public class SortAlgorithmTests {
     @Test
     public void introSort_findPivot_returns_0_whenMedianIsAtX() {
         assertEquals(0, callFindPivot(new int[] { 50, 1, 99 }));
+    }
+
+    @Test
+    public void timSort_triggersRunStackMergeLogicWithLargeInput() {
+        int[] input = new int[40];
+        for (int i = 0; i < 10; i++)
+            input[i] = i + 1;
+        for (int i = 10; i < 20; i++)
+            input[i] = 30 - i;
+        for (int i = 20; i < 40; i++)
+            input[i] = i + 1;
+        int[] sorted = input.clone();
+        Arrays.sort(sorted);
+        assertEquals(List.of(java.util.Arrays.stream(sorted).boxed().toArray(Integer[]::new)), TimSort.sort(input).getLast());
     }
 }

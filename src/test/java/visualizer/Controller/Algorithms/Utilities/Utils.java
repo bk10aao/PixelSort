@@ -1,8 +1,11 @@
-package visualizer.Controller.Algorithms;
+package visualizer.Controller.Algorithms.Utilities;
+
+import visualizer.Controller.Algorithms.IntroSort;
 
 import java.util.List;
 
-public class Commons {
+public class Utils {
+
     public static final int[] testArrayOne = new int[] { 44, 29, 86, 11, 23, 66, 8, 42, 81, 71, 78, 70, 26, 92, 73, 49, 1, 61, 10, 4 };
     public static final List<Integer> expectedResultOne = List.of(1, 4, 8, 10, 11, 23, 26, 29, 42, 44, 49, 61, 66, 70, 71, 73, 78, 81, 86, 92);
 
@@ -69,4 +72,47 @@ public class Commons {
             throw new RuntimeException(e);
         }
     }
+
+    public static class TestCase {
+        public final int[] input;
+        public final List<Integer> expected;
+        public final String name;
+
+        public TestCase(int[] input, List<Integer> expected, String name) {
+            this.input = input;
+            this.expected = expected;
+            this.name = name;
+        }
+    }
+
+    public static List<TestCase> getTestCases() {
+        return List.of(
+                new TestCase(testArrayOne, expectedResultOne, "testArrayOne"),
+                new TestCase(testArrayTwo, expectedResultTwo, "testArrayTwo"),
+                new TestCase(testArrayThree, expectedResultThree, "testArrayThree"),
+                new TestCase(testArrayFour, expectedResultFour, "testArrayFour"),
+                new TestCase(testArrayFive, expectedResultFive, "testArrayFive"),
+                new TestCase(testArraySix, expectedResultSix, "testArraySix"),
+                new TestCase(testArraySeven, expectedResultSeven, "testArraySeven"),
+                new TestCase(testArrayEight, expectedResultEight, "testArrayEight"),
+                new TestCase(testArrayNine, expectedResultNine, "testArrayNine"),
+                new TestCase(testArrayTen, expectedResultTen, "testArrayTen"),
+                new TestCase(testArrayEleven, expectedResultsEleven, "testArrayEleven"),
+                new TestCase(testArrayTwelve, expectedResultTwelve, "testArrayTwelve"),
+                new TestCase(testArrayThirteen, expectedResultThirteen, "testArrayThirteen"),
+                new TestCase(testArrayFourteen, expectedResultFourteen, "testArrayFourteen"),
+                new TestCase(testArrayFifteen, expectedResultFifteen, "testArrayFifteen"),
+                new TestCase(testArraySixteen, expectedResultSixteen, "testArraySixteen"),
+                new TestCase(testArraySeventeen, expectedResultSeventeen, "testArraySeventeen"),
+                new TestCase(testArrayEighteen, expectedResultEighteen, "testArrayEighteen"),
+                new TestCase(testArrayNineteen, expectedResultNineteen, "testArrayNineteen")
+        );
+    }
+
+    public static final List<String> ENDPOINTS = List.of(
+            "/bubble-sort", "/bucket-sort", "/heap-sort", "/insertion-sort",
+            "/intro-sort", "/merge-sort-top-down", "/merge-sort-bottom-up", "/in-place-merge-sort",
+            "/parallel-merge-sort", "/pancake-sort", "/quick-sort", "/radix-sort-lsd", "/radix-sort-msd",
+            "/selection-sort", "/shell-sort", "/tim-sort"
+    );
 }
