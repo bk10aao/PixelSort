@@ -28,4 +28,5 @@ This is a Java api to perform the following sorting algorithms:
 # Front End
 
 There is a front end application to display the inputs as graphs and provide an animated view of how the algorithms sort the data.
-it can be found at: https://github.com/bk10aao/PixelSortChakra
+
+It can be found at: https://github.com/bk10aao/PixelSortChakra
