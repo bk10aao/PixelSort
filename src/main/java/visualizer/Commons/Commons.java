@@ -31,10 +31,10 @@ public class Commons {
         int maxNegative = 0;
         int maxPositive = 0;
         for(int i : positive)
-            if (Commons.less(maxNegative, i))
+            if (less(maxNegative, i))
                 maxNegative = i;
         for(int i : negative)
-            if (Commons.less(maxPositive, i))
+            if (less(maxPositive, i))
                 maxPositive = i;
 
         return maxNegative == 0 && maxPositive == 0 ? 0 : String.valueOf(Math.max(maxNegative, maxPositive)).length();

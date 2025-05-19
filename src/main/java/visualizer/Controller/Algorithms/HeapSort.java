@@ -1,6 +1,5 @@
 package visualizer.Controller.Algorithms;
 
-import visualizer.Commons.Commons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static visualizer.Commons.Commons.exchange;
+import static visualizer.Commons.Commons.less;
 import static visualizer.Commons.Commons.toList;
 
 public class HeapSort {
@@ -44,11 +44,12 @@ public class HeapSort {
     public static void sink(int[] binaryHeap, int index, int n, List<List<Integer>> results) {
         while (2 * index <= n) {
             int j = 2 * index;
-            if (j < n && Commons.less(binaryHeap[j], binaryHeap[j + 1]))
+            if (j < n && less(binaryHeap[j], binaryHeap[j + 1]))
                 j++;
-            if (!Commons.less(binaryHeap[index], binaryHeap[j]))
+            if (!less(binaryHeap[index], binaryHeap[j])) {
                 break;
-            Commons.exchange(binaryHeap, index, j);
+            }
+            exchange(binaryHeap, index, j);
             results.add(Arrays.stream(binaryHeap).boxed().collect(Collectors.toList()));
             index = j;
         }

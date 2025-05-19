@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static visualizer.Commons.Commons.*;
 import static visualizer.Commons.Commons.less;
+import static visualizer.Commons.Commons.toList;
 
 public class MergeSortBottomUp {
 

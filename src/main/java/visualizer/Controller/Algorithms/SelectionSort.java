@@ -1,7 +1,6 @@
 package visualizer.Controller.Algorithms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static visualizer.Commons.Commons.exchange;
@@ -10,9 +9,9 @@ import static visualizer.Commons.Commons.toList;
 public class SelectionSort {
 
     public static List<List<Integer>> sort(int[] values) {
-        if(values == null)
+        if (values == null)
             throw new NullPointerException();
-        if(values.length == 0)
+        if (values.length == 0)
             throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
         for (int i = 0; i < values.length; i++) {
@@ -27,7 +26,9 @@ public class SelectionSort {
                 results.add(toList(values));
             }
         }
-        results.add(Arrays.stream(values).boxed().toList());
+        if (results.isEmpty()) {
+            results.add(toList(values));
+        }
         return results;
     }
 }

@@ -3,6 +3,44 @@ package visualizer.Controller.Algorithms.Algorithms;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static visualizer.Controller.Algorithms.Utilities.Utils.callFindPivot;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultEight;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultEighteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultFifteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultFive;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultFour;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultFourteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultNine;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultNineteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultOne;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultSeven;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultSeventeen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultSix;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultSixteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultThirteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultThree;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTwelve;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTwo;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultsEleven;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayEight;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayEighteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayEleven;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayFifteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayFive;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayFour;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayFourteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayNine;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayNineteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayOne;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArraySeven;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArraySeventeen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArraySix;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArraySixteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayThirteen;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayThree;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwelve;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,7 +62,6 @@ import visualizer.Controller.Algorithms.QuickSort;
 import visualizer.Controller.Algorithms.SelectionSort;
 import visualizer.Controller.Algorithms.ShellSort;
 import visualizer.Controller.Algorithms.TimSort;
-import visualizer.Controller.Algorithms.Utilities.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,25 +71,25 @@ public class SortAlgorithmTests {
 
     static Stream<TestCase> testCases() {
         return Stream.of(
-                new TestCase(Utils.testArrayOne, Utils.expectedResultOne),
-                new TestCase(Utils.testArrayTwo, Utils.expectedResultTwo),
-                new TestCase(Utils.testArrayThree, Utils.expectedResultThree),
-                new TestCase(Utils.testArrayFour, Utils.expectedResultFour),
-                new TestCase(Utils.testArrayFive, Utils.expectedResultFive),
-                new TestCase(Utils.testArraySix, Utils.expectedResultSix),
-                new TestCase(Utils.testArraySeven, Utils.expectedResultSeven),
-                new TestCase(Utils.testArrayEight, Utils.expectedResultEight),
-                new TestCase(Utils.testArrayNine, Utils.expectedResultNine),
-                new TestCase(Utils.testArrayTen, Utils.expectedResultTen),
-                new TestCase(Utils.testArrayEleven, Utils.expectedResultsEleven),
-                new TestCase(Utils.testArrayTwelve, Utils.expectedResultTwelve),
-                new TestCase(Utils.testArrayThirteen, Utils.expectedResultThirteen),
-                new TestCase(Utils.testArrayFourteen, Utils.expectedResultFourteen),
-                new TestCase(Utils.testArrayFifteen, Utils.expectedResultFifteen),
-                new TestCase(Utils.testArraySixteen, Utils.expectedResultSixteen),
-                new TestCase(Utils.testArraySeventeen, Utils.expectedResultSeventeen),
-                new TestCase(Utils.testArrayEighteen, Utils.expectedResultEighteen),
-                new TestCase(Utils.testArrayNineteen, Utils.expectedResultNineteen)
+                new TestCase(testArrayOne, expectedResultOne),
+                new TestCase(testArrayTwo, expectedResultTwo),
+                new TestCase(testArrayThree, expectedResultThree),
+                new TestCase(testArrayFour, expectedResultFour),
+                new TestCase(testArrayFive, expectedResultFive),
+                new TestCase(testArraySix, expectedResultSix),
+                new TestCase(testArraySeven, expectedResultSeven),
+                new TestCase(testArrayEight, expectedResultEight),
+                new TestCase(testArrayNine, expectedResultNine),
+                new TestCase(testArrayTen, expectedResultTen),
+                new TestCase(testArrayEleven, expectedResultsEleven),
+                new TestCase(testArrayTwelve, expectedResultTwelve),
+                new TestCase(testArrayThirteen, expectedResultThirteen),
+                new TestCase(testArrayFourteen, expectedResultFourteen),
+                new TestCase(testArrayFifteen, expectedResultFifteen),
+                new TestCase(testArraySixteen, expectedResultSixteen),
+                new TestCase(testArraySeventeen, expectedResultSeventeen),
+                new TestCase(testArrayEighteen, expectedResultEighteen),
+                new TestCase(testArrayNineteen, expectedResultNineteen)
         );
     }
 
