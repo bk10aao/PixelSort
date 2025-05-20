@@ -63,6 +63,19 @@ public class Utils {
     public static int[] testArrayNineteen = new int[] { 42 };
     public static List<Integer> expectedResultNineteen = List.of(42);
 
+    public static int[] testArrayTwenty = new int[] { 3, 2, 1 };
+    public static List<Integer> expectedResultTwenty = List.of(1, 2, 3);
+
+    public static final int[] testArrayTwentyOne = new int[] { 5, 1, 3, 2, 4 };
+    public static final List<Integer> expectedResultTwentyOne = List.of(1, 2, 3, 4, 5);
+
+    public static final int[] testArrayTwentyTwo = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40 };
+    public static final List<Integer> expectedResultTwentyTwo = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40);
+
+    public static final int[] testArrayTwentyThree = new int[] { -17, -3, -12, -6, -19, -8, -2, -15, -5, -10 };
+    public static final List<Integer> expectedResultTwentyThree = List.of(-19, -17, -15, -12, -10, -8, -6, -5, -3, -2);
+
+
     public static int callFindPivot(int[] values) {
         try {
             java.lang.reflect.Method method = IntroSort.class.getDeclaredMethod("findPivot", int[].class, int.class, int.class, int.class);
@@ -105,7 +118,11 @@ public class Utils {
                 new TestCase(testArraySixteen, expectedResultSixteen, "testArraySixteen"),
                 new TestCase(testArraySeventeen, expectedResultSeventeen, "testArraySeventeen"),
                 new TestCase(testArrayEighteen, expectedResultEighteen, "testArrayEighteen"),
-                new TestCase(testArrayNineteen, expectedResultNineteen, "testArrayNineteen")
+                new TestCase(testArrayNineteen, expectedResultNineteen, "testArrayNineteen"),
+                new TestCase(testArrayTwenty, expectedResultTwenty, "testArrayTwenty"),
+                new TestCase(testArrayTwentyOne, expectedResultTwentyOne, "testArrayTwentyOne"),
+                new TestCase(testArrayTwentyTwo, expectedResultTwentyTwo, "testArrayTwentyTwo"),
+                new TestCase(testArrayTwentyThree, expectedResultTwentyThree, "testArrayTwentyThree")
         );
     }
 

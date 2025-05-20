@@ -2,6 +2,7 @@ package visualizer.Controller.Algorithms.Algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static visualizer.Controller.Algorithms.Utilities.Utils.callFindPivot;
 import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultEight;
 import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultEighteen;
@@ -20,6 +21,10 @@ import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTen
 import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultThirteen;
 import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultThree;
 import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTwelve;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTwenty;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTwentyOne;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTwentyThree;
+import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTwentyTwo;
 import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultTwo;
 import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultsEleven;
 import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayEight;
@@ -40,6 +45,10 @@ import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTen;
 import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayThirteen;
 import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayThree;
 import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwelve;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwenty;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwentyOne;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwentyThree;
+import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwentyTwo;
 import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwo;
 
 import org.junit.jupiter.api.Assertions;
@@ -63,6 +72,7 @@ import visualizer.Controller.Algorithms.SelectionSort;
 import visualizer.Controller.Algorithms.ShellSort;
 import visualizer.Controller.Algorithms.TimSort;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -89,7 +99,11 @@ public class SortAlgorithmTests {
                 new TestCase(testArraySixteen, expectedResultSixteen),
                 new TestCase(testArraySeventeen, expectedResultSeventeen),
                 new TestCase(testArrayEighteen, expectedResultEighteen),
-                new TestCase(testArrayNineteen, expectedResultNineteen)
+                new TestCase(testArrayNineteen, expectedResultNineteen),
+                new TestCase(testArrayTwenty, expectedResultTwenty),
+                new TestCase(testArrayTwentyOne, expectedResultTwentyOne),
+                new TestCase(testArrayTwentyTwo, expectedResultTwentyTwo),
+                new TestCase(testArrayTwentyThree, expectedResultTwentyThree)
         );
     }
 
@@ -243,15 +257,7 @@ public class SortAlgorithmTests {
 
     @Test
     public void timSort_triggersRunStackMergeLogicWithLargeInput() {
-        int[] input = new int[40];
-        for (int i = 0; i < 10; i++)
-            input[i] = i + 1;
-        for (int i = 10; i < 20; i++)
-            input[i] = 30 - i;
-        for (int i = 20; i < 40; i++)
-            input[i] = i + 1;
-        int[] sorted = input.clone();
-        Arrays.sort(sorted);
-        assertEquals(List.of(java.util.Arrays.stream(sorted).boxed().toArray(Integer[]::new)), TimSort.sort(input).getLast());
+
+        assertEquals(expectedResultTwentyTwo, TimSort.sort(testArrayTwentyTwo).getLast());
     }
 }

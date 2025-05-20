@@ -3,6 +3,7 @@ package visualizer.Model;
 import java.util.List;
 
 public class SortResponse {
+
     private List<List<Integer>> results;
 
     public SortResponse(final List<List<Integer>> results) {

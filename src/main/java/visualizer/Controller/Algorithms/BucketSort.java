@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import static visualizer.Commons.Commons.insertionSort;
 import static visualizer.Commons.Commons.toList;
 
 public class BucketSort {
@@ -16,6 +17,8 @@ public class BucketSort {
             throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
         results.add(toList(values));
+        if(values.length == 1)
+            return results;
         int min = values[0];
         int max = values[0];
         for (int value : values) {
@@ -57,17 +60,5 @@ public class BucketSort {
         }
         results.add(toList(values));
         return results;
-    }
-
-    private static void insertionSort(int[] values, int bucketStartIndex, int bucketLength, List<List<Integer>> sortingStates) {
-        int right = bucketStartIndex + bucketLength - 1;
-        for (int i = bucketStartIndex + 1; i <= right; i++) {
-            int temp = values[i];
-            int j = i - 1;
-            while (j >= bucketStartIndex && values[j] > temp)
-                values[j + 1] = values[j--];
-            values[j + 1] = temp;
-            sortingStates.add(toList(values));
-        }
     }
 }
