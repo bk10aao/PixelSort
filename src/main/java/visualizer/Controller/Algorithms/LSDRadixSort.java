@@ -13,8 +13,6 @@ public class LSDRadixSort {
 
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = initialize(values);
-        if(values.length == 1)
-            return results;
         int[][] split = splitPositiveNegative(values);
         int[] negative = split[0];
         int[] positive = split[1];

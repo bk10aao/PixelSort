@@ -15,8 +15,6 @@ public class QuickSort {
 
     public static List<List<Integer>> sort(int[] values) {
         results = initialize(values);
-        if(values.length == 1)
-            return results;
         shuffle(values);
         sort(values, 0, values.length - 1);
         results.add(toList(values));

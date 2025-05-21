@@ -13,9 +13,6 @@ public class BucketSort {
 
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = initialize(values);
-        if (values.length == 1)
-            return results;
-
         MinMax minMax = findMinMax(values);
         if (minMax.min == minMax.max)
             return results;

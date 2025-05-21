@@ -13,8 +13,6 @@ public class TimSort {
 
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = initialize(values);
-        if(values.length == 1)
-            return results;
         if(values.length < MIN_MERGE) {
             insertionSort(values, 0, values.length - 1, results);
             results.add(toList(values));

@@ -12,8 +12,6 @@ public class IntroSort {
 
     public static List<List<Integer>> sort(int[] values) {
         results = initialize(values);
-        if(values.length == 1)
-            return results;
         int depthLimit = (int) (2 * Math.floor(Math.log(values.length) / Math.log(2)));
         sortDataUtil(values, 0, values.length - 1, depthLimit);
         return results;

@@ -15,8 +15,6 @@ public class ParallelMergeSort {
 
     public static List<List<Integer>> sort(int[] values) {
         List<List<Integer>> results = initialize(values);
-        if(values.length == 1)
-            return results;
         ForkJoinPool forkJoinPool = commonPool();
         forkJoinPool.invoke(new MergeSortTask(values, 0, values.length - 1, results));
         results.add(toList(values));

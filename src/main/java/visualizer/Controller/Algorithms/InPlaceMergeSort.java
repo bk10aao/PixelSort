@@ -14,22 +14,22 @@ public class InPlaceMergeSort {
         return results;
     }
 
-    private static void inPlaceMerge(int[] nums, int start, int mid, int end, List<List<Integer>> result) {
+    private static void inPlaceMerge(int[] values, int start, int mid, int end, List<List<Integer>> result) {
         int right = mid + 1;
         while (start <= mid && right <= end) {
-            if (nums[start] <= nums[right])
+            if (values[start] <= values[right])
                 start++;
             else {
-                int value = nums[right];
+                int value = values[right];
                 int index = right++;
                 while (index != start) {
-                    nums[index] = nums[index - 1];
+                    values[index] = values[index - 1];
                     index--;
                 }
-                nums[start++] = value;
+                values[start++] = value;
                 mid++;
+                result.add(toList(values));
             }
-            result.add(toList(nums));
         }
     }
 
