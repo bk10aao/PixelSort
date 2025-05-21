@@ -1,24 +1,18 @@
 package visualizer.Controller.Algorithms;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static visualizer.Commons.Commons.exchange;
+import static visualizer.Commons.Commons.initialize;
 import static visualizer.Commons.Commons.less;
 import static visualizer.Commons.Commons.toList;
 
 public class HeapSort {
 
     public static List<List<Integer>> sort(int[] values) {
-        if(values == null)
-            throw new NullPointerException();
-        if(values.length == 0)
-            throw new IllegalArgumentException();
-        List<List<Integer>> results = new ArrayList<>();
-        results.add(toList(values));
+        List<List<Integer>> results = initialize(values);
         if(values.length == 1)
             return results;
         int[] heap = new int[values.length + 1];
@@ -54,5 +48,4 @@ public class HeapSort {
             index = j;
         }
     }
-
 }

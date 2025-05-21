@@ -1,10 +1,10 @@
 package visualizer.Controller.Algorithms;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static visualizer.Commons.Commons.getMaxDigits;
+import static visualizer.Commons.Commons.initialize;
 import static visualizer.Commons.Commons.recombine;
 import static visualizer.Commons.Commons.splitPositiveNegative;
 import static visualizer.Commons.Commons.toList;
@@ -12,12 +12,9 @@ import static visualizer.Commons.Commons.toList;
 public class LSDRadixSort {
 
     public static List<List<Integer>> sort(int[] values) {
-        if (values == null)
-            throw new NullPointerException();
-        if(values.length == 0)
-            throw new IllegalArgumentException();
-        List<List<Integer>> sortingStates = new ArrayList<>();
-        sortingStates.add(toList(values));
+        List<List<Integer>> results = initialize(values);
+        if(values.length == 1)
+            return results;
         int[][] split = splitPositiveNegative(values);
         int[] negative = split[0];
         int[] positive = split[1];
@@ -26,13 +23,13 @@ public class LSDRadixSort {
 
         for (int exp = 1; maxDigits > 0; exp *= 10, maxDigits--) {
             if (negative.length > 0)
-                countSort(negative, exp, sortingStates);
+                countSort(negative, exp, results);
             if (positive.length > 0)
-                countSort(positive, exp, sortingStates);
+                countSort(positive, exp, results);
             recombine(values, negative, positive);
-            sortingStates.add(toList(values));
+            results.add(toList(values));
         }
-        return sortingStates;
+        return results;
     }
 
     private static void countSort(int[] values, int exp, List<List<Integer>> sortingStates) {

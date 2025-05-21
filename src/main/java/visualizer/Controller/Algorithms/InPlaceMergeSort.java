@@ -1,22 +1,17 @@
 package visualizer.Controller.Algorithms;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static visualizer.Commons.Commons.initialize;
 import static visualizer.Commons.Commons.toList;
 
 public class InPlaceMergeSort {
 
     public static List<List<Integer>> sort(int[] values) {
-        if (values == null)
-            throw new NullPointerException();
-        if(values.length == 0)
-            throw new IllegalArgumentException();
-        List<List<Integer>> result = new ArrayList<>();
-        result.add(toList(values));
-        mergeSort(values, 0, values.length - 1, result);
-        result.add(toList(values));
-        return result;
+        List<List<Integer>> results = initialize(values);
+        mergeSort(values, 0, values.length - 1, results);
+        results.add(toList(values));
+        return results;
     }
 
     private static void inPlaceMerge(int[] nums, int start, int mid, int end, List<List<Integer>> result) {

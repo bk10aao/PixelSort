@@ -1,5 +1,6 @@
 package visualizer.Commons;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,33 @@ public class Commons {
                 values[j + 1] = values[j--];
             values[j + 1] = temp;
             sortingStates.add(toList(values));
+        }
+    }
+
+    public static List<List<Integer>> initialize(int[] values) {
+        if(values == null)
+            throw new NullPointerException();
+        if(values.length == 0)
+            throw new IllegalArgumentException();
+        List<List<Integer>> results = new ArrayList<>();
+        results.add(toList(values));
+        return results;
+    }
+
+    public static void merge(int[] values, int[] aux, int low, int middle, int high, List<List<Integer>> results) {
+        System.arraycopy(values, low, aux, low, high - low + 1);
+        int i = low;
+        int j = middle + 1;
+        for (int k = low; k <= high; k++) {
+            if (i > middle)
+                values[k] = aux[j++];
+            else if (j > high)
+                values[k] = aux[i++];
+            else if (less(aux[j], aux[i]))
+                values[k] = aux[j++];
+            else
+                values[k] = aux[i++];
+            results.add(toList(values));
         }
     }
 }

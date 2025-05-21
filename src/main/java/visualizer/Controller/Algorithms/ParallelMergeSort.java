@@ -1,12 +1,12 @@
 package visualizer.Controller.Algorithms;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 import static java.util.concurrent.ForkJoinPool.commonPool;
+import static visualizer.Commons.Commons.initialize;
 import static visualizer.Commons.Commons.toList;
 
 public class ParallelMergeSort {
@@ -14,51 +14,48 @@ public class ParallelMergeSort {
     private static final int THRESHOLD = 10;
 
     public static List<List<Integer>> sort(int[] values) {
-        if(values == null)
-            throw new NullPointerException();
-        if(values.length == 0)
-            throw new IllegalArgumentException();
-        List<List<Integer>> states = new ArrayList<>();
-        states.add(toList(values));
+        List<List<Integer>> results = initialize(values);
+        if(values.length == 1)
+            return results;
         ForkJoinPool forkJoinPool = commonPool();
-        forkJoinPool.invoke(new MergeSortTask(values, 0, values.length - 1, states));
-        states.add(toList(values));
-        return states;
+        forkJoinPool.invoke(new MergeSortTask(values, 0, values.length - 1, results));
+        results.add(toList(values));
+        return results;
     }
 
     static class MergeSortTask extends RecursiveAction {
         private final int[] array;
         private final int left;
         private final int right;
-        private final List<List<Integer>> states;
+        private final List<List<Integer>> results;
 
-        public MergeSortTask(int[] array, int left, int right, List<List<Integer>> states) {
+        public MergeSortTask(int[] array, int left, int right, List<List<Integer>> results) {
             this.array = array;
             this.left = left;
             this.right = right;
-            this.states = states;
+            this.results = results;
         }
 
         @Override
         protected void compute() {
             if (right - left <= THRESHOLD)
-                sequentialMergeSort(array, left, right, states);
+                sequentialMergeSort(array, left, right, results);
             else {
                 int mid = left + (right - left) / 2;
-                MergeSortTask leftTask = new MergeSortTask(array, left, mid, states);
-                MergeSortTask rightTask = new MergeSortTask(array, mid + 1, right, states);
+                MergeSortTask leftTask = new MergeSortTask(array, left, mid, results);
+                MergeSortTask rightTask = new MergeSortTask(array, mid + 1, right, results);
                 invokeAll(leftTask, rightTask);
-                merge(array, left, mid, right, states);
+                merge(array, left, mid, right, results);
             }
         }
     }
 
-    private static void sequentialMergeSort(int[] values, int left, int right, List<List<Integer>> states) {
+    private static void sequentialMergeSort(int[] values, int left, int right, List<List<Integer>> results) {
         if (left < right) {
             int mid = left + (right - left) / 2;
-            sequentialMergeSort(values, left, mid, states);
-            sequentialMergeSort(values, mid + 1, right, states);
-            merge(values, left, mid, right, states);
+            sequentialMergeSort(values, left, mid, results);
+            sequentialMergeSort(values, mid + 1, right, results);
+            merge(values, left, mid, right, results);
         }
     }
 

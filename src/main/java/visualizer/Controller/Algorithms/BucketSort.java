@@ -1,64 +1,64 @@
 package visualizer.Controller.Algorithms;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import static visualizer.Commons.Commons.initialize;
 import static visualizer.Commons.Commons.insertionSort;
 import static visualizer.Commons.Commons.toList;
+
 
 public class BucketSort {
 
     public static List<List<Integer>> sort(int[] values) {
-        if(values == null)
-            throw new NullPointerException();
-        if(values.length == 0)
-            throw new IllegalArgumentException();
-        List<List<Integer>> results = new ArrayList<>();
-        results.add(toList(values));
-        if(values.length == 1)
+        List<List<Integer>> results = initialize(values);
+        if (values.length == 1)
             return results;
-        int min = values[0];
-        int max = values[0];
-        for (int value : values) {
-            if (value < min)
-                min = value;
-            else if (value > max)
-                max = value;
-        }
 
-        int bucketSize = Math.min(10, values.length);
-        double range = Math.ceil((double)(max - min + 1) / bucketSize);
-        List<Integer>[] buckets = new LinkedList[bucketSize];
+        MinMax minMax = findMinMax(values);
+        if (minMax.min == minMax.max)
+            return results;
+        int numBuckets = Math.min(10, values.length);
+        double bucketRange = Math.ceil((double) (minMax.max - minMax.min + 1) / numBuckets);
+        List<Integer>[] buckets = new List[numBuckets];
         Arrays.setAll(buckets, i -> new LinkedList<>());
-        for (int value : values) {
-            int bucketIndex = (int)((value - min) / range);
-            bucketIndex = Math.min(bucketIndex, bucketSize - 1);
-            buckets[bucketIndex].add(value);
-        }
-        int[] distributedValues = values.clone();
-        int index = 0;
-        for (int i = 0; i < bucketSize; i++)
-            for (int value : buckets[i])
-                distributedValues[index++] = value;
-        System.arraycopy(distributedValues, 0, values, 0, values.length);
-        results.add(toList(values));
-        index = 0;
-        for (int i = 0; i < bucketSize; i++) {
-            if (!buckets[i].isEmpty()) {
-                int bucketStartIndex = index;
-                int[] bucketArray = buckets[i].stream().mapToInt(Integer::intValue).toArray();
-                insertionSort(values, bucketStartIndex, bucketArray.length, results);
-                index += bucketArray.length;
-                buckets[i].clear();
-                buckets[i].addAll(Arrays.stream(values, bucketStartIndex, bucketStartIndex + bucketArray.length)
-                        .boxed()
-                        .toList());
-                results.add(toList(values));
-            }
-        }
-        results.add(toList(values));
+        distributeToBuckets(values, minMax.min, bucketRange, buckets);
+        sortAndMergeBuckets(values, buckets, results);
         return results;
     }
+
+    private static MinMax findMinMax(int[] array) {
+        int min = array[0];
+        int max = array[0];
+        for (int value : array) {
+            min = Math.min(min, value);
+            max = Math.max(max, value);
+        }
+        return new MinMax(min, max);
+    }
+
+    private static void distributeToBuckets(int[] array, int min, double bucketRange, List<Integer>[] buckets) {
+        for (int value : array) {
+            int bucketIndex = (int) ((value - min) / bucketRange);
+            bucketIndex = Math.min(bucketIndex, buckets.length - 1);
+            buckets[bucketIndex].add(value);
+        }
+    }
+
+    private static void sortAndMergeBuckets(int[] array, List<Integer>[] buckets, List<List<Integer>> results) {
+        int index = 0;
+        for (List<Integer> bucket : buckets) {
+            if (!bucket.isEmpty()) {
+                int startIndex = index;
+                int[] bucketArray = bucket.stream().mapToInt(Integer::intValue).toArray();
+                System.arraycopy(bucketArray, 0, array, startIndex, bucketArray.length);
+                insertionSort(array, startIndex, startIndex + bucketArray.length - 1, results);
+                index += bucketArray.length;
+                results.add(toList(array));
+            }
+        }
+    }
+
+    private record MinMax(int min, int max) { }
 }

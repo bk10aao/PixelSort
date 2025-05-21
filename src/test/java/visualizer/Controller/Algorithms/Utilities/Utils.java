@@ -126,6 +126,8 @@ public class Utils {
         );
     }
 
+
+
     public static final List<String> ENDPOINTS = List.of(
             "/bubble-sort", "/bucket-sort", "/heap-sort", "/insertion-sort",
             "/intro-sort", "/merge-sort-top-down", "/merge-sort-bottom-up", "/in-place-merge-sort",

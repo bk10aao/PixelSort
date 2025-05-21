@@ -1,23 +1,22 @@
 package visualizer.Controller.Algorithms;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 import static visualizer.Commons.Commons.exchange;
+import static visualizer.Commons.Commons.initialize;
 import static visualizer.Commons.Commons.less;
 import static visualizer.Commons.Commons.toList;
 
 public class QuickSort {
-   private static List<List<Integer>> results;
+
+    private static List<List<Integer>> results;
+
     public static List<List<Integer>> sort(int[] values) {
-        if(values == null)
-            throw new NullPointerException();
-        if(values.length == 0)
-            throw new IllegalArgumentException();
-        results = new ArrayList<>();
-        results.add(toList(values));
+        results = initialize(values);
+        if(values.length == 1)
+            return results;
         shuffle(values);
         sort(values, 0, values.length - 1);
         results.add(toList(values));

@@ -3,6 +3,7 @@ package visualizer.Controller.Algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
+import static visualizer.Commons.Commons.initialize;
 import static visualizer.Commons.Commons.insertionSort;
 import static visualizer.Commons.Commons.toList;
 
@@ -11,16 +12,13 @@ public class TimSort {
     public static final int MIN_MERGE = 16;
 
     public static List<List<Integer>> sort(int[] values) {
-        if(values == null)
-            throw new NullPointerException();
-        if(values.length == 0)
-            throw new IllegalArgumentException();
-        List<List<Integer>> sortingStates = new ArrayList<>();
-        sortingStates.add(toList(values));
+        List<List<Integer>> results = initialize(values);
+        if(values.length == 1)
+            return results;
         if(values.length < MIN_MERGE) {
-            insertionSort(values, 0, values.length - 1, sortingStates);
-            sortingStates.add(toList(values));
-            return sortingStates;
+            insertionSort(values, 0, values.length - 1, results);
+            results.add(toList(values));
+            return results;
         }
 
         int minRun = minRunLength(values.length);
@@ -29,11 +27,11 @@ public class TimSort {
         int i = 0;
         while(i < values.length) {
             int runStart = i;
-            int runLength = countRunAndMakeAscending(values, i, sortingStates);
+            int runLength = countRunAndMakeAscending(values, i, results);
             if(runLength < minRun) {
                 int runEnd = Math.min(i + minRun - 1, values.length - 1);
                 runLength = runEnd - i + 1;
-                insertionSort(values, i, runEnd, sortingStates);
+                insertionSort(values, i, runEnd, results);
             }
             runStack.add(new Run(runStart, runLength));
             i += runLength;
@@ -44,7 +42,7 @@ public class TimSort {
                 if(runStack.get(runStack.size() - 2).len <= runStack.getLast().len) {
                     Run runY = runStack.get(runStack.size() - 2);
                     Run runZ = runStack.getLast();
-                    merge(values, runY.start, runY.start + runY.len - 1, runZ.start + runZ.len - 1, sortingStates);
+                    merge(values, runY.start, runY.start + runY.len - 1, runZ.start + runZ.len - 1, results);
                     runY.len += runZ.len;
                     runStack.removeLast();
                 } else
@@ -54,12 +52,12 @@ public class TimSort {
         while(runStack.size() > 1) {
             Run runY = runStack.get(runStack.size() - 2);
             Run runZ = runStack.getLast();
-            merge(values, runY.start, runY.start + runY.len - 1, runZ.start + runZ.len - 1, sortingStates);
+            merge(values, runY.start, runY.start + runY.len - 1, runZ.start + runZ.len - 1, results);
             runY.len += runZ.len;
             runStack.removeLast();
         }
-        sortingStates.add(toList(values));
-        return sortingStates;
+        results.add(toList(values));
+        return results;
     }
 
     private static int countRunAndMakeAscending(int[] values, int start, List<List<Integer>> sortingStates) {

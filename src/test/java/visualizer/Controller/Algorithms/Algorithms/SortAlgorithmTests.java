@@ -2,7 +2,6 @@ package visualizer.Controller.Algorithms.Algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static visualizer.Controller.Algorithms.Utilities.Utils.callFindPivot;
 import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultEight;
 import static visualizer.Controller.Algorithms.Utilities.Utils.expectedResultEighteen;
@@ -72,8 +71,6 @@ import visualizer.Controller.Algorithms.SelectionSort;
 import visualizer.Controller.Algorithms.ShellSort;
 import visualizer.Controller.Algorithms.TimSort;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 

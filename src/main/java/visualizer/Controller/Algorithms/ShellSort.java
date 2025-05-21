@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static visualizer.Commons.Commons.exchange;
+import static visualizer.Commons.Commons.initialize;
 import static visualizer.Commons.Commons.less;
 import static visualizer.Commons.Commons.toList;
 
@@ -12,12 +13,9 @@ public class ShellSort {
     private static List<List<Integer>> results;
 
     public static List<List<Integer>> sort(int[] values) {
-        if(values == null)
-            throw new NullPointerException();
-        if(values.length == 0)
-            throw new IllegalArgumentException();
-        results = new ArrayList<>();
-        results.add(toList(values));
+        results = initialize(values);
+        if(values.length == 1)
+            return results;
         List<Integer> increments = generateIncrements(values.length);
         for(int x = increments.size() - 1; x >= 0; x--)
             hSort(values, increments.get(x));
