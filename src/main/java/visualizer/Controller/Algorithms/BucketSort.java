@@ -21,8 +21,7 @@ public class BucketSort {
         List<Integer>[] buckets = new List[numBuckets];
         Arrays.setAll(buckets, i -> new LinkedList<>());
         distributeToBuckets(values, minMax.min, bucketRange, buckets);
-        sortAndMergeBuckets(values, buckets, results);
-        return results;
+        return sortAndMergeBuckets(values, buckets, results);
     }
 
     private static MinMax findMinMax(int[] array) {
@@ -43,7 +42,7 @@ public class BucketSort {
         }
     }
 
-    private static void sortAndMergeBuckets(int[] array, List<Integer>[] buckets, List<List<Integer>> results) {
+    private static List<List<Integer>> sortAndMergeBuckets(int[] array, List<Integer>[] buckets, List<List<Integer>> results) {
         int index = 0;
         for (List<Integer> bucket : buckets) {
             if (!bucket.isEmpty()) {
@@ -55,6 +54,7 @@ public class BucketSort {
                 results.add(toList(array));
             }
         }
+        return results;
     }
 
     private record MinMax(int min, int max) { }
