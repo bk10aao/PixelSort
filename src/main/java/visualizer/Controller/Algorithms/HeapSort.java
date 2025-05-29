@@ -35,6 +35,7 @@ public class HeapSort {
             results.add(toList(Arrays.copyOfRange(heap, 1, heap.length)));
         }
     }
+
     public static void sink(int[] binaryHeap, int index, int n, List<List<Integer>> results) {
         while (2 * index <= n) {
             int j = 2 * index;
