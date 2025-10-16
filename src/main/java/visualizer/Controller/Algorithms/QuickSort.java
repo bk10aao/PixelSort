@@ -49,7 +49,7 @@ public class QuickSort {
         return rightPointer;
     }
 
-    public static void shuffle(int[] values) {
+    private static void shuffle(int[] values) {
         Random rand = new Random();
         for (int i = values.length - 1; i > 0; i--)
             exchange(values, i, rand.nextInt(i + 1));
