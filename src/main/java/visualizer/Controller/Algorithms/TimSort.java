@@ -63,10 +63,10 @@ public class TimSort {
             return 1;
 
         int runLength = 2;
-        if(values[start] <= values[start + 1]) {
-            while(runLength < values.length - start && values[start + runLength - 1] <= values[start + runLength])
+        if(values[start] <= values[start + 1])
+            while (runLength < values.length - start && values[start + runLength - 1] <= values[start + runLength])
                 runLength++;
-        } else {
+        else {
             while (runLength < values.length - start && values[start + runLength - 1] > values[start + runLength])
                 runLength++;
 

@@ -15,13 +15,12 @@ public class BubbleSort {
         boolean swapped = true;
         while (swapped) {
             swapped = false;
-            for (int i = 0; i < values.length - 1; i++) {
-                if(values[i] > values[i + 1]) {
+            for (int i = 0; i < values.length - 1; i++)
+                if (values[i] > values[i + 1]) {
                     exchange(values, i, i + 1);
                     swapped = true;
                     results.add(toList(values));
                 }
-            }
         }
         return results;
     }
