@@ -16,7 +16,7 @@ import java.util.Random;
 public class GenerateNumbersController {
 
     @PostMapping("/generate-numbers")
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.POST, RequestMethod.OPTIONS })
     public GeneratorNumbersResponse generateNumbers(@RequestBody GenerateNumbersRequest generateNumberRequest) {
         Integer value = generateNumberRequest.getValue();
 

@@ -12,9 +12,9 @@ import visualizer.Model.SortResponse;
 @RestController
 public class ShellSortController {
 
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "http://localhost:5173", methods =  {RequestMethod.POST, RequestMethod.OPTIONS })
     @PostMapping("/shell-sort")
-    public SortResponse shellSort(@RequestBody SortInput sortInput) {;
+    public SortResponse shellSort(@RequestBody SortInput sortInput) {
         return new SortResponse(ShellSort.sort(sortInput.getValues()));
     }
 }

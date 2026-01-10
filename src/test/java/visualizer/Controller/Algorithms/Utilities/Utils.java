@@ -75,7 +75,6 @@ public class Utils {
     public static final int[] testArrayTwentyThree = new int[] { -17, -3, -12, -6, -19, -8, -2, -15, -5, -10 };
     public static final List<Integer> expectedResultTwentyThree = List.of(-19, -17, -15, -12, -10, -8, -6, -5, -3, -2);
 
-
     public static int callFindPivot(int[] values) {
         try {
             java.lang.reflect.Method method = IntroSort.class.getDeclaredMethod("findPivot", int[].class, int.class, int.class, int.class);
@@ -125,8 +124,6 @@ public class Utils {
                 new TestCase(testArrayTwentyThree, expectedResultTwentyThree, "testArrayTwentyThree")
         );
     }
-
-
 
     public static final List<String> ENDPOINTS = List.of(
             "/bubble-sort", "/bucket-sort", "/heap-sort", "/insertion-sort",

@@ -12,7 +12,7 @@ import visualizer.Model.SortResponse;
 @RestController
 public class InsertionSortController {
 
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.POST, RequestMethod.OPTIONS })
     @PostMapping("/insertion-sort")
     public SortResponse insertionSort(@RequestBody SortInput sortInput) {
         return new SortResponse(InsertionSort.sort(sortInput.getValues()));

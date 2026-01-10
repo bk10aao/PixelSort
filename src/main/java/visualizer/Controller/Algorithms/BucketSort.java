@@ -24,6 +24,14 @@ public class BucketSort {
         return sortAndMergeBuckets(values, buckets, results);
     }
 
+    private static void distributeToBuckets(int[] array, int min, double bucketRange, List<Integer>[] buckets) {
+        for (int value : array) {
+            int bucketIndex = (int) ((value - min) / bucketRange);
+            bucketIndex = Math.min(bucketIndex, buckets.length - 1);
+            buckets[bucketIndex].add(value);
+        }
+    }
+
     private static MinMax findMinMax(int[] array) {
         int min = array[0];
         int max = array[0];
@@ -32,14 +40,6 @@ public class BucketSort {
             max = Math.max(max, value);
         }
         return new MinMax(min, max);
-    }
-
-    private static void distributeToBuckets(int[] array, int min, double bucketRange, List<Integer>[] buckets) {
-        for (int value : array) {
-            int bucketIndex = (int) ((value - min) / bucketRange);
-            bucketIndex = Math.min(bucketIndex, buckets.length - 1);
-            buckets[bucketIndex].add(value);
-        }
     }
 
     private static List<List<Integer>> sortAndMergeBuckets(int[] array, List<Integer>[] buckets, List<List<Integer>> results) {

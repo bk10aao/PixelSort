@@ -13,13 +13,13 @@ import visualizer.Model.SortResponse;
 @RestController
 public class RadixSortController {
 
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.POST, RequestMethod.OPTIONS })
     @PostMapping("/radix-sort-lsd")
     public SortResponse radixSortLSD(@RequestBody SortInput sortInput) {
         return new SortResponse(LSDRadixSort.sort(sortInput.getValues()));
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.POST, RequestMethod.OPTIONS })
     @PostMapping("/radix-sort-msd")
     public SortResponse radixSortMSD(@RequestBody SortInput sortInput) {
         return new SortResponse(MSDRadixSort.sort(sortInput.getValues()));

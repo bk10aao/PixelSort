@@ -12,7 +12,7 @@ import visualizer.Model.SortResponse;
 @RestController
 public class HeapSortController {
 
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.POST, RequestMethod.OPTIONS })
     @PostMapping("/heap-sort")
     public SortResponse heapSort(@RequestBody SortInput sortInput) {
         return new SortResponse(HeapSort.sort(sortInput.getValues()));

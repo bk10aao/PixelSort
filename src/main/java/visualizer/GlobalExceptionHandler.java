@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> handleNullPointerException(NullPointerException ex) {
-        return new ResponseEntity<>("Invalid input: Null values are not allowed", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Invalid input: Null values are not allowed: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({WebExchangeBindException.class, MethodArgumentTypeMismatchException.class, HttpMessageConversionException.class})

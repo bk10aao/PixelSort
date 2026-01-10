@@ -25,6 +25,16 @@ public class MSDRadixSort {
         return results;
     }
 
+    private static void copyBucketsToArray(int[] values, int start, int[][] buckets, List<List<Integer>> sortingStates) {
+        int index = start;
+        for (int[] bucket : buckets) {
+            for (int value : bucket) {
+                values[index++] = value;
+                sortingStates.add(toList(java.util.Arrays.copyOf(values, values.length)));
+            }
+        }
+    }
+
     private static void msdRadixSort(int[] values, int start, int end, int digit, List<List<Integer>> results) {
         if (digit < 0 || start >= end - 1)
             return;
@@ -50,15 +60,5 @@ public class MSDRadixSort {
         for (int i = start; i < end; i++)
             buckets[(values[i] / exp) % 10][bucketIndices[(values[i] / exp) % 10]++] = values[i];
         return buckets;
-    }
-
-    private static void copyBucketsToArray(int[] values, int start, int[][] buckets, List<List<Integer>> sortingStates) {
-        int index = start;
-        for (int[] bucket : buckets) {
-            for (int value : bucket) {
-                values[index++] = value;
-                sortingStates.add(toList(java.util.Arrays.copyOf(values, values.length)));
-            }
-        }
     }
 }

@@ -17,18 +17,15 @@ public class IntroSort {
         return results;
     }
 
-    private static void sortDataUtil(int[] values, int begin, int end, int depthLimit) {
-        if (end - begin > 16) {
-            depthLimit--;
-            int pivotIndex = findPivot(values, begin, begin + ((end - begin) / 2) + 1, end);
-            exchange(values, pivotIndex, end);
-            results.add(toList(values));
-            int p = partition(values, begin, end);
-            sortDataUtil(values, begin, p - 1, depthLimit);
-            sortDataUtil(values, p + 1, end, depthLimit);
-        } else
-            insertionSort(values, begin, end, results);
-        results.add(toList(values));
+    private static int findPivot(int[] values, int x, int y, int z) {
+        int max = Math.max(Math.max(values[x], values[y]), values[z]);
+        int min = Math.min(Math.min(values[x], values[y]), values[z]);
+        int median = max ^ min ^ values[x] ^ values[y] ^ values[z];
+        if (median == values[x])
+            return x;
+        if (median == values[y])
+            return y;
+        return z;
     }
 
     private static int partition(int[] values, int low, int high) {
@@ -44,14 +41,17 @@ public class IntroSort {
         return i + 1;
     }
 
-    private static int findPivot(int[] values, int x, int y, int z) {
-        int max = Math.max(Math.max(values[x], values[y]), values[z]);
-        int min = Math.min(Math.min(values[x], values[y]), values[z]);
-        int median = max ^ min ^ values[x] ^ values[y] ^ values[z];
-        if (median == values[x])
-            return x;
-        if (median == values[y])
-            return y;
-        return z;
+    private static void sortDataUtil(int[] values, int begin, int end, int depthLimit) {
+        if (end - begin > 16) {
+            depthLimit--;
+            int pivotIndex = findPivot(values, begin, begin + ((end - begin) / 2) + 1, end);
+            exchange(values, pivotIndex, end);
+            results.add(toList(values));
+            int p = partition(values, begin, end);
+            sortDataUtil(values, begin, p - 1, depthLimit);
+            sortDataUtil(values, p + 1, end, depthLimit);
+        } else
+            insertionSort(values, begin, end, results);
+        results.add(toList(values));
     }
 }

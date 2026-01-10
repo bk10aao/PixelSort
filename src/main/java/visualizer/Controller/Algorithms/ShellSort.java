@@ -20,14 +20,6 @@ public class ShellSort {
         return results;
     }
 
-    private static void hSort(int[] values, int h) {
-        for(int x = h; x < values.length; x++)
-            for(int y = x; y >= h && less(values[y], values[y - h]); y -= h) {
-                exchange(values, y, y - h);
-                results.add(toList(values));
-            }
-    }
-
     private static List<Integer> generateIncrements(int n) {
         List<Integer> increments = new ArrayList<>();
         int x = 0;
@@ -47,5 +39,13 @@ public class ShellSort {
             increments.sort(Integer::compareTo);
         }
         return increments;
+    }
+
+    private static void hSort(int[] values, int h) {
+        for(int x = h; x < values.length; x++)
+            for(int y = x; y >= h && less(values[y], values[y - h]); y -= h) {
+                exchange(values, y, y - h);
+                results.add(toList(values));
+            }
     }
 }

@@ -50,7 +50,6 @@ import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwentyTh
 import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwentyTwo;
 import static visualizer.Controller.Algorithms.Utilities.Utils.testArrayTwo;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -109,97 +108,97 @@ public class SortAlgorithmTests {
     @ParameterizedTest
     @MethodSource("testCases")
     void testBubbleSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, BubbleSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, BubbleSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testBucketSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, BucketSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, BucketSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testHeapSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, HeapSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, HeapSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testInPlaceMergeSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, InPlaceMergeSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, InPlaceMergeSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testInsertionSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, InsertionSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, InsertionSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testIntroSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, IntroSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, IntroSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testMergeSortBottomUp(TestCase tc) {
-        Assertions.assertEquals(tc.expected, MergeSortBottomUp.sort(tc.input).getLast());
+        assertEquals(tc.expected, MergeSortBottomUp.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testMergeSortTopDown(TestCase tc) {
-        Assertions.assertEquals(tc.expected, MergeSortTopDown.sort(tc.input).getLast());
+        assertEquals(tc.expected, MergeSortTopDown.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testPancakeSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, PancakeSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, PancakeSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testParallelMergeSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, ParallelMergeSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, ParallelMergeSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testQuickSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, QuickSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, QuickSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testRadixLSDSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, LSDRadixSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, LSDRadixSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testRadixMSDSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, MSDRadixSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, MSDRadixSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testSelectionSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, SelectionSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, SelectionSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testShellSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, ShellSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, ShellSort.sort(tc.input).getLast());
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
     void testTimSort(TestCase tc) {
-        Assertions.assertEquals(tc.expected, TimSort.sort(tc.input).getLast());
+        assertEquals(tc.expected, TimSort.sort(tc.input).getLast());
     }
 
     @Test
@@ -254,7 +253,6 @@ public class SortAlgorithmTests {
 
     @Test
     public void timSort_triggersRunStackMergeLogicWithLargeInput() {
-
         assertEquals(expectedResultTwentyTwo, TimSort.sort(testArrayTwentyTwo).getLast());
     }
 }

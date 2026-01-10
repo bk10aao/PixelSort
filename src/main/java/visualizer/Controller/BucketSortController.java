@@ -12,7 +12,7 @@ import visualizer.Model.SortResponse;
 @RestController
 public class BucketSortController {
 
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.POST, RequestMethod.OPTIONS })
     @PostMapping("/bucket-sort")
     public SortResponse bucketSort(@RequestBody SortInput sortInput) {
         return new SortResponse(BucketSort.sort(sortInput.getValues()));

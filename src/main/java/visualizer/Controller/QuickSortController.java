@@ -12,7 +12,7 @@ import visualizer.Model.SortResponse;
 @RestController
 public class QuickSortController {
 
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.POST, RequestMethod.OPTIONS })
     @PostMapping("/quick-sort")
     public SortResponse quickSort(@RequestBody SortInput sortInput) {
         return new SortResponse(QuickSort.sort(sortInput.getValues()));

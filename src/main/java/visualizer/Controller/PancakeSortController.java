@@ -12,7 +12,7 @@ import visualizer.Model.SortResponse;
 @RestController
 public class PancakeSortController {
 
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.POST, RequestMethod.OPTIONS })
     @PostMapping("/pancake-sort")
     public SortResponse pancakeSort(@RequestBody SortInput sortInput) {
         return new SortResponse(PancakeSort.sort(sortInput.getValues()));

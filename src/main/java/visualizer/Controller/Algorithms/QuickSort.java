@@ -21,15 +21,6 @@ public class QuickSort {
         return results;
     }
 
-    private static void sort(int[] values, int low, int high) {
-        if(high <= low)
-            return;
-        results.add(Arrays.stream(values).boxed().toList());
-        int j = partition(values, low, high);
-        sort(values, low, j - 1);
-        sort(values, j + 1, high);
-    }
-
     private static int partition(int[] values, int low, int high) {
         int leftPointer = low;
         int rightPointer = high + 1;
@@ -53,5 +44,14 @@ public class QuickSort {
         Random rand = new Random();
         for (int i = values.length - 1; i > 0; i--)
             exchange(values, i, rand.nextInt(i + 1));
+    }
+
+    private static void sort(int[] values, int low, int high) {
+        if(high <= low)
+            return;
+        results.add(Arrays.stream(values).boxed().toList());
+        int j = partition(values, low, high);
+        sort(values, low, j - 1);
+        sort(values, j + 1, high);
     }
 }

@@ -30,14 +30,6 @@ public class HeapSort {
             sink(heap, i, size);
     }
 
-    private static void sortDown(int[] heap, int size) {
-        while (size > 1) {
-            exchange(heap, 1, size--);
-            sink(heap, 1, size);
-            results.add(toList(Arrays.copyOfRange(heap, 1, heap.length)));
-        }
-    }
-
     public static void sink(int[] binaryHeap, int index, int n) {
         while (2 * index <= n) {
             int j = 2 * index;
@@ -48,6 +40,14 @@ public class HeapSort {
             exchange(binaryHeap, index, j);
             results.add(Arrays.stream(binaryHeap).boxed().collect(Collectors.toList()));
             index = j;
+        }
+    }
+
+    private static void sortDown(int[] heap, int size) {
+        while (size > 1) {
+            exchange(heap, 1, size--);
+            sink(heap, 1, size);
+            results.add(toList(Arrays.copyOfRange(heap, 1, heap.length)));
         }
     }
 }

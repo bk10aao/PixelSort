@@ -81,17 +81,6 @@ public class TimSort {
         return runLength;
     }
 
-    private static int minRunLength(int x) {
-        if (x < MIN_MERGE)
-            return x;
-        int r = 0;
-        while (x >= MIN_MERGE) {
-            r |= (x & 1);
-            x >>= 1;
-        }
-        return Math.max(MIN_MERGE, x + r);
-    }
-
     private static void merge(int[] values, int left, int mid, int right, List<List<Integer>> sortingStates) {
         int len1 = mid - left + 1;
         int len2 = right - mid;
@@ -121,6 +110,17 @@ public class TimSort {
             values[k++] = rightArray[j++];
             sortingStates.add(toList(values));
         }
+    }
+
+    private static int minRunLength(int x) {
+        if (x < MIN_MERGE)
+            return x;
+        int r = 0;
+        while (x >= MIN_MERGE) {
+            r |= (x & 1);
+            x >>= 1;
+        }
+        return Math.max(MIN_MERGE, x + r);
     }
 
     private static class Run {

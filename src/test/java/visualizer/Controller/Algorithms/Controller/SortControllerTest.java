@@ -59,7 +59,7 @@ public class SortControllerTest {
 
     @ParameterizedTest(name = "{3} on {0}")
     @MethodSource("provideSortEndpointsAndTestCases")
-    void testSort_validInput_returnsSortedResponse(String endpoint, int[] input, List<Integer> expected, String testName) throws Exception {
+    void testSort_validInput_returnsSortedResponse(String endpoint, int[] input, List<Integer> expected) throws Exception {
         sortInput.setValues(input);
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
