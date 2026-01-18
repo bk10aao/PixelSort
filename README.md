@@ -34,7 +34,8 @@ It can be found at repository: https://github.com/bk10aao/PixelSortChakra
 To run the front end:
 
 1. `git clone git@github.com:bk10aao/PixelSortChakra.git`
-2. `npm run build`
-3. `npm run dev`
+2. `cd PiXelSortChakra`
+3. `npm run build`
+4. `npm run dev`
 
 ![Combined Performance Charts](PerformanceTests/All_Algorithm_Performance_Comparisons.png)
