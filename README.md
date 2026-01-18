@@ -38,5 +38,6 @@ To run the front end:
 3. `npm run build`
 4. `npm run dev`
 
+# Performance Charts
 
 ![Combined Performance Charts](PerformanceTests/All_Algorithm_Performance_Comparisons.png)
