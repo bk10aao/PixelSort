@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Commons {
@@ -69,8 +70,7 @@ public class Commons {
     }
 
     public static List<List<Integer>> initialize(int[] values) {
-        if(values == null)
-            throw new NullPointerException();
+        Objects.requireNonNull(values);
         if(values.length == 0)
             throw new IllegalArgumentException();
         List<List<Integer>> results = new ArrayList<>();
