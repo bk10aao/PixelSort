@@ -8,7 +8,6 @@ import static visualizer.Commons.Commons.initialize;
 import static visualizer.Commons.Commons.insertionSort;
 import static visualizer.Commons.Commons.toList;
 
-
 public class BucketSort {
 
     public static List<List<Integer>> sort(int[] values) {

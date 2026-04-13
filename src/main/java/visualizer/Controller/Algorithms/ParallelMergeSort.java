@@ -59,13 +59,13 @@ public class ParallelMergeSort {
         }
     }
 
-    static class MergeSortTask extends RecursiveAction {
+    private static class MergeSortTask extends RecursiveAction {
         private final int[] array;
         private final int left;
         private final int right;
         private final List<List<Integer>> results;
 
-        public MergeSortTask(int[] array, int left, int right, List<List<Integer>> results) {
+        private MergeSortTask(int[] array, int left, int right, List<List<Integer>> results) {
             this.array = array;
             this.left = left;
             this.right = right;

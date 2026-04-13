@@ -58,7 +58,7 @@ public class TimSort {
         return results;
     }
 
-    private static int countRunAndMakeAscending(int[] values, int start, List<List<Integer>> sortingStates) {
+    private static int countRunAndMakeAscending(final int[] values, final int start, final List<List<Integer>> sortingStates) {
         if(start >= values.length - 1)
             return 1;
 

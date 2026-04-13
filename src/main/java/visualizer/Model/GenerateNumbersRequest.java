@@ -9,12 +9,12 @@ public class GenerateNumbersRequest {
     @NotNull
     @Min(1)
     @Max(100)
-    private Integer value;
+    private int value;
 
     @NotNull
     @Min(1)
     @Max(100)
-    private Integer maxRange;
+    private int maxRange;
 
     public Integer getValue() {
         return value;

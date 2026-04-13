@@ -27,12 +27,11 @@ public class MSDRadixSort {
 
     private static void copyBucketsToArray(int[] values, int start, int[][] buckets, List<List<Integer>> sortingStates) {
         int index = start;
-        for (int[] bucket : buckets) {
+        for (int[] bucket : buckets)
             for (int value : bucket) {
                 values[index++] = value;
                 sortingStates.add(toList(java.util.Arrays.copyOf(values, values.length)));
             }
-        }
     }
 
     private static void msdRadixSort(int[] values, int start, int end, int digit, List<List<Integer>> results) {

@@ -1,4 +1,5 @@
 package visualizer.Controller.Algorithms;
+
 import java.util.List;
 
 import static visualizer.Commons.Commons.exchange;

@@ -12,12 +12,9 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> handleValidationException(MethodArgumentNotValidException ex) {
-        StringBuilder errors = new StringBuilder("Validation failed: ");
-        ex.getBindingResult().getFieldErrors().forEach(error ->
-                errors.append(error.getField()).append(": ").append(error.getDefaultMessage()).append("; "));
-        return new ResponseEntity<>(errors.toString(), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler({WebExchangeBindException.class, MethodArgumentTypeMismatchException.class, HttpMessageConversionException.class})
+    public ResponseEntity<String> handleBindException(Exception ex) {
+        return new ResponseEntity<>("Invalid JSON input: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
@@ -30,8 +27,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Invalid input: Null values are not allowed: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({WebExchangeBindException.class, MethodArgumentTypeMismatchException.class, HttpMessageConversionException.class})
-    public ResponseEntity<String> handleBindException(Exception ex) {
-        return new ResponseEntity<>("Invalid JSON input: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<String> handleValidationException(MethodArgumentNotValidException ex) {
+        StringBuilder errors = new StringBuilder("Validation failed: ");
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                errors.append(error.getField()).append(": ").append(error.getDefaultMessage()).append("; "));
+        return new ResponseEntity<>(errors.toString(), HttpStatus.BAD_REQUEST);
     }
 }

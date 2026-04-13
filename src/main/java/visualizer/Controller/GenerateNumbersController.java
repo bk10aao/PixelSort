@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import visualizer.Model.GenerateNumbersRequest;
 import visualizer.Model.GeneratorNumbersResponse;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
