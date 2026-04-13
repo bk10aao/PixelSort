@@ -36,7 +36,7 @@ public class SortControllerTest {
     private SortInput sortInput;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         sortInput = new SortInput();
     }
 
@@ -72,7 +72,7 @@ public class SortControllerTest {
 
     @ParameterizedTest(name = "empty array on {0}")
     @MethodSource("provideSortEndpoints")
-    void testSort_emptyArray_returnsBadRequest(String endpoint) throws Exception {
+    public void testSort_emptyArray_returnsBadRequest(String endpoint) throws Exception {
         sortInput.setValues(new int[]{});
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
@@ -84,7 +84,7 @@ public class SortControllerTest {
 
     @ParameterizedTest(name = "null input on {0}")
     @MethodSource("provideSortEndpoints")
-    void testSort_nullInput_returnsBadRequest(String endpoint) throws Exception {
+    public void testSort_nullInput_returnsBadRequest(String endpoint) throws Exception {
         sortInput.setValues(null);
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
@@ -96,7 +96,7 @@ public class SortControllerTest {
 
     @ParameterizedTest(name = "single element on {0}")
     @MethodSource("provideSortEndpoints")
-    void testSort_singleElement_returnsSortedResponse(String endpoint) throws Exception {
+    public void testSort_singleElement_returnsSortedResponse(String endpoint) throws Exception {
         sortInput.setValues(new int[]{1});
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
@@ -109,7 +109,7 @@ public class SortControllerTest {
 
     @ParameterizedTest(name = "already sorted on {0}")
     @MethodSource("provideSortEndpoints")
-    void testSort_alreadySorted_returnsSortedResponse(String endpoint) throws Exception {
+    public void testSort_alreadySorted_returnsSortedResponse(String endpoint) throws Exception {
         sortInput.setValues(new int[]{1, 2, 3});
         String requestBody = objectMapper.writeValueAsString(sortInput);
 
@@ -122,7 +122,7 @@ public class SortControllerTest {
 
     @ParameterizedTest(name = "invalid JSON on {0}")
     @MethodSource("provideSortEndpoints")
-    void testSort_invalidJson_returnsBadRequest(String endpoint) throws Exception {
+    public void testSort_invalidJson_returnsBadRequest(String endpoint) throws Exception {
         String invalidJson = "{ \"values\": \"not_an_array\" }";
 
         mockMvc.perform(post(endpoint)
